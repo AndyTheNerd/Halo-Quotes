@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https://wallpapers.com; frame-src https://xephorium.github.io; connect-src 'self';">
     <title>Halo Quotes by Team Respawn</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -44,6 +45,22 @@
             background-color: rgba(255, 255, 255, 1); /* Last value reflects opacity */
         }
 
+        /* Fixed size for quote container */
+        #quote-container {
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Ensure quote text takes available space */
+        #quote-text {
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
         /* Mobile-specific styles for the background */
         @media (max-width: 768px) {
             body {
@@ -71,7 +88,7 @@
                 <p id="quote-source" class="text-sm text-gray-500 text-center">
                     </p>
             </div>
-            <div class="flex justify-center mt-6">
+            <div class="flex justify-center mt-6" style="min-height: 48px;">
                 <button id="next-quote-btn" class="bg-gray-800 text-white font-semibold py-2 px-6 rounded-full shadow-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors duration-300">
                     Next Quote
                 </button>
@@ -80,11 +97,11 @@
     </div>
 
     <div class="fixed bottom-4 left-0 w-full text-center text-gray-400 text-sm">
-        Found an incorrect quote? Report it in our <a href="https://www.discord.gg/teamrespawn" target="_blank" class="underline hover:text-white transition-colors duration-200">Discord!</a>
+        Found an incorrect quote? Report it in our <a href="https://www.discord.gg/teamrespawn" target="_blank" rel="noopener noreferrer" class="underline hover:text-white transition-colors duration-200">Discord!</a>
         <br>
-        Made with <span class="text-red-500">❤</span> by <a href="https://www.youtube.com/@TeamRespawn" target="_blank" class="underline hover:text-white transition-colors duration-200">Team Respawn</a>
+        Made with <span class="text-red-500">❤</span> by <a href="https://www.youtube.com/@TeamRespawn" target="_blank" rel="noopener noreferrer" class="underline hover:text-white transition-colors duration-200">Team Respawn</a>
         <br>
-        View the code <a href="https://github.com/AndyTheNerd/AndyTheNerd.github.io" class="underline hover:text-white transition-colors duration-200">here</a>
+        View the code <a href="https://github.com/AndyTheNerd/AndyTheNerd.github.io" target="_blank" rel="noopener noreferrer" class="underline hover:text-white transition-colors duration-200">here</a>
     </div>
 
     <script>
@@ -92,515 +109,84 @@
         const quoteSourceElement = document.getElementById('quote-source');
         const nextQuoteBtn = document.getElementById('next-quote-btn');
         
-        // Quotes organized by game, stored in separate arrays.
-    const haloCE = [
-        "I'm going to search what's left of the Covenant battlenet, and see if I can locate the Pillar of Autumn's crash site. If the ship's fusion reactors are still relatively intact, we can use them to destroy Halo.",
-        "Captain Keyes...",
-        "Looks like the Covenant wanted to catch you napping.",
-        "We can't let the Flood get off this ring! You know what he'd expect...",
-        "Sleepers! Take 'em out, nice and quiet!",
-        "Tell that to the Covenant.",
-        "Let's give our old friend a warm welcome.",
-        "Let's go Marines, the Corps ain't paying us by the hour!",
-        "Sir, why would rebels want to cut off Reach from the rest of the colonies?",
-        "This is pelican Echo 419, you got 2 enemy drop ships coming in fast!",
-        "This is Echo 419. Chief! Is that you?",
-        "Gunny, I can fly a Pelican, but a Phantom? It's been years since I even ran a simulation!",
-        "Why? Looking for a little payback?",
-        "You have the MAC gun, Cortana. As soon as they come in range, open up.",
-        "Get here first? The Covenant ships have always been faster.",
-        "This cave is not a natural formation. Someone built it, so it must lead somewhere.",
-        "Look on the bright side, Foe Hammer: The last thing the Covenant will expect is an aerial insertion...from underground.",
-        "Interesting... the weather patterns here seem natural, not artificial. I wonder if the ring's environment systems are malfunctioning... or if the designers wanted the installation to have inclement weather.",
-        "You did that on purpose, didn't you?",
-        "Greetings. I am the Monitor of installation 04. I am 343 Guilty Spark.",
-        "No human lifesigns detected. The Captain! He's one of them!",
-        "Wort wort wort!",
-        "I knew it. The Autumn is accelerating. Keyes in going in manually!",
-        "We did what we had to do! For Earth! An entire Covenant armada obliterated, and the Flood! We had no choice. Halo...it's finished.",
-        "Puzzling. You brought such ineffective weapons to combat the Flood, despite the containment protocols.",
-        "A construct? In the Core? That is absolutely unacceptable!",
-        "Unacceptable! Unacceptable! Absolutely unacceptable!",
-        "This is it, baby! Hold me.",
-    ];
+        // List of available quote files
+        const quoteFiles = [
+            'quotes/halo-ce.json',
+            'quotes/halo-2.json',
+            'quotes/halo-3.json',
+            'quotes/halo-odst.json',
+            'quotes/halo-reach.json',
+            'quotes/halo-4.json',
+            'quotes/halo-5.json',
+            'quotes/halo-infinite.json',
+            'quotes/halo-wars.json',
+            'quotes/halo-wars-2.json',
+            'quotes/halo-multiplayer.json'
+        ];
 
+        // Function to display a loading state
+        function showLoading() {
+            quoteTextElement.textContent = 'Loading...';
+            quoteSourceElement.textContent = '';
+        }
 
-    const halo2 = [
-        "Why do you continue to fight us, Reclaimer? You cannot win! Give us the construct, and I will endeavor to make your death relatively painless and--",
-        "Let him be. The Great Journey waits for no one, brother.",
-        "Stay where you are! Nothing can be done until my sermon is complete!",
-        "We shall cut into the heart of this infestation, retrieve the Icon, and burn any Flood that stand in our way!",
-        "Oh, I know what the ladies like...",
-        "Get up, SO I CAN KILL YOU AGAIN!",
-        "I'm too pretty to die!",
-        "I need a weapon.",
-        "And I don't do bits and pieces!",
-        "Everyone, sir?",
-        "I think we both know the answer to that.",
-        "I beg your pardon? I am 343 Guilty Spark, Monitor of Installation 04.",
-        "Just keep your head down. There's two of us in here, remember?",
-        "Thanks for the tank... he never gets me anything.",
-        "Sir, additional contacts! Boarding craft, and lots of 'em!",
-        "You told me there wouldn't be any cameras. And you told me you were gonna wear something nice!",
-        "Usually the good Lord works in mysterious ways, but not today!! This here is 66 tons of HE spewin, dee-vine intervention!! If war is love then you can call me Cupid!!",
-        "Dear Humanity... We regret being alien bastards. We regret coming to Earth. And we most definitely regret that the Corps just blew up our raggedy ass fleet!",
-        "That, or you can hide behind me!",
-        "Sir, finishing this fight.",
-        "If they came to hear me beg, they will be disappointed.",
-        "Tartarus, the prophets have betrayed us...",
-        "Tartarus has locked himself inside the control room.",
-        "Chief...don't be a fool. Leave me.",
-        "For a brick, he flew pretty good!",
-        "What if you miss?",
-        "Thought I'd shoot my way out, mix things up a little.",
-        "Sir, permission to leave this station.",
-        "I know what you are thinking, and it's crazy. Unfortunately for us both...I like crazy.",
-        "Just one question: what if you miss?",
-        "Master Chief! You mind telling me what you're doing on that ship?!",
-        "Relax. I'd rather not piss this thing off.",
-        "Quiet! You two whimper like Grunts fresh off the teat. He's not meant for the jails. The Hierarchs have something special in mind.",
-        "For your destruction is the will of the gods! And I? I am their instrument!",
-        "Fate had us meet as foes, but this ring will make us brothers.",
-        "Optics, totally fried. And let's not even talk about the power supply. You know how expensive this gear is, son?",
-        "Huh! My ass! Well, you can forget about those adjustments to your A2 scope!",
-        "Why was it not destroyed, with the rest of their fleet?",
-        "Me. Inside your head. Now.",
-        "Listen tinker bell, don't make me...",
-        "I'm not coming with you this time.",
-        "You are the Arbiter, the will of the Prophets. But these are my Elites. Their lives matter to me. Yours does not.",
-        "Kill me or release me, parasite, but do not waste my time with talk.",
-        "Catchy. Any idea what it means?",
-        "Greetings! I am 2401 Penitent Tangent. I am the monitor of installation 05.",
-        "So, this is what my father found... I thought Halo was some sort of superweapon.",
-        "I want all the information you've got on the first Halo. Schematics, topography, whatever. I don't care if I have the clearance or not.",
-        "This is not your grave, but you are welcome in it.",
-        "There is much talk, and I have listened, through rock and metal and time. Now I shall talk, and you shall listen.",
-        "When you first saw Halo, were you blinded by its majesty?",
-        "What mission? You dropped off the grid! My squad was scattered-",
-        "Yet the humans were able to evade your ships, land on the sacred ring, and desecrate it with their filthy footsteps.",
-        "You were right to focus your attention on the Flood. But this demon, this Master Chief...",
-        "Oracle? Great Journey? Why do you meddlers insist on using such inaccurate verbiage?",
-        "Why the Ark, of course.",
-        "Fail-safe protocol. In the event of unexpected shutdown, the entire system will move to standby status. All remaining platforms are now ready for remote activation.",
-        "Unfortunate. His edification was most enjoyable.",
-        "Earth, to finish what we started. And this time, none of you will be left behind.",
-        "Elites are blind, Arbiter. But I will make them see!",
-        "I don't believe it! They're retreating! We won!",
-        "Don't make a girl a promise if you know you can't keep it.",
-        "Listen. You don't like me, and I sure as hell don't like you.",
-    ];
+        // Function to display an error message
+        function showError(message) {
+            quoteTextElement.textContent = `Error: ${message}`;
+            quoteSourceElement.textContent = 'Please try again.';
+        }
 
-    const halo3 = [
-        "You want breakfast? You gotta catch it!",
-        "I...am...Truth! The voice of the Covenant!",
-        "That stench...I've smelled it before.",
-        "And so, you must be silenced.",
-        "Were it so easy...",
-        "Can you guess?",
-        "You are the child of my makers. Inheritor of all they left behind! You are forerunner. But this ring, is MINE!",
-        "Tank beats everything!",
-        "Tank beats ghost!",
-        "Tank beats hunter!",
-        "Tank beats everything!",
-        "Could you sacrifice me to complete your mission? Could you watch me die?",
-        "Shipmaster! They outnumber us three to one!",
-        "All cruisers, fire at will! Burn their mongrel hides!",
-        "I will have my revenge. On a Prophet, not a plague!",
-        "But you had something the others didn't...can you guess?",
-        "Banshees! Fast and low!",
-        "Take us home.",
-        "Then it is an even fight!",
-        "Wake me...when you need me.",
-        "But you did it. Truth and the Covenant, the Flood...",
-        "The Scarab is destroyed. Victory is ours today.",
-        "Send me out...with a bang.",
-        "Master Chief? Good, this channel is secure. My fireteams are spread thin. We can't hold out forever. I need that hangar cleared for evac, ASAP.",
-        "All ships fire at will, burn their mongrel hides.",
-        "Please, don't shake the lightbulb.",
-        "Do not shoot, but listen! We share a common goal. Let my body be your shield. I shall not fight you! Let me lead you safely to our foe. Only you can halt what he has set in motion.",
-        "What is it? More Brutes?",
-        "Does he usually mention me?",
-        "You know me. I did my research. Watched as you became the very soldier we needed you to be.",
-        "Kiss...my...asss.",
-        "Hey bastards! Knock knock!",
-        "Orders are orders.",
-        "Slipspace rupture detected.",
-        "There goes his shield!",
-        "Real pretty. Friend of yours?",
-        "First Squad, you're my scouts. Move out! Quiet as you can.",
-    ];
+        // Async function to fetch and display a random quote
+        async function displayRandomQuote() {
+            try {
+                // Show loading state
+                showLoading();
+                
+                // Disable button during fetch
+                nextQuoteBtn.disabled = true;
+                nextQuoteBtn.textContent = 'Loading...';
 
-    const haloODST = [
-        "Safe is better than close, Sergeant Major.",
-        "Ms. Naval Intelligence, our new boss. So check your mouths, find your chairs, and get set for a combat drop!",
-        "Warning! Hitchhikers may be escaped convicts!",
-        "Hey Rookie, you out there? Respond, that's an order!",
-        "Down there? That's the Superintendent. The AI that runs every system in the city. My mission - our mission, is to secure the Superintendent's data.",
-        "Mickey? I'm sending you a very special co-pilot.",
-        "Something tells me you're not a rookie...",
-        "Beautiful, isn't she? I don't get to see her often enough. I grew up on New Harmony. Never saw Earth until I was an adult...but I still think of her as home."
-    ];
+                // Randomly select a quote file
+                const randomFile = quoteFiles[Math.floor(Math.random() * quoteFiles.length)];
 
+                // Fetch the JSON file
+                const response = await fetch(randomFile);
+                
+                if (!response.ok) {
+                    throw new Error(`Failed to load quotes: ${response.status} ${response.statusText}`);
+                }
 
-    const haloReach = [
-        "Good work, Noble Six. UNSC air support: skies are clear.",
-        "But Cortana...these coordinates are underground.",
-        "Sir, why would rebels want to cut off Reach from the rest of the colonies?",
-        "First glassing? Me too. Don’t worry, I’m on it. Our best option is a fallout bunker in Sublevel 2. Ninety-six metres northeast. We get orders from Holland, sir?",
-        "Noble Leader, seek immediate medical attention.",
-        "Noble Leader, please respond.",
-        "They're not rebels, they're farmers. Look at them.",
-        "Our foe is more devious than we imagined. That spire was indeed a teleporter linked to a cloaked, Covenant supercarrier... A grave threat.",
-        "It didn't take long for Reach to fall. Our enemy was ruthless. Efficient. But they weren't nearly fast enough. For you had already passed the torch. And because of you, we found Halo, unlocked its secrets, shattered our enemy's resolve.",
-        "Our victory - your victory - was so close...I wish you could have lived to see it. But you belong to Reach. Your body, your armor - all burned and turned to glass. Everything...except your courage. That, you gave to us. And with it, we can rebuild.",
-        "Colonel, this is Noble One. There are no rebels. The Covenant are on Reach. Acknowledge?",
-        "Come again Noble One?! Did you say Covenant?",
-        "Prime the nuke. Save them. Destroy the composer.",
-        "That's right you mothers! Run!!",
-        "This is the Pillar of Autumn. We're away...and the package is with us.",
-        "So that's our new number six.",
-        "Six. That AI chose you. She made the right choice.",
-        "Mankind is outmatched. When Reach falls - and it will fall - our annihilation is all but certain.",
-        "Affirmative. It's the Winter Contingency!",
-        "You know the music, time to dance.",
-        "You're on your own Noble, Carter Out.",
-        "Can't be. Not on Reach.",
-        "Alright Noble Team, spread out. Watch the approach.",
-        "We all make it sooner or later.",
-        "I know we're losing... I want to know if we've lost.",
-        "I'm ready... how bout' you?",
-        "Better get going, Six, they're gonna need you down there. Listen, Reach has been good to me.",
-        "Good luck to you, Spartan.",
-        "Noble Six, move into the house. Go in quiet."
-    ];
+                // Parse the JSON
+                const data = await response.json();
 
-    const halo4 = [
-        "What are you after? The others before you were Naval Intelligence but you - you're something else.",
-        "What does John have to do with this? ...you want to replace him.",
-        "His file reads 'missing in action'.",
-        "Your mistake is seeing Spartans as military hardware. My Spartans are humanity's next step, our destiny as a species. Do not underestimate them. But most of all, do not underestimate... him.",
-        "I thought you'd be taller.",
-        "I am ordering you....TO SURRENDER THAT AI!",
-        "Lieutenant! Arrest that man!",
-        "Welcome home, John.",
-        "Before this is all over, promise me you'll figure out which one of us is the machine.",
-        "Uh, I'm sorry. Did I miss orbiting a Forerunner planet at some point?",
-        "I was put into service eight years ago. AI's deteriorate after seven, Chief.",
-        "Hope you don't mind hoofin' it a little.",
-        "It's not alright. Nothing about it is alright.",
-        "Come on, Chief. Take a girl for a ride.",
-        "I will not allow you to leave THIS PLANET!",
-        "I can give you over forty thousand reasons why I know that sun isn't real. I know it because the emitter's Rayleigh effect is disproportionate to its suggested size. I know because it's stellar cycle is more symmetrical than that of an actual star.",
-        "Chief, if we pull this off and actually get back to Halsey? Don't tell her how bad I got. Please?",
-        "They'll pair you with another A.I. Maybe even another Cortana model if Halsey lets them. It won't be me...you know that right?",
-        "Even in death, her meddling continues.",
-        "The Mantle of Responsibility for the galaxy shelters all, human. But only the Forerunners are its masters.",
-        "Is this the secret you've kept from me? This... evolved ancilla?",
-        "Your compassion for mankind is misplaced.",
-        "In this hour of victory, we taste only defeat. I ask, why? We are Forerunners, guardians of all that exists.",
-        "The Forerunners... have returned. This tomb...is now yours.",
-        "Time was your ally, human, but now it has abandoned you.",
-        "Can I defeat the Didact without it? No. Then do it.",
-        "Mayday! Mayday! This is the captain of the UNSC Infinity. Unknown entity has seized control of our ship! We're without power, and on a collision course with an unidentified Forerunner planet!",
-        "I know you've been off the field for a while, Master Chief, but this is a blowthrough op. Sending in recon would just slow us down!",
-        "Look... I understand what you think you saw.",
-        "And with all due respect to you, soldier, I'm not willing to jeopardize my ship because of the hallucinations of an aging Spartan and his malfunctioning AI!",
-        "I am the remains of the Forerunner once known as the Librarian. My memories were retained to assist humanity on their path to the Mantle. Though sadly, that plan is now at risk. The Didact is leaving Requiem. Soon. You must not allow it.",
-        "He seeks this - The Composer. A device which will allow him to finally contain the greatest enemy ever faced by the Forerunners. You.",
-        "Reclaimer, the genesong I placed within you contains many gifts, including an immunity to the Composer, but it must be unlocked.",
-        "Your evolutionary journey must be accelerated.",
-        "Reclaimer, when I indexed mankind for repopulation, I hid seeds from the Didact. Seeds which would lead to an eventuality. Your physical evolution. Your combat skin. Even your ancilla, Cortana. You are the culmination of a thousand lifetimes of planning.",
-        "Infinity! This is Sierra-117 of the UNSC Forward Unto Dawn. Do you copy?",
-        "The Didact has to be stopped. If you won't do that... I will.",
-        "Chief, Palmer again. The Mammoth's got jetpacks onboard. If I were down there, I'd want one.",
-        "Cortana. It's not over. Not yet.",
-        "I've got to do something you're not going to like.",
-        "Our duty as soldiers, is to protect Humanity, whatever the cost.",
-        "She said that to me once. About being a machine.",
-        "Commander Lasky. Pursuant to Article 55 of UNSC Regulation 12-145-72, I am ordering you to remove that AI's data chip and retire it for final dispensation.",
-        "Give. Me. That. Chip.",
-        "Damn Lieutenant. Glad you're on our side. The elevator will get you to the tower.",
-        "We trade one villain for another.",
-        "Come on, Chief. Take a girl for a ride.",
-        "Nothing ventured, nothing gained, right?",
-        "Don't...don't let her go. Don't ever let her go. Send me out...with a bang.",
-        "What are you after? The others before you were Naval Intelligence but you - you're something else.",
-        "What does John have to do with this? ...you want to replace him.",
-        "His file reads 'missing in action'.",
-        "Your mistake is seeing Spartans as military hardware. My Spartans are humanity's next step, our destiny as a species. Do not underestimate them. But most of all, do not underestimate... him.",
-        "I thought you'd be taller.",
-        "I am ordering you....TO SURRENDER THAT AI!",
-        "Lieutenant! Arrest that man!",
-        "Welcome home, John.",
-        "Before this is all over, promise me you'll figure out which one of us is the machine.",
-        "Uh, I'm sorry. Did I miss orbiting a Forerunner planet at some point?",
-        "I was put into service eight years ago. AI's deteriorate after seven, Chief.",
-        "Hope you don't mind hoofin' it a little.",
-        "It's not alright. Nothing about it is alright.",
-        "I don't know about you, but I usually like a little bit more intel with my intel.",
-        "Chief, Palmer again. The Mammoth's got jetpacks onboard. If I were down there, I'd want one.",
-        "What I want to know, people, is where the hell did those things come from?",
-        "He isn't the only one. You, I'd think you, of all people, would appreciate living to fight another day.",
-        "Your nobility has blinded you, as ever. The Librarian left little to chance, didn't she? Turning my own guardians...my own world...against me.",
-        "Even in death, her meddling continues.",
-        "I sense your malfunctioning companion, human. And yet, she eludes me.",
-        "Wake up, Chief. I need you.",
-        "Ready to get back to work?",
-        "Chief, when you get to Earth... Good luck.",
-        "How long was I out?",
-        "I thought we had a truce with the Covenant.",
-        "If we could just get back to Earth, and find Halsey, she could fix this.",
-        "Earth. Haven't seen it in years.",
-    ];
+                // Validate the data structure
+                if (!data.gameName || !Array.isArray(data.quotes) || data.quotes.length === 0) {
+                    throw new Error('Invalid quote file format');
+                }
 
-    const halo5 = [
-        "Captain Lasky, I sent you my position three weeks ago! I told you this was happening!",
-        "Spartan Locke. I have spent enough years with ONI to know the truth. Once this is over, after all I have done...they'll order you...to kill us both.",
-        "It took you long enough.",
-        "That's what I miss most about you, Buck. The way your mouth's always move a little faster than your brain.",
-        "Negative, Infinity. I don't like it.",
-        "You ask, you buy.",
-        "Doctor Halsey. Captain Lasky would like a word with you.",
-        "John...I've waited so long to do that.",
-        "It's so good to see you again, John. So good to see all of you. Back together...as a family.",
-        "You know, don't you. My exact body count.",
-        "You're not the only one here because of him.",
-        "Armor restraint. Short-circuit their suit systems.",
-        "117, stand down! Sir, you are absent without leave. This is your one chance to come home peacefully.",
-        "Cortana's our concern now, Sir.",
-        "The Warden confirmed Doctor Halsey's theory: Cortana is activating the Guardians.",
-        "She calls the Guardians to serve her.",
-        "I am the Warden Eternal. I stand in service to Cortana.",
-        "The other humans are approved for passage. Regretfully, you are not.",
-        "Vacate this shelter now!",
-        "The Mantle of Responsibility belongs to Cortana and her people.",
-        "I tried to warn you this was happening! Cortana is no longer an asset, Captain. She is a danger. She has accessed the Forerunner Domain, a galaxy-spanning network that allows her to control whatever devices caused this damage.",
-        "What? No. John must not speak to her.",
-        "Spartan Locke! Stop her. But please. Bring John home to me.",
-        "You know what I did to create the Spartans. All in the name of the greater good.",
-        "Cortana is built from a matrix of my own mind. The Domain gives her incredible power.",
-        "Hide and seek is over Infinity.",
-        "Hello. I am 031-Exuberant Witness, monitor of the Genesis installation. Welcome. Have you also come to stop Cortana from claiming the Mantle?",
-        "Why has she called so many? A single Guardian can effectively police a solar system. This show of force is unsettling.",
-        "Oh my. I never was in combat before. This is rather distressing. And exciting!",
-        "Yes, I can see now why the Warden is troubled by your presence. You are quite destructive.",
-        "I'm not as much hunting a spartan, as I'm hunting the Spartan.",
-        "More human sarcasm.",
-        "I tire of this doctor. You have been chasing shadows for weeks to no avail.",
-        "Tell me the truth. How many people died when you called the Guardians here?",
-        "You created Cortana, Doc, and now you're throwing her out of the airlock with these accusations.",
-        "Why is Cortana the problem? Because she refused to die when she was supposed to?",
-        "You think she tricked the Master Chief into abandoning his post? Respectfully sir, to what end?",
-        "Just one more question before I go...where is the Infinity? Why is she so difficult to see?",
-    ];
-
-    const haloInfinite = [
-        "This is UNSC Pelican Echo 216. Can you hear me? This is UNS-",
-        "Looks like the main power cells are fried. Armor shutdown, triggering survival mode. I'm going to try to override.",
-        "Okay, if you can hear me in there, I hope you're ready. Please don't die. Please don't die.",
-        "Yes! Yes! Yes! We're going home! Haha! Welcome back, Chief. I rerouted what little power I had into your suit.",
-        "No more Prophets, no more lies! We stand together, brothers to the end. We are his will. We are his legacy. We are the Banished.",
-        "The hour approaches. Our forces occupy the ring, within hours, it will be under our control. Humanity will burn.",
-        "If you knew how you were going to die, how would you live your life differently?",
-        "I hope the human afterlife sucks!",
-        "You suck even worse than I do!",
-        "That’ll learn you to do whatever the heck you were doing!",
-        "Man, I sure do love my dangerous, thankless job.",
-        "SIGNAL. TAG DESIGNATION: FRIENDLY.",
-        "We lost. We lost everything. There's nothing left for us here. I don't even know where here is.",
-        "The hour approaches. Soon the Banished will stand victorious. Atriox...hear these words. Even from beyond this life, your will is served.",
-        "We thought you dead. Tossed into the void...yet here you stand. Humans call you their savior. The Covenant... Demon. The Banished? Prey.",
-        "The Master Chief lives?! Atriox assured us of his death! Are you not angered?",
-        "Do you question my leadership? Atriox's vision?",
-        "No. We do our duty. Protect humanity, whatever the cost.",
-        "It's been six months where have you been?",
-        "The rogue AI known as Cortana is gone. She's been deleted.",
-        "Did you hit your head or something? My instructions were to enter this installation, imitate Cortana and lock her down for retrieval. Yours were to take her back to the Infinity for deletion.",
-        "Good? My programming failed. I'm not supposed to be here. You need to delete me.",
-        "The missions change. They always do.",
-        "Hello Master Chief. I'm Cortana.",
-        "Now, at last, I see! Her secret is revealed!",
-        "This is Spartan Bonita Stone. Recon specialist. Her vitals have been offline for nearly a month.",
-        "Escharum's orders are that you should be brought before him! He did not specify in how many pieces.",
-        "FOR THE BANISHED!",
-        "You were right, he was not friendly. By the looks of him he was some sort of leader. They called him Tremonius.",
-        "I want you to know my name too. To know my legend. How else will you beg me for mercy?",
-        "I am Escharum. War chief of the Banished. This is my world now. And you have little time remaining in it.",
-        "Wow. Look at this place. It's so... full of more monsters coming to kill us.",
-        "Cortana's no longer a threat. And now she's going to help us stop the Banished.",
-        "This is fascinating. You're trying to survive...but I was programmed to die.",
-        "My time is ended. Yours too. They will make sure.",
-        "The Endless will return.",
-        "Make the most of your victory, humans. It will be your last.",
-        "I'm sorry. I didn't have long to plan this. A few milliseconds really. I hope it worked out.",
-        "I was wrong. I thought I could do this on my own, but I forgot the whole point of all this, the entire reason I chose you in the first place was that we were supposed to be a team.",
-        "Perfectly suited. Perfectly matched. Perfectly perfect.",
-        "In these final moments I know what my last mission is. I need to make sure you two learn from my mistakes. Become stronger because of them.",
-        "I chose well, Master Chief. I really did. Now it's up to you.",
-        "The Banished go where they want and destroy any who oppose! Is Atriox's rise not proof of this?",
-        "They're mine. Now to... IMPRISON THEM?!? LIKE HE IMPRISONED HIS PROMETHEANS? LIKE DR. HALSEY IMPRISONED ME??",
-        "It's enough.",
-        "Then there's still hope.",
-        "We all fail. We all make mistakes. It’s what makes us human.",
-        "When you look back on these last days you will realize that all you built... was a tomb. A place where hope dies.",
-        "Just promise me one thing: Whatever happens, save him. He needs you. You’re all he has.",
-        "The intricacies of any action are complex. The reactions numerous, yet mostly predictable.",
-        "Banished? What are they doing here?",
-        "A Spartan is a symbol... In times of darkness, we are hope. And together... we are unstoppable!",
-        "Keep Zeta Halo out of their control. Buy Earth as much time as we can. That's our mission now.",
-    ];
-
-    const haloWars = [
-        "Captain's Report - February 4th, 2531. Five years. Five long years. That's how long it took us to get Harvest back.",
-        "At first, it was going well... then setback after setback... loss after loss... made what was going to be a quick and decisive win into five years of hell.",
-        "Of course that's all Harvest is today... it's hell down there. But it's ours again.",
-        "Serina, status?",
-        "Serina, report. What's going on here?",
-        "And for the record, I would've kicked your ass the first time if it weren't for the lady!",
-        "Mission top secret, destination unknown....",
-        "Sgt. Forge, all ground forces are evacuating to the Spirit of Fire.",
-        "Copy that! Get our people out of here... I'm blowing the core.",
-        "Ground teams! Find a way to open that portal or we're all dead.",
-        "For Samuel!",
-        "The leader controls the beam!",
-        "Join the rest of your friends!",
-        "Sergeant Forge, report.",
-        "The Spirit of Fire is in the situation I...could not anticipate.",
-        "Spirit of Fire, getting a little hairy here, sir. Where's that backup?",
-        "Definitely plenty of bad guys down here, Captain. And they found something in the ice.",
-        "We're to bring Alpha Base up to operational status and take control of that site.",
-        "I can be quite insistent too, Captain. I can take care of myself.",
-        "The information you have gathered here is most appetizing.",
-        "Destroy this holy relic? Surely you jest!",
-        "The journey requires sacrifice!",
-        "Our patience is not infinite!",
-        "Yes. Run, little demons.",
-        "Hold your position, Red Team. Reinforcements will come to you.",
-        "Lady there's no way you're coming down here on the first bird.",
-        "What made you choose my observation deck as your lab, professor?",
-        "Where the hell are we, Serina?",
-        "I like the view. It adds...perspective to my work.",
-        "Your primary objective? Commander, are you a puppet or a Spartan?",
-        "Analyzing...",
-        "It might be the key to this whole war, Serina. It's worth the risk.",
-        "The Hierarchs grow impatient! We can delay no longer!",
-        "What if the infection defiles the relic?",
-        "I care not for your little life! Open the relic.",
-        "Recalling surface squads so we can all die together. Aye, sir!",
-        "We can not lose our foothold on Arcadia, gentlemen. Secure a defensible position, and hold it until we can reinforce you!",
-        "Professor, there's been no sign of the Covenant for almost two weeks. There's nothing to do.",
-        "Forge, get those things off my ship!",
-        "All units!",
-        "Local units!",
-        "Forge is down!",
-        "Hitching a ride!",
-        "By the Prophets... You will pay for your insolence!",
-        "Alpha Base, this is Bravo-29, heavy inbound. I've got the Professor aboard."
-    ];
-
-    const haloWars2 = [
-        "His name, is Atriox.",
-        "The Brute. Their leader. His name is Atriox.",
-        "As I suspected, nothing, but a man.",
-        "Yes, run little demons. Hunt them down. Find out where they came from, and bring me back anything useful.",
-        "You think you can stand against me? I, who defied the Covenant itself!",
-        "Hahahaha! Luck! Treachery! These are the only reasons you still live, Cutter! Very well, I admire your spirit, captain, but you've just sentenced your little ship to oblivion.",
-        "Twenty eight years Professor, let's see what kind of galaxy we woke up to.",
-        "If we don't stop Atriox now, we leave the galaxy at the mercy of a monster. So no, Isabel. We won't be running anywhere today.",
-        "Got some trickshots I'm dying to try out!",
-        "Hostile's taking a well deserved dirt nap!",
-        "One day I will rest. The Arbiter will endure.",
-        "This place makes a shield world look normal.",
-        "Don't know about you Omega Team, but I'm looking forward to a straight fight.",
-        "Sometimes I miss the Covenant, these new guys are nasty.",
-        "Long live Atriox!",
-        "Who's a big bad grunt?",
-        "Gonna make them cry like babies, boo hoo!",
-        "I would've been your daddy!",
-        "My work saved the human race.",
-        "When Reach falls...and it will fall, our annihilation is all but certain.",
-        "Spartans never die.",
-        "The Master Chief is dead.",
-        "Supply pad constructed.",
-        "Barracks constructed.",
-        "Air Pad constructed.",
-        "Amory constructed.",
-        "Garage constructed.",
-        "Raid Camp constructed.",
-        "Power Extractor constructed.",
-        "Helljumpers...standing down!",
-        "MAC Blast incoming!",
-        "There will be order in this Council!!",
-        "It's finished.",
-        "We made a blind jump... how did they -",
-        "When I asked for reinforcements, I didn't think they'd send a Spartan.",
-        "The Spirit of Fire is in a situation... I ... could not anticipate.",
-        "We've been adrift for just over 28 years. I made quite a few repairs while you were sleeping, so ship systems are at 100 percent.",
-        "As for me, well, regulations are clear about final dispensation at the end of an AI's 7 year life span.",
-        "I took care of my own arrangements, rather than wake you. I didn't want to, well, I hope you can forgive this final breach of protocol. It was a pleasure and an honor to serve with you, sir. Goodbye, Captain. Serina out.",
-        "Destroy those Locusts where ever you find them, they're building killers.",
-        "Voridus! The Orbital Designator shows they're coming from a nearby launching bay.",
-        "It is with a heavy heart, that I must accept that Atriox… my greatest achievement… is lost to us.",
-        "Banished don't pay me to listen to Brutes ... huh, they don't pay me at ALL!",
-        "To all humans looking forward to being interrogated to death: I regret to inform that the Tower is closed for Renovations.",
-        "OH NO! I DIDN'T MEAN TO TURN THESE ON AAAAAH!"
-    ];
-
-    const haloMultiplayer = [
-        "Slayer!",
-        "Flag dropped.",
-        "I would've been your daddy!",
-        "Hoorah Marines!",
-        "Helljumpers...standing down!",
-        "Warning! Hitchhikers may be escaped convicts!",
-        "Hostile's taking a well deserved dirt nap!",
-        "Got some trickshots I'm dying to try out!"
-    ];
-
-    const haloCEQuotes = haloCE;
-    const halo2Quotes = halo2;
-    const halo3Quotes = halo3;
-    const haloODSTQuotes = haloODST;
-    const haloReachQuotes = haloReach;
-    const halo4Quotes = halo4;
-    const halo5Quotes = halo5;
-    const haloInfiniteQuotes = haloInfinite;
-    const haloWarsQuotes = haloWars;
-    const haloWars2Quotes = haloWars2;
-    const haloMultiplayerQuotes = haloMultiplayer;
-
-        // An object to map game names to their quote arrays
-        const games = {
-            "Halo Combat Evolved": haloCE,
-            "Halo 2": halo2,
-            "Halo 3": halo3,
-            "Halo 3: ODST": haloODST,
-            "Halo Reach": haloReach,
-            "Halo 4": halo4,
-            "Halo 5": halo5,
-            "Halo Infinite": haloInfinite,
-            "Halo Wars": haloWars,
-            "Halo Wars 2": haloWars2,
-            "Halo Multiplayer": haloMultiplayer
-        };
-        
-        function displayRandomQuote() {
-            // Get a list of the game names (e.g., "Halo 2", "Halo 3")
-            const gameNames = Object.keys(games);
-
-            // Randomly select one of the game names
-            const randomGameName = gameNames[Math.floor(Math.random() * gameNames.length)];
-
-            // Get the array of quotes for the selected game
-            const quotesArray = games[randomGameName];
-
-            // Randomly select a quote from that array
-            const randomQuote = quotesArray[Math.floor(Math.random() * quotesArray.length)];
+                // Randomly select a quote from the array
+                const randomQuote = data.quotes[Math.floor(Math.random() * data.quotes.length)];
             
             // Update the HTML elements
             quoteTextElement.textContent = `"${randomQuote}"`;
+                quoteSourceElement.textContent = `- ${data.gameName}`;
 
-            quoteSourceElement.textContent = `- ${randomGameName}`;
+            } catch (error) {
+                console.error('Error loading quote:', error);
+                // Provide more specific error messages
+                let errorMessage = 'Unable to load quote. ';
+                if (error.message.includes('Failed to fetch') || error.message.includes('CORS')) {
+                    errorMessage += 'This site needs to be served from a web server (not opened directly as a file). ';
+                    errorMessage += 'Try using: python -m http.server 8000 or npx serve';
+                } else {
+                    errorMessage += error.message || 'Please check your connection and try again.';
+                }
+                showError(errorMessage);
+            } finally {
+                // Re-enable button
+                nextQuoteBtn.disabled = false;
+                nextQuoteBtn.textContent = 'Next Quote';
+            }
         }
 
         // Display a new random quote when the button is clicked
@@ -611,3 +197,13 @@
     </script>
 </body>
 </html>
+
+        displayRandomQuote();
+
+    </script>
+
+</body>
+
+</html>
+
+
