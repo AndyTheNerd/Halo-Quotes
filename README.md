@@ -62,34 +62,6 @@ python -m SimpleHTTPServer 8000
 
 Then open `http://localhost:8000` in your browser.
 
-### Option 2: Node.js (npx serve)
-
-If you have Node.js installed:
-
-```bash
-npx serve
-```
-
-Then open the URL shown in the terminal (typically `http://localhost:3000`).
-
-### Option 3: PHP Built-in Server
-
-If you have PHP installed:
-
-```bash
-php -S localhost:8000
-```
-
-Then open `http://localhost:8000` in your browser.
-
-### Option 4: VS Code Live Server
-
-If you're using VS Code:
-
-1. Install the "Live Server" extension
-2. Right-click on `index.html`
-3. Select "Open with Live Server"
-
 ## Security Improvements
 
 This repository implements several security best practices:
@@ -98,6 +70,11 @@ This repository implements several security best practices:
 - Added CSP meta tag to restrict resource loading
 - Prevents XSS attacks by controlling which resources can be loaded
 - Allows only trusted domains for scripts, styles, fonts, images, and frames
+
+### CSP Inline Scripts and Styles
+- The current CSP includes `'unsafe-inline'` for scripts and styles to allow inline code
+- This is a known security trade-off that enables easier maintenance but reduces XSS protection
+- For production hardening, consider moving inline code to external files and removing `unsafe-inline`
 
 ### Secure External Links
 - All external links include `rel="noopener noreferrer"` attributes
