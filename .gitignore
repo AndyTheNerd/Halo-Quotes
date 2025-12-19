@@ -16,3 +16,5 @@ desktop.ini
 # Dependencies
 node_modules/
 
+# Environment files
+.env
