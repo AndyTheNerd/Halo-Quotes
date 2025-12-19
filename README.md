@@ -119,3 +119,50 @@ Please feel free to open a Pull Request or report it in our Discord server: http
 ## Special Thanks To
 
 - The Halo 3 loading screen project for the background: https://github.com/Xephorium/Halo3LoadingScreen?tab=readme-ov-file
+
+## Bots
+
+This repository includes automated bots that post random Halo quotes to social media platforms.
+
+### Bluesky Bot
+
+A TypeScript bot that posts random Halo quotes to Bluesky.
+
+#### Features
+
+- Randomly selects quotes from all Halo games in the `quotes/` directory
+- Formats posts as: `"Quote text"\n\n- Game Name`
+- Automatically authenticates and posts to Bluesky
+- Provides post URL after successful posting
+
+#### Running Locally
+
+1. **Install dependencies:**
+   ```bash
+   cd bots
+   npm install
+   ```
+
+2. **Set up environment variables:**
+   Create a `.env` file in the project root with your Bluesky credentials:
+   ```env
+   BLUESKY_USERNAME=your_username
+   BLUESKY_PASSWORD=your_password
+   ```
+
+3. **Run the bot:**
+   ```bash
+   cd bots
+   npm run bsky
+   ```
+
+#### Dependencies
+
+- **`@atproto/api`**: Bluesky/AT Protocol API client for authentication and posting
+- **`dotenv`**: Loads environment variables from `.env` file
+- **`tsx`**: TypeScript execution environment (dev dependency)
+- **`@types/node`**: TypeScript type definitions for Node.js (dev dependency)
+
+### Twitter Bot
+
+_Coming soon - A bot to post quotes to X (Twitter)._
