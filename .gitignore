@@ -13,3 +13,6 @@ desktop.ini
 # Logs
 *.log
 
+# Dependencies
+node_modules/
+
