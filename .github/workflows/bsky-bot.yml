@@ -1,0 +1,34 @@
+name: Halo Quotes Bluesky Bot
+
+on:
+  schedule:
+    # Run every 3 hours at minute 0
+    - cron: '0 */3 * * *'
+  workflow_dispatch: # Allow manual triggering
+
+jobs:
+  post-quote:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: bots/package.json
+      
+      - name: Install dependencies
+        working-directory: ./bots
+        run: npm ci
+      
+      - name: Post random Halo quote to Bluesky
+        working-directory: ./bots
+        env:
+          BLUESKY_USERNAME: ${{ secrets.BLUESKY_USERNAME }}
+          BLUESKY_PASSWORD: ${{ secrets.BLUESKY_PASSWORD }}
+        run: npm run bsky
+
