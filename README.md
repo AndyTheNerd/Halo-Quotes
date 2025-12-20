@@ -23,7 +23,7 @@ Halo-Quotes/
 ├── .nojekyll                   # Disable Jekyll processing for GitHub Pages
 ├── bots/                       # Directory containing social media bots
 │   ├── bsky-bot.ts            # Bluesky bot implementation
-│   ├── index.js               # Bot entry point
+│   ├── twitter-bot.js         # Bot entry point
 │   ├── package.json           # Node.js dependencies and scripts
 │   └── package-lock.json      # Locked dependency versions
 ├── CNAME                      # Custom domain configuration for GitHub Pages
@@ -169,7 +169,43 @@ A TypeScript bot that posts random Halo quotes to Bluesky.
 
 ### Twitter Bot
 
-Coming soon - A bot to post quotes to X (Twitter).
+A JavaScript bot that posts random Halo quotes to X (Twitter).
+
+#### Features
+
+- Randomly selects quotes from all Halo games in the `quotes/` directory
+- Formats posts as: `"Quote text"\n\n- Game Name`
+- Automatically handles X's 280 character limit by truncating quotes if necessary
+- Automatically authenticates and posts to X (Twitter)
+- Provides post URL after successful posting
+
+#### Running Locally:
+
+1. **Install dependencies:**
+   ```bash
+   cd bots
+   npm install
+   ```
+
+2. **Set up environment variables:**
+   Create a `.env` file in the project root with your X (Twitter) API credentials:
+   ```env
+   TWITTER_API_KEY=your_api_key
+   TWITTER_API_SECRET=your_api_secret
+   TWITTER_ACCESS_TOKEN=your_access_token
+   TWITTER_ACCESS_SECRET=your_access_secret
+   ```
+
+3. **Run the bot:**
+   ```bash
+   cd bots
+   node twitter-bot.js
+   ```
+
+#### Dependencies
+
+- **`twitter-api-v2`**: X (Twitter) API v2 client for authentication and posting
+- **`dotenv`**: Loads environment variables from `.env` file
 
 ## Found a Mistake?
 
