@@ -1,4 +1,5 @@
 import { TwitterApi } from 'twitter-api-v2';
+import dotenv from 'dotenv';
 import { readFileSync, readdirSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
@@ -6,13 +7,8 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-// Get Twitter API credentials from environment variables
-const client = new TwitterApi({
-  appKey: process.env.TWITTER_API_KEY,
-  appSecret: process.env.TWITTER_API_SECRET,
-  accessToken: process.env.TWITTER_ACCESS_TOKEN,
-  accessSecret: process.env.TWITTER_ACCESS_SECRET,
-});
+// Load .env from parent directory (project root)
+dotenv.config({ path: join(__dirname, '..', '.env') });
 
 // Path to quotes directory (relative to this file)
 const quotesDir = join(__dirname, '..', 'quotes');
@@ -59,76 +55,90 @@ function getRandomQuote() {
 }
 
 /**
- * Format quote for Twitter, ensuring it fits within 280 characters
+ * Format quote for X (Twitter)
+ * X has a 280 character limit per post, but we'll format it nicely
  */
-function formatTweet(quote, gameName) {
-  // Twitter character limit is 280
+function formatPost(quote, gameName) {
+  // X character limit is 280
   const maxLength = 280;
   
   // Format: "Quote" - Game Name
-  let tweet = `"${quote}"\n\n- ${gameName}`;
+  let post = `"${quote}"\n\n- ${gameName}`;
   
-  // If tweet is too long, truncate the quote and add ellipsis
-  if (tweet.length > maxLength) {
+  // If post is too long, truncate the quote and add ellipsis
+  if (post.length > maxLength) {
     const gameNameLength = gameName.length + 4; // "- " + gameName + "\n\n"
     const availableLength = maxLength - gameNameLength - 4; // Account for quotes and ellipsis
     const truncatedQuote = quote.substring(0, availableLength - 3) + '..."';
-    tweet = `"${truncatedQuote}\n\n- ${gameName}`;
+    post = `"${truncatedQuote}\n\n- ${gameName}`;
   }
   
-  return tweet;
+  return post;
 }
 
 /**
- * Post a tweet to Twitter
+ * Post a random quote to X (Twitter)
  */
-async function postTweet() {
+async function postQuote() {
   try {
     // Verify credentials are set
     if (!process.env.TWITTER_API_KEY || !process.env.TWITTER_API_SECRET ||
         !process.env.TWITTER_ACCESS_TOKEN || !process.env.TWITTER_ACCESS_SECRET) {
-      throw new Error('Twitter API credentials are missing. Please set all required environment variables.');
+      throw new Error('X (Twitter) API credentials are missing. Please set TWITTER_API_KEY, TWITTER_API_SECRET, TWITTER_ACCESS_TOKEN, and TWITTER_ACCESS_SECRET in your .env file.');
     }
     
     // Get a random quote
     const { quote, gameName } = getRandomQuote();
     console.log(`Selected quote from ${gameName}: ${quote.substring(0, 50)}...`);
     
-    // Format the tweet
-    const tweetText = formatTweet(quote, gameName);
-    console.log(`Tweet length: ${tweetText.length} characters`);
-    console.log(`Tweet content:\n${tweetText}`);
+    // Format the post
+    const postText = formatPost(quote, gameName);
+    console.log(`Post length: ${postText.length} characters`);
+    console.log(`Post content:\n${postText}`);
     
-    // Post the tweet
-    const tweet = await client.v2.tweet(tweetText);
-    console.log('Tweet posted successfully!');
-    console.log(`Tweet ID: ${tweet.data.id}`);
-    console.log(`Tweet URL: https://twitter.com/user/status/${tweet.data.id}`);
+    // Create Twitter API client
+    const client = new TwitterApi({
+      appKey: process.env.TWITTER_API_KEY,
+      appSecret: process.env.TWITTER_API_SECRET,
+      accessToken: process.env.TWITTER_ACCESS_TOKEN,
+      accessSecret: process.env.TWITTER_ACCESS_SECRET,
+    });
     
-    return tweet;
+    // Post the quote
+    const response = await client.v2.tweet(postText);
+    
+    console.log('Quote posted successfully!');
+    if (response.data?.id) {
+      const postUrl = `https://twitter.com/user/status/${response.data.id}`;
+      console.log(`Post URL: ${postUrl}`);
+    }
+    
+    return response;
   } catch (error) {
-    console.error('Error posting tweet:', error);
+    console.error('Error posting quote:', error);
     
     // Provide helpful error messages
-    if (error.code === 401) {
-      throw new Error('Twitter API authentication failed. Please check your credentials.');
-    } else if (error.code === 403) {
-      throw new Error('Twitter API access forbidden. Check your app permissions.');
-    } else if (error.code === 429) {
-      throw new Error('Twitter API rate limit exceeded. Please wait before trying again.');
-    } else {
+    if (error instanceof Error) {
+      if (error.code === 401) {
+        throw new Error('X (Twitter) API authentication failed. Please check your credentials.');
+      } else if (error.code === 403) {
+        throw new Error('X (Twitter) API access forbidden. Check your app permissions.');
+      } else if (error.code === 429) {
+        throw new Error('X (Twitter) API rate limit exceeded. Please wait before trying again.');
+      }
       throw error;
     }
+    throw new Error('Unknown error occurred');
   }
 }
 
 // Run the bot
-postTweet()
+postQuote()
   .then(() => {
     console.log('Bot execution completed successfully.');
     process.exit(0);
   })
   .catch((error) => {
-    console.error('Bot execution failed:', error.message);
+    console.error('Bot execution failed:', error instanceof Error ? error.message : String(error));
     process.exit(1);
   });
