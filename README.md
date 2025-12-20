@@ -16,21 +16,36 @@ A modern, static web application that displays random quotes from the Halo video
 
 ```
 Halo-Quotes/
-├── index.html              # Main HTML file with embedded CSS and JavaScript
-├── LICENSE                 # License file
-├── README.md              # This file
-└── quotes/                # Directory containing quote data files
-    ├── halo-ce.json       # Halo: Combat Evolved quotes
-    ├── halo-2.json        # Halo 2 quotes
-    ├── halo-3.json        # Halo 3 quotes
-    ├── halo-odst.json     # Halo 3: ODST quotes
-    ├── halo-reach.json    # Halo: Reach quotes
-    ├── halo-4.json        # Halo 4 quotes
-    ├── halo-5.json        # Halo 5 quotes
-    ├── halo-infinite.json # Halo Infinite quotes
-    ├── halo-wars.json     # Halo Wars quotes
-    ├── halo-wars-2.json   # Halo Wars 2 quotes
-    └── halo-multiplayer.json # Halo Multiplayer quotes
+├── .github/
+│   └── workflows/
+│       └── twitter-bot.yml    # GitHub Actions workflow for Twitter bot
+├── .gitignore                  # Git ignore patterns
+├── .nojekyll                   # Disable Jekyll processing for GitHub Pages
+├── bots/                       # Directory containing social media bots
+│   ├── bsky-bot.ts            # Bluesky bot implementation
+│   ├── index.js               # Bot entry point
+│   ├── package.json           # Node.js dependencies and scripts
+│   └── package-lock.json      # Locked dependency versions
+├── CNAME                      # Custom domain configuration for GitHub Pages
+├── img/                       # Image assets
+│   ├── 256x256.png           # Favicon/icon image
+│   └── Team-Respawn-Full.png # Team Respawn logo
+├── index.html                 # Main HTML file with embedded CSS and JavaScript
+├── LICENSE                    # License file
+├── quotes/                    # Directory containing quote data files
+│   ├── halo-ce.json          # Halo: Combat Evolved quotes
+│   ├── halo-2.json           # Halo 2 quotes
+│   ├── halo-3.json           # Halo 3 quotes
+│   ├── halo-odst.json        # Halo 3: ODST quotes
+│   ├── halo-reach.json       # Halo: Reach quotes
+│   ├── halo-4.json           # Halo 4 quotes
+│   ├── halo-5.json           # Halo 5 quotes
+│   ├── halo-infinite.json    # Halo Infinite quotes
+│   ├── halo-wars.json        # Halo Wars quotes
+│   ├── halo-wars-2.json      # Halo Wars 2 quotes
+│   └── halo-multiplayer.json # Halo Multiplayer quotes
+├── README.md                  # This file
+└── robots.txt                 # Robots.txt for web crawlers
 ```
 
 ## How It Works
@@ -105,7 +120,7 @@ To add or modify quotes:
     "Quote 3"
   ]
 }
-
+```
 4. Save the file and refresh your browser
 
 
