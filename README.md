@@ -48,17 +48,14 @@ The application uses a modular architecture:
 
 **Important**: This application must be served through a web server due to browser CORS (Cross-Origin Resource Sharing) restrictions. Opening `index.html` directly in a browser will not work.
 
-### Option 1: Python HTTP Server
+### Run Locally:
 
-If you have Python installed:
 
 ```bash
 # Python 3
 python -m http.server 8000
+````
 
-# Python 2
-python -m SimpleHTTPServer 8000
-```
 
 Then open `http://localhost:8000` in your browser.
 
@@ -108,17 +105,9 @@ To add or modify quotes:
     "Quote 3"
   ]
 }
-```
 
 4. Save the file and refresh your browser
 
-## Found a Mistake?
-
-Please feel free to open a Pull Request or report it in our Discord server: https://discord.com/invite/teamrespawn
-
-## Special Thanks To
-
-- The Halo 3 loading screen project for the background: https://github.com/Xephorium/Halo3LoadingScreen?tab=readme-ov-file
 
 ## Bots
 
@@ -135,7 +124,7 @@ A TypeScript bot that posts random Halo quotes to Bluesky.
 - Automatically authenticates and posts to Bluesky
 - Provides post URL after successful posting
 
-#### Running Locally
+#### Running Locally:
 
 1. **Install dependencies:**
    ```bash
@@ -165,4 +154,12 @@ A TypeScript bot that posts random Halo quotes to Bluesky.
 
 ### Twitter Bot
 
-_Coming soon - A bot to post quotes to X (Twitter)._
+Coming soon - A bot to post quotes to X (Twitter).
+
+## Found a Mistake?
+
+Please feel free to open a Pull Request or report it in our Discord server: https://discord.com/invite/teamrespawn
+
+## Special Thanks To
+
+- The Halo 3 loading screen project for the background: https://github.com/Xephorium/Halo3LoadingScreen?tab=readme-ov-file
