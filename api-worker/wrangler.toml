@@ -1,0 +1,7 @@
+name = "halo-quotes-api"
+main = "src/index.js"
+compatibility_date = "2024-01-01"
+
+[[routes]]
+pattern = "api.haloquotes.teamrespawntv.com"
+custom_domain = true

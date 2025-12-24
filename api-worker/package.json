@@ -1,0 +1,18 @@
+{
+  "name": "halo-quotes-api",
+  "version": "1.0.0",
+  "description": "API for Halo quotes - Cloudflare Worker",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "keywords": ["halo", "quotes", "api", "cloudflare-workers"],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "wrangler": "^3.0.0"
+  }
+}
+
+
