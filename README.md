@@ -6,9 +6,9 @@ A comprehensive project featuring a website, API, and bots for displaying and sh
 
 This repository provides three main functions:
 
-1. **Website**: A modern, static web application that displays random quotes from all Halo games
-2. **Bots**: Automated bots that post quotes on a scheduled run to both Bluesky and Twitter (Coming soon)
-3. **API**: A RESTful API that allows you to query quotes for your own projects
+1. **Website**: https://haloquotes.teamrespawntv.com/ A modern, static web application that displays random quotes from all Halo games
+2. **Bots**: https://bsky.app/profile/LocalUnits.bsky.social Automated bots that post quotes on a scheduled run to both Bluesky and Twitter (Coming soon)
+3. **API**: https://api.haloquotes.teamrespawntv.com/ A RESTful API that allows you to query quotes for your own projects
 
 ## Repository Structure
 
