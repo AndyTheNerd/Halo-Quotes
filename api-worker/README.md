@@ -23,6 +23,26 @@ npm run dev
 
 This will start a local server (usually at `http://localhost:8787`).
 
+## Testing
+
+Run unit tests:
+```bash
+npm test
+```
+
+Run tests in watch mode:
+```bash
+npm run test:watch
+```
+
+The test suite includes:
+- CORS header validation
+- HTTP method validation
+- Endpoint functionality (root, quote, quote with game parameter)
+- Error handling (invalid games, network errors, malformed data)
+- Response format validation
+- Game ID validation
+
 ## Deployment
 
 Deploy to Cloudflare:

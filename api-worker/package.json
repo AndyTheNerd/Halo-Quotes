@@ -3,15 +3,19 @@
   "version": "1.0.0",
   "description": "API for Halo quotes - Cloudflare Worker",
   "main": "src/index.js",
+  "type": "module",
   "scripts": {
     "dev": "wrangler dev",
-    "deploy": "wrangler deploy"
+    "deploy": "wrangler deploy",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "keywords": ["halo", "quotes", "api", "cloudflare-workers"],
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "wrangler": "^4.56.0"
+    "wrangler": "^4.56.0",
+    "vitest": "^1.0.0"
   }
 }
 

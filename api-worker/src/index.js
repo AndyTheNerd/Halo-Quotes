@@ -195,6 +195,18 @@ export default {
       
     } catch (error) {
       console.error('Error:', error);
+      
+      // Check if it's a validation error (invalid game ID)
+      if (error.message && error.message.includes('Invalid game:')) {
+        return createErrorResponse(error.message, 400);
+      }
+      
+      // Check if it's a "no quotes found" error (could be 400 or 500 depending on context)
+      if (error.message && error.message.includes('No quotes found')) {
+        return createErrorResponse(error.message, 500);
+      }
+      
+      // Default to 500 for other errors
       return createErrorResponse(error.message || 'Internal server error', 500);
     }
   }
