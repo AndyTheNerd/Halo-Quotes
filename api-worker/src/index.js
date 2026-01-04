@@ -6,20 +6,23 @@
 // Base URL for fetching quote JSON files from GitHub Pages
 const BASE_URL = 'https://haloquotes.teamrespawntv.com/quotes';
 
-// Map of game identifiers to their JSON file names
-const GAME_FILES = {
-  'halo-ce': 'halo-ce.json',
-  'halo-2': 'halo-2.json',
-  'halo-3': 'halo-3.json',
-  'halo-odst': 'halo-odst.json',
-  'halo-reach': 'halo-reach.json',
-  'halo-4': 'halo-4.json',
-  'halo-5': 'halo-5.json',
-  'halo-infinite': 'halo-infinite.json',
-  'halo-wars': 'halo-wars.json',
-  'halo-wars-2': 'halo-wars-2.json',
-  'halo-multiplayer': 'halo-multiplayer.json'
-};
+// An array to define the chronological order of games
+const GAME_FILES_ORDERED = [
+  ['halo-ce', 'halo-ce.json'],
+  ['halo-2', 'halo-2.json'],
+  ['halo-3', 'halo-3.json'],
+  ['halo-wars', 'halo-wars.json'],
+  ['halo-odst', 'halo-odst.json'],
+  ['halo-reach', 'halo-reach.json'],
+  ['halo-4', 'halo-4.json'],
+  ['halo-5', 'halo-5.json'],
+  ['halo-wars-2', 'halo-wars-2.json'],
+  ['halo-infinite', 'halo-infinite.json'],
+  ['halo-multiplayer', 'halo-multiplayer.json']
+];
+
+// Map of game identifiers to their JSON file names for quick lookups
+const GAME_FILES = Object.fromEntries(GAME_FILES_ORDERED);
 
 // All available game files for random selection
 const ALL_GAME_FILES = Object.values(GAME_FILES);
@@ -104,29 +107,32 @@ async function getStats() {
     quotesPerGame: {}
   };
   
-  // Fetch all game files in parallel
-  const fetchPromises = Object.entries(GAME_FILES).map(async ([gameId, filename]) => {
+  // Fetch all game files in parallel, maintaining order
+  const fetchPromises = GAME_FILES_ORDERED.map(async ([gameId, filename]) => {
     try {
       const data = await fetchQuoteFile(filename);
       const quoteCount = data.quotes && Array.isArray(data.quotes) ? data.quotes.length : 0;
       
-      stats.quotesPerGame[gameId] = {
-        gameName: data.gameName || gameId,
-        count: quoteCount
-      };
-      
-      stats.totalQuotes += quoteCount;
+      return { gameId, gameName: data.gameName || gameId, count: quoteCount };
     } catch (error) {
       // If a file fails to fetch, record it with 0 quotes
-      stats.quotesPerGame[gameId] = {
-        gameName: gameId,
-        count: 0,
-        error: error.message
-      };
+      return { gameId, gameName: gameId, count: 0, error: error.message };
     }
   });
-  
-  await Promise.all(fetchPromises);
+
+  const results = await Promise.all(fetchPromises);
+
+  // Populate stats from the ordered results
+  results.forEach(result => {
+    stats.quotesPerGame[result.gameId] = {
+      gameName: result.gameName,
+      count: result.count
+    };
+    if (result.error) {
+      stats.quotesPerGame[result.gameId].error = result.error;
+    }
+    stats.totalQuotes += result.count;
+  });
   
   return stats;
 }
