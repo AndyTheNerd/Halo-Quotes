@@ -95,6 +95,43 @@ async function getRandomQuoteFromAllGames() {
 }
 
 /**
+ * Get statistics about all quotes
+ */
+async function getStats() {
+  const stats = {
+    totalQuotes: 0,
+    totalGames: Object.keys(GAME_FILES).length,
+    quotesPerGame: {}
+  };
+  
+  // Fetch all game files in parallel
+  const fetchPromises = Object.entries(GAME_FILES).map(async ([gameId, filename]) => {
+    try {
+      const data = await fetchQuoteFile(filename);
+      const quoteCount = data.quotes && Array.isArray(data.quotes) ? data.quotes.length : 0;
+      
+      stats.quotesPerGame[gameId] = {
+        gameName: data.gameName || gameId,
+        count: quoteCount
+      };
+      
+      stats.totalQuotes += quoteCount;
+    } catch (error) {
+      // If a file fails to fetch, record it with 0 quotes
+      stats.quotesPerGame[gameId] = {
+        gameName: gameId,
+        count: 0,
+        error: error.message
+      };
+    }
+  });
+  
+  await Promise.all(fetchPromises);
+  
+  return stats;
+}
+
+/**
  * Create CORS headers
  */
 function createCORSHeaders() {
@@ -170,6 +207,19 @@ export default {
         );
       }
       
+      // Handle /stats endpoint
+      if (path === '/stats' || path === '/stats/') {
+        const stats = await getStats();
+        
+        return new Response(
+          JSON.stringify(stats, null, 2),
+          {
+            status: 200,
+            headers: createCORSHeaders()
+          }
+        );
+      }
+      
       // Handle root path - return API info
       if (path === '/' || path === '') {
         return new Response(
@@ -179,6 +229,7 @@ export default {
             endpoints: {
               '/quote': 'Get a random quote from all games',
               '/quote?game=<game-id>': 'Get a random quote from a specific game',
+              '/stats': 'Get statistics about total quotes and quotes per game',
             },
             availableGames: Object.keys(GAME_FILES),
             example: '/quote?game=halo-2'
@@ -191,7 +242,7 @@ export default {
       }
       
       // 404 for unknown paths
-      return createErrorResponse('Not found. Use /quote endpoint.', 404);
+      return createErrorResponse('Not found. Available endpoints: /quote, /stats', 404);
       
     } catch (error) {
       console.error('Error:', error);

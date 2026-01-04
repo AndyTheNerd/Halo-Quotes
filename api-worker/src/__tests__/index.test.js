@@ -112,6 +112,7 @@ describe('Halo Quotes API', () => {
       expect(data.name).toBe('Halo Quotes API');
       expect(data.version).toBe('1.0.0');
       expect(data.endpoints).toBeDefined();
+      expect(data.endpoints).toHaveProperty('/stats');
       expect(data.availableGames).toBeInstanceOf(Array);
       expect(data.availableGames.length).toBeGreaterThan(0);
       expect(data.example).toBe('/quote?game=halo-2');
@@ -407,6 +408,198 @@ describe('Halo Quotes API', () => {
 
       expect(response.status).toBe(400);
       expect(data.error).toContain('Invalid game');
+    });
+  });
+
+  describe('Stats Endpoint (/stats)', () => {
+    it('should return statistics with total quotes and quotes per game', async () => {
+      const mockHaloCEData = {
+        gameName: 'Halo Combat Evolved',
+        quotes: ['Quote 1', 'Quote 2', 'Quote 3']
+      };
+
+      const mockHalo4Data = {
+        gameName: 'Halo 4',
+        quotes: ['Quote A', 'Quote B']
+      };
+
+      // Mock fetch to return different data for different files
+      global.fetch.mockImplementation((url) => {
+        if (url.includes('halo-ce.json')) {
+          return Promise.resolve({
+            ok: true,
+            json: async () => mockHaloCEData,
+          });
+        }
+        if (url.includes('halo-4.json')) {
+          return Promise.resolve({
+            ok: true,
+            json: async () => mockHalo4Data,
+          });
+        }
+        // Default mock for other games
+        return Promise.resolve({
+          ok: true,
+          json: async () => ({
+            gameName: 'Test Game',
+            quotes: ['Test quote'],
+          }),
+        });
+      });
+
+      const request = new Request('https://api.example.com/stats');
+      const response = await worker.fetch(request);
+      const data = await response.json();
+
+      expect(response.status).toBe(200);
+      expect(data).toHaveProperty('totalQuotes');
+      expect(data).toHaveProperty('totalGames');
+      expect(data).toHaveProperty('quotesPerGame');
+      expect(typeof data.totalQuotes).toBe('number');
+      expect(data.totalQuotes).toBeGreaterThan(0);
+      expect(data.totalGames).toBeGreaterThan(0);
+      expect(typeof data.quotesPerGame).toBe('object');
+    });
+
+    it('should include all games in quotesPerGame', async () => {
+      global.fetch.mockImplementation(() => {
+        return Promise.resolve({
+          ok: true,
+          json: async () => ({
+            gameName: 'Test Game',
+            quotes: ['Test quote'],
+          }),
+        });
+      });
+
+      const request = new Request('https://api.example.com/stats');
+      const response = await worker.fetch(request);
+      const data = await response.json();
+
+      expect(response.status).toBe(200);
+      expect(data.quotesPerGame).toHaveProperty('halo-ce');
+      expect(data.quotesPerGame).toHaveProperty('halo-2');
+      expect(data.quotesPerGame).toHaveProperty('halo-3');
+      expect(data.quotesPerGame).toHaveProperty('halo-infinite');
+    });
+
+    it('should include game name and count for each game', async () => {
+      global.fetch.mockImplementation(() => {
+        return Promise.resolve({
+          ok: true,
+          json: async () => ({
+            gameName: 'Halo 2',
+            quotes: ['Quote 1', 'Quote 2', 'Quote 3'],
+          }),
+        });
+      });
+
+      const request = new Request('https://api.example.com/stats');
+      const response = await worker.fetch(request);
+      const data = await response.json();
+
+      expect(response.status).toBe(200);
+      
+      // Check structure of quotesPerGame entries
+      const firstGame = Object.values(data.quotesPerGame)[0];
+      expect(firstGame).toHaveProperty('gameName');
+      expect(firstGame).toHaveProperty('count');
+      expect(typeof firstGame.gameName).toBe('string');
+      expect(typeof firstGame.count).toBe('number');
+    });
+
+    it('should handle /stats/ with trailing slash', async () => {
+      global.fetch.mockImplementation(() => {
+        return Promise.resolve({
+          ok: true,
+          json: async () => ({
+            gameName: 'Test Game',
+            quotes: ['Test quote'],
+          }),
+        });
+      });
+
+      const request = new Request('https://api.example.com/stats/');
+      const response = await worker.fetch(request);
+      const data = await response.json();
+
+      expect(response.status).toBe(200);
+      expect(data).toHaveProperty('totalQuotes');
+    });
+
+    it('should calculate total quotes correctly', async () => {
+      let callCount = 0;
+      global.fetch.mockImplementation(() => {
+        callCount++;
+        // Return different quote counts for different games
+        const quoteCount = callCount <= 3 ? 5 : 2;
+        const quotes = Array(quoteCount).fill('').map((_, i) => `Quote ${i + 1}`);
+        
+        return Promise.resolve({
+          ok: true,
+          json: async () => ({
+            gameName: `Game ${callCount}`,
+            quotes: quotes,
+          }),
+        });
+      });
+
+      const request = new Request('https://api.example.com/stats');
+      const response = await worker.fetch(request);
+      const data = await response.json();
+
+      expect(response.status).toBe(200);
+      // Should have quotes from all games
+      expect(data.totalQuotes).toBeGreaterThan(0);
+    });
+
+    it('should handle fetch errors gracefully for individual games', async () => {
+      let callCount = 0;
+      global.fetch.mockImplementation(() => {
+        callCount++;
+        // Fail for first game, succeed for others
+        if (callCount === 1) {
+          return Promise.resolve({
+            ok: false,
+            status: 404,
+            statusText: 'Not Found',
+          });
+        }
+        return Promise.resolve({
+          ok: true,
+          json: async () => ({
+            gameName: 'Test Game',
+            quotes: ['Test quote'],
+          }),
+        });
+      });
+
+      const request = new Request('https://api.example.com/stats');
+      const response = await worker.fetch(request);
+      const data = await response.json();
+
+      expect(response.status).toBe(200);
+      // Should still return stats even if some games fail
+      expect(data).toHaveProperty('totalQuotes');
+      expect(data).toHaveProperty('quotesPerGame');
+    });
+
+    it('should include CORS headers in stats response', async () => {
+      global.fetch.mockImplementation(() => {
+        return Promise.resolve({
+          ok: true,
+          json: async () => ({
+            gameName: 'Test Game',
+            quotes: ['Test quote'],
+          }),
+        });
+      });
+
+      const request = new Request('https://api.example.com/stats');
+      const response = await worker.fetch(request);
+
+      expect(response.headers.get('Access-Control-Allow-Origin')).toBe('*');
+      expect(response.headers.get('Content-Type')).toBe('application/json');
     });
   });
 });

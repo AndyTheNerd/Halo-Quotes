@@ -38,10 +38,11 @@ npm run test:watch
 The test suite includes:
 - CORS header validation
 - HTTP method validation
-- Endpoint functionality (root, quote, quote with game parameter)
+- Endpoint functionality (root, quote, quote with game parameter, stats)
 - Error handling (invalid games, network errors, malformed data)
 - Response format validation
 - Game ID validation
+- Statistics endpoint validation
 
 ## Deployment
 
@@ -99,6 +100,41 @@ GET /quote?game=halo-2
   "gameId": "halo-2"
 }
 ```
+
+### Get Statistics
+```
+GET /stats
+```
+Returns statistics about total quotes and quotes per game.
+
+**Response:**
+```json
+{
+  "totalQuotes": 1234,
+  "totalGames": 11,
+  "quotesPerGame": {
+    "halo-ce": {
+      "gameName": "Halo Combat Evolved",
+      "count": 150
+    },
+    "halo-2": {
+      "gameName": "Halo 2",
+      "count": 120
+    },
+    "halo-3": {
+      "gameName": "Halo 3",
+      "count": 100
+    }
+  }
+}
+```
+
+The response includes:
+- `totalQuotes`: Total number of quotes across all games
+- `totalGames`: Total number of games in the API
+- `quotesPerGame`: An object with game IDs as keys, each containing:
+  - `gameName`: The display name of the game
+  - `count`: The number of quotes for that game
 
 ### API Info
 ```
