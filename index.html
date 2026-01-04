@@ -109,6 +109,9 @@
                     </svg>
                     <span id="copy-text">Copy</span>
                 </button>
+                <button id="previous-quote-btn" class="bg-gray-800 text-white font-semibold py-2 px-6 rounded-full shadow-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors duration-300 disabled:opacity-50" disabled>
+                    Previous Quote
+                </button>
                 <button id="next-quote-btn" class="bg-gray-800 text-white font-semibold py-2 px-6 rounded-full shadow-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors duration-300">
                     Next Quote
                 </button>
@@ -128,6 +131,7 @@
         const quoteTextElement = document.getElementById('quote-text');
         const quoteSourceElement = document.getElementById('quote-source');
         const nextQuoteBtn = document.getElementById('next-quote-btn');
+        const previousQuoteBtn = document.getElementById('previous-quote-btn');
         const copyBtn = document.getElementById('copy-btn');
         const copyIcon = document.getElementById('copy-icon');
         const checkIcon = document.getElementById('check-icon');
@@ -136,6 +140,10 @@
         // Store current quote data for copying
         let currentQuote = '';
         let currentGame = '';
+
+        // History for quotes
+        let quoteHistory = [];
+        let currentQuoteIndex = -1;
         
         // List of available quote files
         const quoteFiles = [
@@ -156,8 +164,10 @@
         function showLoading() {
             quoteTextElement.textContent = 'Loading...';
             quoteSourceElement.textContent = '';
-            // Disable copy button during loading
+            // Disable buttons during loading
             copyBtn.disabled = true;
+            nextQuoteBtn.disabled = true;
+            previousQuoteBtn.disabled = true;
         }
 
         // Function to display an error message
@@ -166,6 +176,21 @@
             quoteSourceElement.textContent = 'Please try again.';
             // Disable copy button on error
             copyBtn.disabled = true;
+        }
+
+        // Function to update the displayed quote and button states
+        function showQuote() {
+            const quoteData = quoteHistory[currentQuoteIndex];
+            currentQuote = quoteData.quote;
+            currentGame = quoteData.game;
+
+            quoteTextElement.textContent = `"${currentQuote}"`;
+            quoteSourceElement.textContent = `- ${currentGame}`;
+
+            // Update button states
+            previousQuoteBtn.disabled = currentQuoteIndex <= 0;
+            copyBtn.disabled = false;
+            nextQuoteBtn.disabled = false;
         }
 
         // Function to copy quote to clipboard
@@ -233,72 +258,67 @@
             }
         }
 
-        // Async function to fetch and display a random quote
-        async function displayRandomQuote() {
+        // Async function to fetch and display a new quote
+        async function fetchAndShowQuote() {
+            currentQuoteIndex++;
+
+            if (currentQuoteIndex < quoteHistory.length) {
+                showQuote();
+                return;
+            }
+
             try {
-                // Show loading state
                 showLoading();
-                
-                // Disable button during fetch
-                nextQuoteBtn.disabled = true;
                 nextQuoteBtn.textContent = 'Loading...';
 
-                // Randomly select a quote file
                 const randomFile = quoteFiles[Math.floor(Math.random() * quoteFiles.length)];
-
-                // Fetch the JSON file
                 const response = await fetch(randomFile);
                 
                 if (!response.ok) {
                     throw new Error(`Failed to load quotes: ${response.status} ${response.statusText}`);
                 }
 
-                // Parse the JSON
                 const data = await response.json();
 
-                // Validate the data structure
                 if (!data.gameName || !Array.isArray(data.quotes) || data.quotes.length === 0) {
                     throw new Error('Invalid quote file format');
                 }
 
-                // Randomly select a quote from the array
                 const randomQuote = data.quotes[Math.floor(Math.random() * data.quotes.length)];
-            
-                // Store quote data for copying
-                currentQuote = randomQuote;
-                currentGame = data.gameName;
-            
-                // Update the HTML elements
-                quoteTextElement.textContent = `"${randomQuote}"`;
-                quoteSourceElement.textContent = `- ${data.gameName}`;
+                
+                quoteHistory.push({ quote: randomQuote, game: data.gameName });
+                showQuote();
 
             } catch (error) {
                 console.error('Error loading quote:', error);
-                // Provide more specific error messages
                 let errorMessage = 'Unable to load quote. ';
                 if (error.message.includes('Failed to fetch') || error.message.includes('CORS')) {
                     errorMessage += 'This site needs to be served from a web server (not opened directly as a file). ';
-                    errorMessage += 'Try using: python -m http.server 8000 or npx serve';
                 } else {
                     errorMessage += error.message || 'Please check your connection and try again.';
                 }
                 showError(errorMessage);
+                currentQuoteIndex--; // Decrement index on failure
             } finally {
-                // Re-enable buttons
-                nextQuoteBtn.disabled = false;
                 nextQuoteBtn.textContent = 'Next Quote';
-                copyBtn.disabled = false;
+                nextQuoteBtn.disabled = false;
+            }
+        }
+        
+        function showPreviousQuote() {
+            if (currentQuoteIndex > 0) {
+                currentQuoteIndex--;
+                showQuote();
             }
         }
 
-        // Display a new random quote when the button is clicked
-        nextQuoteBtn.addEventListener('click', displayRandomQuote);
-        
-        // Copy quote when copy button is clicked
+        // Event listeners
+        nextQuoteBtn.addEventListener('click', fetchAndShowQuote);
+        previousQuoteBtn.addEventListener('click', showPreviousQuote);
         copyBtn.addEventListener('click', copyQuoteToClipboard);
 
         // Display an initial quote when the page loads
-        displayRandomQuote();
+        fetchAndShowQuote();
     </script>
 </body>
 </html>
