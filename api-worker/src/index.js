@@ -134,7 +134,20 @@ async function getStats() {
     stats.totalQuotes += result.count;
   });
   
-  return stats;
+  // Ensure quotesPerGame is returned in the correct chronological order
+  // by rebuilding the object using GAME_FILES_ORDERED
+  const orderedQuotesPerGame = {};
+  GAME_FILES_ORDERED.forEach(([gameId]) => {
+    if (stats.quotesPerGame[gameId]) {
+      orderedQuotesPerGame[gameId] = stats.quotesPerGame[gameId];
+    }
+  });
+  
+  return {
+    totalQuotes: stats.totalQuotes,
+    totalGames: stats.totalGames,
+    quotesPerGame: orderedQuotesPerGame
+  };
 }
 
 /**
