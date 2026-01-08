@@ -7,20 +7,30 @@ A comprehensive project featuring a website, API, and bots for displaying and sh
 This repository provides three main functions:
 
 1. **Website**: https://haloquotes.teamrespawntv.com/ A modern, static web application that displays random quotes from all Halo games
-2. **Bots**: https://bsky.app/profile/LocalUnits.bsky.social Automated bots that post quotes on a scheduled run to both Bluesky and Twitter (Coming soon)
+2. **Bots**: https://bsky.app/profile/LocalUnits.bsky.social Automated bots that post quotes on a scheduled run to both Bluesky and Twitter
 3. **API**: https://api.haloquotes.teamrespawntv.com/ A RESTful API that allows you to query quotes for your own projects
 
 ## Repository Structure
 
 ```
 Halo-Quotes/
+├── .github/                   # GitHub configuration
+│   └── workflows/             # GitHub Actions workflows
+│       ├── bsky-bot.yml      # Bluesky bot automation
+│       └── twitter-bot.yml   # Twitter bot automation
+├── __tests__/                 # Root-level tests
+│   └── hamburger-menu.test.js # Hamburger menu tests
 ├── api-worker/                # Cloudflare Worker API
 │   ├── src/
+│   │   ├── __tests__/
+│   │   │   └── index.test.js # API tests
 │   │   └── index.js          # API worker implementation
 │   ├── package.json          # API dependencies
+│   ├── package-lock.json     # Locked dependency versions
+│   ├── vitest.config.js      # Vitest test configuration
 │   ├── wrangler.toml         # Cloudflare Worker configuration
 │   └── README.md             # API-specific documentation
-├── bots/                      # Social media bots (Coming soon)
+├── bots/                      # Social media bots
 │   ├── bsky-bot.ts           # Bluesky bot implementation
 │   ├── twitter-bot.js        # Twitter bot implementation
 │   ├── package.json          # Bot dependencies
@@ -34,15 +44,20 @@ Halo-Quotes/
 │   ├── halo-4.json           # Halo 4 quotes
 │   ├── halo-5.json           # Halo 5: Guardians quotes
 │   ├── halo-infinite.json    # Halo Infinite quotes
-│   ├── halo-wars.json        # Halo Wars quotes
+│   ├── halo-wars.json       # Halo Wars quotes
 │   ├── halo-wars-2.json      # Halo Wars 2 quotes
 │   └── halo-multiplayer.json # Halo Multiplayer quotes
 ├── img/                       # Image assets
 │   ├── 256x256.png           # Favicon/icon image
+│   ├── HCE-Environment-1920x1080-02-Watermarked.png # Background image
 │   └── Team-Respawn-Full.png # Team Respawn logo
 ├── index.html                 # Main website HTML file
+├── package.json               # Root package.json
+├── package-lock.json          # Root locked dependency versions
+├── vitest.config.js           # Root Vitest test configuration
 ├── CNAME                      # Custom domain configuration
 ├── robots.txt                 # Robots.txt for web crawlers
+├── sitemap.xml                # Sitemap for search engines
 ├── LICENSE                    # License file
 └── README.md                  # This file
 ```
@@ -57,16 +72,6 @@ The website must be served through a web server due to browser CORS restrictions
 ```bash
 # Python 3
 python -m http.server 8000
-```
-
-**Using Node.js (npx serve):**
-```bash
-npx serve
-```
-
-**Using Node.js (http-server):**
-```bash
-npx http-server -p 8000
 ```
 
 Then open `http://localhost:8000` in your browser.
@@ -224,32 +229,11 @@ The API supports CORS and can be accessed from any origin. All responses include
 
 Automated bots that post random Halo quotes to social media platforms on a scheduled basis.
 
-
-
 The bots support:
-- **Bluesky**: Posts random quotes to Bluesky
-- **Twitter/X**: Posts random quotes to Twitter/X (**coming soon**)
+- **Bluesky**: Posts random quotes to Bluesky on a scheduled basis
+- **Twitter/X**: Posts random quotes to Twitter/X on a scheduled basis
 
-## Adding or Modifying Quotes
-
-To add or modify quotes:
-
-1. Navigate to the `quotes/` directory
-2. Open the appropriate JSON file for the game you want to modify
-3. Edit the `quotes` array following this format:
-
-```json
-{
-  "gameName": "Halo Combat Evolved",
-  "quotes": [
-    "Quote 1",
-    "Quote 2",
-    "Quote 3"
-  ]
-}
-```
-
-4. Save the file and refresh your browser (for website) or redeploy the API (for API changes)
+Both bots run automatically every 3 hours via GitHub Actions workflows.
 
 ## Contributing
 
