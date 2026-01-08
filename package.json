@@ -1,0 +1,17 @@
+{
+  "name": "halo-quotes",
+  "version": "1.0.0",
+  "description": "Halo Quotes website with hamburger menu",
+  "type": "module",
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "devDependencies": {
+    "jsdom": "^24.0.0",
+    "vitest": "^4.0.16"
+  }
+}
+
+
+
