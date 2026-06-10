@@ -57,11 +57,21 @@ function getRandomQuote() {
 
 /**
  * Format quote for Bluesky
- * Bluesky has a 300 character limit per post, but we'll format it nicely
+ * Bluesky has a 300 character limit per post
  */
 function formatPost(quote: string, gameName: string): string {
-  // Format: "Quote" - Game Name
-  return `"${quote}"\n\n- ${gameName}`;
+  const maxLength = 300;
+
+  let post = `"${quote}"\n\n- ${gameName}`;
+
+  if (post.length > maxLength) {
+    const suffixLength = gameName.length + 4; // "\n\n- " + gameName
+    const availableLength = maxLength - suffixLength - 4; // opening quote + '..."'
+    const truncatedQuote = quote.substring(0, availableLength - 3) + '..."';
+    post = `"${truncatedQuote}\n\n- ${gameName}`;
+  }
+
+  return post;
 }
 
 /**
