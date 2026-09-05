@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Random quotes from the Halo video game series. Discover memorable lines from Master Chief, Cortana, and more.">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https://wallpapers.com; frame-src https://xephorium.github.io; connect-src 'self';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https://wallpapers.com; frame-src https://xephorium.github.io; connect-src 'self';">
     <meta property="og:title" content="Halo Quotes by Team Respawn">
     <meta property="og:description" content="Random quotes from the Halo video game series. Discover memorable lines from Master Chief, Cortana, and more.">
     <meta property="og:type" content="website">
@@ -53,6 +53,15 @@
         /* New style for the transparent modal background */
         .transparent-modal-bg {
             background-color: rgba(255, 255, 255, 1); /* Last value reflects opacity */
+        }
+
+        /* Copy button success state */
+        #copy-btn.is-copied {
+            background-color: #16a34a;
+        }
+
+        #copy-btn.is-copied:hover {
+            background-color: #22c55e;
         }
 
         /* Fixed size for quote container */
@@ -261,7 +270,7 @@
                     </p>
             </div>
             <div class="flex justify-center gap-3 mt-6" style="min-height: 48px;">
-                <button id="copy-btn" class="bg-gray-600 text-white font-semibold py-2 px-6 rounded-full shadow-md hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 transition-colors duration-300 flex items-center gap-2" title="Copy quote to clipboard">
+                <button id="copy-btn" class="bg-gray-600 text-white font-semibold py-2 px-6 rounded-full shadow-md hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 transition-colors duration-300 flex items-center gap-2 disabled:opacity-50" title="Copy quote to clipboard">
                     <svg id="copy-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
                     </svg>
@@ -273,7 +282,7 @@
                 <button id="previous-quote-btn" class="bg-gray-800 text-white font-semibold py-2 px-6 rounded-full shadow-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors duration-300 disabled:opacity-50" disabled>
                     Previous Quote
                 </button>
-                <button id="next-quote-btn" class="bg-gray-800 text-white font-semibold py-2 px-6 rounded-full shadow-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors duration-300">
+                <button id="next-quote-btn" class="bg-gray-800 text-white font-semibold py-2 px-6 rounded-full shadow-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors duration-300 disabled:opacity-50">
                     Next Quote
                 </button>
             </div>
@@ -288,218 +297,7 @@
         View the code <a href="https://github.com/AndyTheNerd/Halo-Quotes" target="_blank" rel="noopener noreferrer" class="underline hover:text-white transition-colors duration-200">here.</a>  This unofficial website is open source and free to use.
     </div>
 
-    <script>
-        const quoteTextElement = document.getElementById('quote-text');
-        const quoteSourceElement = document.getElementById('quote-source');
-        const nextQuoteBtn = document.getElementById('next-quote-btn');
-        const previousQuoteBtn = document.getElementById('previous-quote-btn');
-        const copyBtn = document.getElementById('copy-btn');
-        const copyIcon = document.getElementById('copy-icon');
-        const checkIcon = document.getElementById('check-icon');
-        const copyText = document.getElementById('copy-text');
-        
-        // Store current quote data for copying
-        let currentQuote = '';
-        let currentGame = '';
-
-        // History for quotes
-        let quoteHistory = [];
-        let currentQuoteIndex = -1;
-        
-        // List of available quote files
-        const quoteFiles = [
-            'quotes/halo-ce.json',
-            'quotes/halo-2.json',
-            'quotes/halo-3.json',
-            'quotes/halo-odst.json',
-            'quotes/halo-reach.json',
-            'quotes/halo-4.json',
-            'quotes/halo-5.json',
-            'quotes/halo-infinite.json',
-            'quotes/halo-wars.json',
-            'quotes/halo-wars-2.json',
-            'quotes/halo-multiplayer.json'
-        ];
-
-        // Function to display a loading state
-        function showLoading() {
-            quoteTextElement.textContent = 'Loading...';
-            quoteSourceElement.textContent = '';
-            // Disable buttons during loading
-            copyBtn.disabled = true;
-            nextQuoteBtn.disabled = true;
-            previousQuoteBtn.disabled = true;
-        }
-
-        // Function to display an error message
-        function showError(message) {
-            quoteTextElement.textContent = `Error: ${message}`;
-            quoteSourceElement.textContent = 'Please try again.';
-            // Disable copy button on error
-            copyBtn.disabled = true;
-        }
-
-        // Function to update the displayed quote and button states
-        function showQuote() {
-            const quoteData = quoteHistory[currentQuoteIndex];
-            currentQuote = quoteData.quote;
-            currentGame = quoteData.game;
-
-            quoteTextElement.textContent = `"${currentQuote}"`;
-            quoteSourceElement.textContent = `- ${currentGame}`;
-
-            // Update button states
-            previousQuoteBtn.disabled = currentQuoteIndex <= 0;
-            copyBtn.disabled = false;
-            nextQuoteBtn.disabled = false;
-        }
-
-        // Function to copy quote to clipboard
-        async function copyQuoteToClipboard() {
-            if (!currentQuote || !currentGame) {
-                return;
-            }
-
-            try {
-                // Format the quote for copying: "Quote" - Game Name
-                const textToCopy = `"${currentQuote}"\n\n- ${currentGame}`;
-                
-                // Use the Clipboard API
-                await navigator.clipboard.writeText(textToCopy);
-                
-                // Show success feedback
-                copyIcon.classList.add('hidden');
-                checkIcon.classList.remove('hidden');
-                copyText.textContent = 'Copied!';
-                copyBtn.classList.remove('bg-gray-600', 'hover:bg-gray-500');
-                copyBtn.classList.add('bg-green-600', 'hover:bg-green-500');
-                
-                // Reset after 2 seconds
-                setTimeout(() => {
-                    copyIcon.classList.remove('hidden');
-                    checkIcon.classList.add('hidden');
-                    copyText.textContent = 'Copy';
-                    copyBtn.classList.remove('bg-green-600', 'hover:bg-green-500');
-                    copyBtn.classList.add('bg-gray-600', 'hover:bg-gray-500');
-                }, 2000);
-            } catch (error) {
-                console.error('Failed to copy:', error);
-                // Fallback for older browsers
-                try {
-                    const textArea = document.createElement('textarea');
-                    textArea.value = `"${currentQuote}"\n\n- ${currentGame}`;
-                    textArea.style.position = 'fixed';
-                    textArea.style.opacity = '0';
-                    document.body.appendChild(textArea);
-                    textArea.select();
-                    document.execCommand('copy');
-                    document.body.removeChild(textArea);
-                    
-                    // Show success feedback even with fallback
-                    copyIcon.classList.add('hidden');
-                    checkIcon.classList.remove('hidden');
-                    copyText.textContent = 'Copied!';
-                    copyBtn.classList.remove('bg-gray-600', 'hover:bg-gray-500');
-                    copyBtn.classList.add('bg-green-600', 'hover:bg-green-500');
-                    
-                    setTimeout(() => {
-                        copyIcon.classList.remove('hidden');
-                        checkIcon.classList.add('hidden');
-                        copyText.textContent = 'Copy';
-                        copyBtn.classList.remove('bg-green-600', 'hover:bg-green-500');
-                        copyBtn.classList.add('bg-gray-600', 'hover:bg-gray-500');
-                    }, 2000);
-                } catch (fallbackError) {
-                    console.error('Fallback copy failed:', fallbackError);
-                    copyText.textContent = 'Failed';
-                    setTimeout(() => {
-                        copyText.textContent = 'Copy';
-                    }, 2000);
-                }
-            }
-        }
-
-        // Async function to fetch and display a new quote
-        async function fetchAndShowQuote() {
-            currentQuoteIndex++;
-
-            if (currentQuoteIndex < quoteHistory.length) {
-                showQuote();
-                return;
-            }
-
-            try {
-                showLoading();
-                nextQuoteBtn.textContent = 'Loading...';
-
-                const randomFile = quoteFiles[Math.floor(Math.random() * quoteFiles.length)];
-                const response = await fetch(randomFile);
-                
-                if (!response.ok) {
-                    throw new Error(`Failed to load quotes: ${response.status} ${response.statusText}`);
-                }
-
-                const data = await response.json();
-
-                if (!data.gameName || !Array.isArray(data.quotes) || data.quotes.length === 0) {
-                    throw new Error('Invalid quote file format');
-                }
-
-                const randomQuote = data.quotes[Math.floor(Math.random() * data.quotes.length)];
-                
-                quoteHistory.push({ quote: randomQuote, game: data.gameName });
-                showQuote();
-
-            } catch (error) {
-                console.error('Error loading quote:', error);
-                let errorMessage = 'Unable to load quote. ';
-                if (error.message.includes('Failed to fetch') || error.message.includes('CORS')) {
-                    errorMessage += 'This site needs to be served from a web server (not opened directly as a file). ';
-                } else {
-                    errorMessage += error.message || 'Please check your connection and try again.';
-                }
-                showError(errorMessage);
-                currentQuoteIndex--; // Decrement index on failure
-            } finally {
-                nextQuoteBtn.textContent = 'Next Quote';
-                nextQuoteBtn.disabled = false;
-            }
-        }
-        
-        function showPreviousQuote() {
-            if (currentQuoteIndex > 0) {
-                currentQuoteIndex--;
-                showQuote();
-            }
-        }
-
-        // Hamburger menu functionality
-        const hamburgerBtn = document.getElementById('hamburger-btn');
-        const menuPanel = document.getElementById('menu-panel');
-
-        function toggleMenu() {
-            menuPanel.classList.toggle('menu-open');
-        }
-
-        // Close menu when clicking outside
-        document.addEventListener('click', function(event) {
-            const isClickInsideMenu = menuPanel.contains(event.target);
-            const isClickOnButton = hamburgerBtn.contains(event.target);
-            
-            if (!isClickInsideMenu && !isClickOnButton && menuPanel.classList.contains('menu-open')) {
-                menuPanel.classList.remove('menu-open');
-            }
-        });
-
-        // Event listeners
-        nextQuoteBtn.addEventListener('click', fetchAndShowQuote);
-        previousQuoteBtn.addEventListener('click', showPreviousQuote);
-        copyBtn.addEventListener('click', copyQuoteToClipboard);
-        hamburgerBtn.addEventListener('click', toggleMenu);
-
-        // Display an initial quote when the page loads
-        fetchAndShowQuote();
-    </script>
+    <script src="app.js" defer></script>
 </body>
 </html>
 
