@@ -148,9 +148,12 @@ describe('motion and decorative content', () => {
         const dom = await loadPage();
         const { document } = dom.window;
 
-        for (const button of document.querySelectorAll('button')) {
-            const name = button.getAttribute('aria-label') || button.textContent.trim();
-            expect(name.length, `button #${button.id} has no accessible name`).toBeGreaterThan(0);
+        // Links included: the share buttons are icon-only anchors, so their
+        // only accessible name is the aria-label.
+        for (const control of document.querySelectorAll('button, a')) {
+            const name = control.getAttribute('aria-label') || control.textContent.trim();
+            const id = control.id || control.getAttribute('href');
+            expect(name.length, `${control.tagName} ${id} has no accessible name`).toBeGreaterThan(0);
         }
     });
 });

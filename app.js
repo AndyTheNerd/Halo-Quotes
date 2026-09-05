@@ -30,6 +30,9 @@ const copyIcon = document.getElementById('copy-icon');
 const checkIcon = document.getElementById('check-icon');
 const copyText = document.getElementById('copy-text');
 const copyStatus = document.getElementById('copy-status');
+const gameFilter = document.getElementById('game-filter');
+const shareBluesky = document.getElementById('share-bluesky');
+const shareX = document.getElementById('share-x');
 
 // Every quote from every game, flattened. Populated once by loadQuotes().
 let quotePool = [];
@@ -38,6 +41,14 @@ let quotePool = [];
 let quoteHistory = [];
 let currentQuoteIndex = -1;
 let copyResetTimer = null;
+
+// 'all', or a gameId to draw from a single game.
+let activeGameId = 'all';
+
+const FILTER_STORAGE_KEY = 'halo-quotes:game';
+// Bluesky's post limit. Long quotes are trimmed so the composer opens with
+// something postable rather than silently over the limit.
+const BLUESKY_LIMIT = 300;
 
 /**
  * Fetch and validate a single quote file. Returns its quotes as pool entries.
@@ -90,19 +101,84 @@ async function loadQuotes() {
  * Pick a uniformly random quote, avoiding an immediate repeat of the one on
  * screen. With a pool this size a back-to-back repeat is rare but jarring.
  */
+function activePool() {
+    return activeGameId === 'all'
+        ? quotePool
+        : quotePool.filter((quote) => quote.gameId === activeGameId);
+}
+
 function pickRandomQuote() {
-    if (quotePool.length === 1) {
-        return quotePool[0];
+    const pool = activePool();
+
+    if (pool.length === 0) {
+        return null;
+    }
+
+    if (pool.length === 1) {
+        return pool[0];
     }
 
     const current = quoteHistory[currentQuoteIndex];
     let pick;
 
     do {
-        pick = quotePool[Math.floor(Math.random() * quotePool.length)];
+        pick = pool[Math.floor(Math.random() * pool.length)];
     } while (current && pick.text === current.text && pick.gameId === current.gameId);
 
     return pick;
+}
+
+/**
+ * Permalinks look like #/halo-2/42: a game id and the quote's position in
+ * that game's file, so a shared link reopens the same quote.
+ */
+function quoteFromHash(hash) {
+    const match = /^#\/([a-z0-9-]+)\/(\d+)$/.exec(hash || '');
+
+    if (!match) {
+        return null;
+    }
+
+    const [, gameId, index] = match;
+    return quotePool.find((quote) => quote.gameId === gameId && quote.index === Number(index)) || null;
+}
+
+function permalinkFor(quote) {
+    return `#/${quote.gameId}/${quote.index}`;
+}
+
+/**
+ * Keep the address bar in step without pushing an entry per quote, which
+ * would turn the browser Back button into a second Previous button.
+ */
+function updatePermalink(quote) {
+    const hash = permalinkFor(quote);
+
+    if (window.location.hash === hash) {
+        return;
+    }
+
+    try {
+        window.history.replaceState(null, '', hash);
+    } catch (error) {
+        window.location.hash = hash;
+    }
+}
+
+function shareText(quote) {
+    const suffix = ` - ${quote.game}`;
+    const url = `${window.location.origin}${window.location.pathname}${permalinkFor(quote)}`;
+    const room = BLUESKY_LIMIT - suffix.length - url.length - 6;
+    const body = quote.text.length > room ? `${quote.text.slice(0, Math.max(room - 1, 0)).trimEnd()}...` : quote.text;
+
+    return { text: `"${body}"${suffix}`, url };
+}
+
+function updateShareLinks(quote) {
+    const { text, url } = shareText(quote);
+
+    shareBluesky.href = `https://bsky.app/intent/compose?text=${encodeURIComponent(`${text}\n\n${url}`)}`;
+    shareX.href = `https://x.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
 }
 
 /**
@@ -114,8 +190,14 @@ function updateControls({ loading = false } = {}) {
     const hasQuote = currentQuoteIndex >= 0 && Boolean(quoteHistory[currentQuoteIndex]);
 
     previousQuoteBtn.disabled = loading || currentQuoteIndex <= 0;
-    nextQuoteBtn.disabled = loading || quotePool.length === 0;
+    nextQuoteBtn.disabled = loading || activePool().length === 0;
     copyBtn.disabled = loading || !hasQuote;
+    gameFilter.disabled = loading || quotePool.length === 0;
+
+    for (const link of [shareBluesky, shareX]) {
+        link.classList.toggle('is-disabled', !hasQuote);
+        link.setAttribute('aria-disabled', String(!hasQuote));
+    }
 }
 
 function showLoading() {
@@ -142,6 +224,8 @@ function showQuote() {
 
     quoteTextElement.textContent = `"${quote.text}"`;
     quoteSourceElement.textContent = `- ${quote.game}`;
+    updatePermalink(quote);
+    updateShareLinks(quote);
     updateControls();
 }
 
@@ -150,17 +234,20 @@ function showQuote() {
  * back, otherwise draw a new one from the pool.
  */
 function showNextQuote() {
-    if (quotePool.length === 0) {
+    if (currentQuoteIndex < quoteHistory.length - 1) {
+        currentQuoteIndex++;
+        showQuote();
         return;
     }
 
-    if (currentQuoteIndex < quoteHistory.length - 1) {
-        currentQuoteIndex++;
-    } else {
-        quoteHistory.push(pickRandomQuote());
-        currentQuoteIndex = quoteHistory.length - 1;
+    const quote = pickRandomQuote();
+
+    if (!quote) {
+        return;
     }
 
+    quoteHistory.push(quote);
+    currentQuoteIndex = quoteHistory.length - 1;
     showQuote();
 }
 
@@ -275,16 +362,129 @@ document.addEventListener('click', (event) => {
     }
 });
 
+/**
+ * True when the key should go to what the user is typing in rather than to a
+ * page shortcut.
+ */
+function isTypingTarget(target) {
+    if (!target) {
+        return false;
+    }
+
+    return target.isContentEditable
+        || ['INPUT', 'TEXTAREA', 'SELECT'].includes(target.tagName);
+}
+
 document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && isMenuOpen()) {
         setMenuOpen(false, { restoreFocus: true });
+        return;
+    }
+
+    if (event.altKey || event.ctrlKey || event.metaKey || isTypingTarget(event.target)) {
+        return;
+    }
+
+    if (event.key === 'ArrowRight' && !nextQuoteBtn.disabled) {
+        event.preventDefault();
+        showNextQuote();
+    } else if (event.key === 'ArrowLeft' && !previousQuoteBtn.disabled) {
+        event.preventDefault();
+        showPreviousQuote();
+    } else if ((event.key === 'c' || event.key === 'C') && !copyBtn.disabled) {
+        event.preventDefault();
+        copyQuoteToClipboard();
     }
 });
+
+/**
+ * localStorage is unavailable in some privacy modes, so every access is
+ * guarded; the filter simply falls back to "All games".
+ */
+function readStoredFilter() {
+    try {
+        return window.localStorage.getItem(FILTER_STORAGE_KEY);
+    } catch (error) {
+        return null;
+    }
+}
+
+function storeFilter(gameId) {
+    try {
+        window.localStorage.setItem(FILTER_STORAGE_KEY, gameId);
+    } catch (error) {
+        // Not worth surfacing: the filter still works for this visit.
+    }
+}
+
+/**
+ * Build the filter from what actually loaded, so a game that failed to fetch
+ * is not offered as an option.
+ */
+function populateGameFilter() {
+    const names = new Map();
+
+    for (const quote of quotePool) {
+        if (!names.has(quote.gameId)) {
+            names.set(quote.gameId, quote.game);
+        }
+    }
+
+    for (const game of GAMES) {
+        if (!names.has(game.id)) {
+            continue;
+        }
+
+        const option = document.createElement('option');
+        option.value = game.id;
+        option.textContent = names.get(game.id);
+        gameFilter.appendChild(option);
+    }
+}
+
+/**
+ * Guard against a stale stored value or a hand-edited filter naming a game
+ * that is not in the pool.
+ */
+function isKnownGameId(gameId) {
+    return gameId === 'all' || quotePool.some((quote) => quote.gameId === gameId);
+}
+
+/**
+ * Switch games and show a quote from the new selection.
+ */
+function applyFilter(gameId) {
+    activeGameId = isKnownGameId(gameId) ? gameId : 'all';
+    gameFilter.value = activeGameId;
+    storeFilter(activeGameId);
+
+    const quote = pickRandomQuote();
+
+    if (quote) {
+        quoteHistory.push(quote);
+        currentQuoteIndex = quoteHistory.length - 1;
+        showQuote();
+    } else {
+        updateControls();
+    }
+}
 
 nextQuoteBtn.addEventListener('click', showNextQuote);
 previousQuoteBtn.addEventListener('click', showPreviousQuote);
 copyBtn.addEventListener('click', copyQuoteToClipboard);
 hamburgerBtn.addEventListener('click', toggleMenu);
+gameFilter.addEventListener('change', () => applyFilter(gameFilter.value));
+
+// A permalink pasted into the address bar of an open tab should work too.
+window.addEventListener('hashchange', () => {
+    const quote = quoteFromHash(window.location.hash);
+
+    if (quote && quote !== quoteHistory[currentQuoteIndex]) {
+        quoteHistory.push(quote);
+        currentQuoteIndex = quoteHistory.length - 1;
+        showQuote();
+    }
+});
 
 /**
  * Load the pool once, then show the first quote.
@@ -294,7 +494,24 @@ async function init() {
 
     try {
         quotePool = await loadQuotes();
-        showNextQuote();
+        populateGameFilter();
+
+        const stored = readStoredFilter();
+        if (stored && isKnownGameId(stored)) {
+            activeGameId = stored;
+            gameFilter.value = stored;
+        }
+
+        // A permalink wins over a random draw, and over the stored filter.
+        const linked = quoteFromHash(window.location.hash);
+
+        if (linked) {
+            quoteHistory.push(linked);
+            currentQuoteIndex = 0;
+            showQuote();
+        } else {
+            showNextQuote();
+        }
     } catch (error) {
         console.error('Error loading quotes:', error);
         const isNetworkError = error instanceof TypeError;
