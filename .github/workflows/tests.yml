@@ -1,0 +1,78 @@
+name: Tests
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  website:
+    name: Website
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test
+
+  api:
+    name: API worker
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: api-worker/package-lock.json
+
+      - name: Install dependencies
+        working-directory: ./api-worker
+        run: npm ci
+
+      - name: Run tests
+        working-directory: ./api-worker
+        run: npm test
+
+  quote-data:
+    name: Quote data
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # The site, the API and both bots all read these files. A malformed one
+      # breaks everything at once, so check them before anything else runs.
+      - name: Validate quote files
+        run: |
+          for file in quotes/*.json; do
+            python3 -c "
+          import json, sys
+          path = '$file'
+          with open(path, encoding='utf-8') as fh:
+              data = json.load(fh)
+          assert isinstance(data.get('gameName'), str) and data['gameName'], f'{path}: missing gameName'
+          assert isinstance(data.get('quotes'), list) and data['quotes'], f'{path}: missing quotes'
+          assert all(isinstance(q, str) and q.strip() for q in data['quotes']), f'{path}: blank quote'
+          assert len(set(data['quotes'])) == len(data['quotes']), f'{path}: duplicate quotes'
+          print(f'{path}: {len(data[\"quotes\"])} quotes')
+          "
+          done

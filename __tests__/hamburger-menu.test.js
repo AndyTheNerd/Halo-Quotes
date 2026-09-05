@@ -1,405 +1,152 @@
-import { describe, it, expect, beforeEach, afterEach } from 'vitest';
-import { JSDOM } from 'jsdom';
+import { describe, it, expect } from 'vitest';
+import { loadPage } from './helpers/load-page.js';
 
-describe('Hamburger Menu', () => {
-  let dom;
-  let document;
-  let window;
-  let hamburgerBtn;
-  let menuPanel;
+/**
+ * These tests used to build their own copy of the menu markup and their own
+ * copy of the toggle logic in a JSDOM string, so they stayed green no matter
+ * what index.html did. They now drive the real page.
+ *
+ * Open/close behaviour, focus handling and ARIA live in accessibility.test.js;
+ * this file covers the menu's structure and its links.
+ */
 
-  beforeEach(() => {
-    // Create a JSDOM instance with the HTML structure
-    dom = new JSDOM(`
-      <!DOCTYPE html>
-      <html lang="en">
-      <head>
-        <meta charset="UTF-8">
-      </head>
-      <body>
-        <button id="hamburger-btn" aria-label="Toggle menu">
-          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-          </svg>
-        </button>
-        <div id="menu-panel">
-          <div class="menu-section">
-            <h3 class="menu-heading">Halo Quotes</h3>
-            <ul>
-              <li>
-                <a href="https://api.haloquotes.teamrespawntv.com/" target="_blank" rel="noopener noreferrer">
-                  <svg class="menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
-                  </svg>
-                  <span>API</span>
-                </a>
-              </li>
-              <li>
-                <a href="https://github.com/AndyTheNerd/Halo-Quotes" target="_blank" rel="noopener noreferrer">
-                  <svg class="menu-icon" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                  </svg>
-                  <span>Source Code</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div class="menu-section">
-            <h3 class="menu-heading">Team Respawn</h3>
-            <ul>
-              <li>
-                <a href="https://teamrespawntv.com" target="_blank" rel="noopener noreferrer">
-                  <svg class="menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path>
-                  </svg>
-                  <span>Team Respawn Website</span>
-                </a>
-              </li>
-              <li>
-                <a href="https://www.youtube.com/@TeamRespawn" target="_blank" rel="noopener noreferrer">
-                  <svg class="menu-icon" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                  </svg>
-                  <span>Team Respawn YouTube</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </body>
-      </html>
-    `, {
-      url: 'http://localhost',
-      pretendToBeVisual: true,
-      resources: 'usable'
+const EXPECTED_LINKS = [
+    { text: 'API', href: 'https://api.haloquotes.teamrespawntv.com/' },
+    { text: 'Source Code', href: 'https://github.com/AndyTheNerd/Halo-Quotes' },
+    { text: 'Team Respawn Website', href: 'https://teamrespawntv.com' },
+    { text: 'Team Respawn YouTube', href: 'https://www.youtube.com/@TeamRespawn' }
+];
+
+async function menu() {
+    const dom = await loadPage();
+    return dom.window.document.getElementById('menu-panel');
+}
+
+describe('menu structure', () => {
+    it('is present in the page', async () => {
+        const dom = await loadPage();
+        expect(dom.window.document.getElementById('hamburger-btn')).not.toBeNull();
+        expect(dom.window.document.getElementById('menu-panel')).not.toBeNull();
     });
 
-    window = dom.window;
-    document = window.document;
-    global.document = document;
-    global.window = window;
+    it('has two sections with the expected headings', async () => {
+        const panel = await menu();
+        const headings = [...panel.querySelectorAll('.menu-heading')].map((h) => h.textContent.trim());
 
-    // Get elements
-    hamburgerBtn = document.getElementById('hamburger-btn');
-    menuPanel = document.getElementById('menu-panel');
-
-    // Initialize the hamburger menu functionality
-    function toggleMenu() {
-      menuPanel.classList.toggle('menu-open');
-    }
-
-    // Close menu when clicking outside
-    document.addEventListener('click', function(event) {
-      const isClickInsideMenu = menuPanel.contains(event.target);
-      const isClickOnButton = hamburgerBtn.contains(event.target);
-      
-      if (!isClickInsideMenu && !isClickOnButton && menuPanel.classList.contains('menu-open')) {
-        menuPanel.classList.remove('menu-open');
-      }
+        expect(headings).toEqual(['Halo Quotes', 'Team Respawn']);
     });
 
-    // Add event listener to hamburger button
-    hamburgerBtn.addEventListener('click', toggleMenu);
-  });
+    it('puts two links in each section', async () => {
+        const panel = await menu();
+        const sections = panel.querySelectorAll('.menu-section');
 
-  afterEach(() => {
-    dom.window.close();
-  });
-
-  describe('Menu Initialization', () => {
-    it('should have hamburger button in the DOM', () => {
-      expect(hamburgerBtn).toBeTruthy();
-      expect(hamburgerBtn.id).toBe('hamburger-btn');
-    });
-
-    it('should have menu panel in the DOM', () => {
-      expect(menuPanel).toBeTruthy();
-      expect(menuPanel.id).toBe('menu-panel');
-    });
-
-    it('should have hamburger button with correct aria-label', () => {
-      expect(hamburgerBtn.getAttribute('aria-label')).toBe('Toggle menu');
-    });
-
-    it('should have menu panel initially closed (no menu-open class)', () => {
-      expect(menuPanel.classList.contains('menu-open')).toBe(false);
-    });
-  });
-
-  describe('Menu Toggle Functionality', () => {
-    it('should open menu when hamburger button is clicked', () => {
-      hamburgerBtn.click();
-      expect(menuPanel.classList.contains('menu-open')).toBe(true);
-    });
-
-    it('should close menu when hamburger button is clicked again', () => {
-      hamburgerBtn.click(); // Open
-      hamburgerBtn.click(); // Close
-      expect(menuPanel.classList.contains('menu-open')).toBe(false);
-    });
-
-    it('should toggle menu state on multiple clicks', () => {
-      expect(menuPanel.classList.contains('menu-open')).toBe(false);
-      
-      hamburgerBtn.click();
-      expect(menuPanel.classList.contains('menu-open')).toBe(true);
-      
-      hamburgerBtn.click();
-      expect(menuPanel.classList.contains('menu-open')).toBe(false);
-      
-      hamburgerBtn.click();
-      expect(menuPanel.classList.contains('menu-open')).toBe(true);
-    });
-  });
-
-  describe('Click Outside to Close', () => {
-    it('should close menu when clicking outside the menu panel', () => {
-      // Open menu first
-      hamburgerBtn.click();
-      expect(menuPanel.classList.contains('menu-open')).toBe(true);
-
-      // Click outside (on body)
-      const body = document.body;
-      const clickEvent = new window.MouseEvent('click', {
-        bubbles: true,
-        cancelable: true,
-        view: window
-      });
-      body.dispatchEvent(clickEvent);
-
-      expect(menuPanel.classList.contains('menu-open')).toBe(false);
-    });
-
-    it('should not close menu when clicking inside the menu panel', () => {
-      // Open menu first
-      hamburgerBtn.click();
-      expect(menuPanel.classList.contains('menu-open')).toBe(true);
-
-      // Click inside menu panel
-      const menuLink = menuPanel.querySelector('a');
-      const clickEvent = new window.MouseEvent('click', {
-        bubbles: true,
-        cancelable: true,
-        view: window
-      });
-      menuLink.dispatchEvent(clickEvent);
-
-      expect(menuPanel.classList.contains('menu-open')).toBe(true);
-    });
-
-    it('should not close menu when clicking the hamburger button', () => {
-      // Open menu first
-      hamburgerBtn.click();
-      expect(menuPanel.classList.contains('menu-open')).toBe(true);
-
-      // Click hamburger button (should toggle, not close via outside click handler)
-      hamburgerBtn.click();
-      // After toggle, menu should be closed
-      expect(menuPanel.classList.contains('menu-open')).toBe(false);
-    });
-
-    it('should not close menu when menu is already closed', () => {
-      expect(menuPanel.classList.contains('menu-open')).toBe(false);
-
-      // Click outside
-      const body = document.body;
-      const clickEvent = new window.MouseEvent('click', {
-        bubbles: true,
-        cancelable: true,
-        view: window
-      });
-      body.dispatchEvent(clickEvent);
-
-      expect(menuPanel.classList.contains('menu-open')).toBe(false);
-    });
-  });
-
-  describe('Menu Links', () => {
-    it('should have all required menu links', () => {
-      const links = menuPanel.querySelectorAll('a');
-      expect(links.length).toBe(4);
-    });
-
-    it('should have API link with correct href and attributes', () => {
-      const apiLink = Array.from(menuPanel.querySelectorAll('a')).find(
-        link => link.href.includes('api.haloquotes.teamrespawntv.com')
-      );
-      expect(apiLink).toBeTruthy();
-      expect(apiLink.href).toBe('https://api.haloquotes.teamrespawntv.com/');
-      expect(apiLink.getAttribute('target')).toBe('_blank');
-      expect(apiLink.getAttribute('rel')).toBe('noopener noreferrer');
-      const span = apiLink.querySelector('span');
-      expect(span).toBeTruthy();
-      expect(span.textContent.trim()).toBe('API');
-      expect(apiLink.querySelector('.menu-icon')).toBeTruthy();
-    });
-
-    it('should have Source Code link with correct href and attributes', () => {
-      const sourceLink = Array.from(menuPanel.querySelectorAll('a')).find(
-        link => link.href.includes('github.com')
-      );
-      expect(sourceLink).toBeTruthy();
-      expect(sourceLink.href).toBe('https://github.com/AndyTheNerd/Halo-Quotes');
-      expect(sourceLink.getAttribute('target')).toBe('_blank');
-      expect(sourceLink.getAttribute('rel')).toBe('noopener noreferrer');
-      const span = sourceLink.querySelector('span');
-      expect(span).toBeTruthy();
-      expect(span.textContent.trim()).toBe('Source Code');
-      expect(sourceLink.querySelector('.menu-icon')).toBeTruthy();
-    });
-
-    it('should have Team Respawn Website link with correct href and attributes', () => {
-      const websiteLink = Array.from(menuPanel.querySelectorAll('a')).find(
-        link => {
-          const span = link.querySelector('span');
-          return span && span.textContent.trim() === 'Team Respawn Website';
+        expect(sections.length).toBe(2);
+        for (const section of sections) {
+            expect(section.querySelector('ul')).not.toBeNull();
+            expect(section.querySelectorAll('a').length).toBe(2);
         }
-      );
-      expect(websiteLink).toBeTruthy();
-      expect(websiteLink.href).toBe('https://teamrespawntv.com/');
-      expect(websiteLink.getAttribute('target')).toBe('_blank');
-      expect(websiteLink.getAttribute('rel')).toBe('noopener noreferrer');
-      const span = websiteLink.querySelector('span');
-      expect(span).toBeTruthy();
-      expect(span.textContent.trim()).toBe('Team Respawn Website');
-      expect(websiteLink.querySelector('.menu-icon')).toBeTruthy();
     });
 
-    it('should have Team Respawn YouTube link with correct href and attributes', () => {
-      const youtubeLink = Array.from(menuPanel.querySelectorAll('a')).find(
-        link => link.href.includes('youtube.com')
-      );
-      expect(youtubeLink).toBeTruthy();
-      expect(youtubeLink.href).toBe('https://www.youtube.com/@TeamRespawn');
-      expect(youtubeLink.getAttribute('target')).toBe('_blank');
-      expect(youtubeLink.getAttribute('rel')).toBe('noopener noreferrer');
-      const span = youtubeLink.querySelector('span');
-      expect(span).toBeTruthy();
-      expect(span.textContent.trim()).toBe('Team Respawn YouTube');
-      expect(youtubeLink.querySelector('.menu-icon')).toBeTruthy();
+    it('wraps each link in its own list item', async () => {
+        const panel = await menu();
+        const items = panel.querySelectorAll('li');
+
+        expect(items.length).toBe(4);
+        for (const item of items) {
+            expect(item.querySelectorAll('a').length).toBe(1);
+        }
     });
 
-    it('should have all links with target="_blank" attribute', () => {
-      const links = menuPanel.querySelectorAll('a');
-      links.forEach(link => {
-        expect(link.getAttribute('target')).toBe('_blank');
-      });
+    it('gives every link an icon and a text label', async () => {
+        const panel = await menu();
+
+        for (const link of panel.querySelectorAll('a')) {
+            expect(link.querySelector('.menu-icon'), `${link.href} has no icon`).not.toBeNull();
+            expect(link.querySelector('span')?.textContent.trim().length).toBeGreaterThan(0);
+        }
     });
-
-    it('should have all links with rel="noopener noreferrer" attribute', () => {
-      const links = menuPanel.querySelectorAll('a');
-      links.forEach(link => {
-        expect(link.getAttribute('rel')).toBe('noopener noreferrer');
-      });
-    });
-  });
-
-  describe('Menu Structure', () => {
-    it('should have menu sections', () => {
-      const sections = menuPanel.querySelectorAll('.menu-section');
-      expect(sections.length).toBe(2);
-    });
-
-    it('should have "Halo Quotes" heading in first section', () => {
-      const sections = menuPanel.querySelectorAll('.menu-section');
-      const firstSection = sections[0];
-      const heading = firstSection.querySelector('.menu-heading');
-      expect(heading).toBeTruthy();
-      expect(heading.textContent.trim()).toBe('Halo Quotes');
-    });
-
-    it('should have "Team Respawn" heading in second section', () => {
-      const sections = menuPanel.querySelectorAll('.menu-section');
-      const secondSection = sections[1];
-      const heading = secondSection.querySelector('.menu-heading');
-      expect(heading).toBeTruthy();
-      expect(heading.textContent.trim()).toBe('Team Respawn');
-    });
-
-    it('should have 2 links in Halo Quotes section', () => {
-      const sections = menuPanel.querySelectorAll('.menu-section');
-      const haloQuotesSection = sections[0];
-      const links = haloQuotesSection.querySelectorAll('a');
-      expect(links.length).toBe(2);
-    });
-
-    it('should have 2 links in Team Respawn section', () => {
-      const sections = menuPanel.querySelectorAll('.menu-section');
-      const teamRespawnSection = sections[1];
-      const links = teamRespawnSection.querySelectorAll('a');
-      expect(links.length).toBe(2);
-    });
-
-    it('should have ul elements inside each menu section', () => {
-      const sections = menuPanel.querySelectorAll('.menu-section');
-      sections.forEach(section => {
-        const ul = section.querySelector('ul');
-        expect(ul).toBeTruthy();
-      });
-    });
-
-    it('should have 4 li elements total across all sections', () => {
-      const listItems = menuPanel.querySelectorAll('li');
-      expect(listItems.length).toBe(4);
-    });
-
-    it('should have each li containing exactly one link', () => {
-      const listItems = menuPanel.querySelectorAll('li');
-      listItems.forEach(li => {
-        const links = li.querySelectorAll('a');
-        expect(links.length).toBe(1);
-      });
-    });
-
-    it('should have icons in all menu links', () => {
-      const links = menuPanel.querySelectorAll('a');
-      links.forEach(link => {
-        const icon = link.querySelector('.menu-icon');
-        expect(icon).toBeTruthy();
-        expect(icon.tagName.toLowerCase()).toBe('svg');
-      });
-    });
-
-    it('should have span elements with text in all menu links', () => {
-      const links = menuPanel.querySelectorAll('a');
-      links.forEach(link => {
-        const span = link.querySelector('span');
-        expect(span).toBeTruthy();
-        expect(span.textContent.trim().length).toBeGreaterThan(0);
-      });
-    });
-  });
-
-  describe('Event Handling', () => {
-    it('should handle multiple rapid clicks on hamburger button', () => {
-      // Simulate rapid clicks
-      for (let i = 0; i < 5; i++) {
-        hamburgerBtn.click();
-      }
-      // Should end in a consistent state
-      const isOpen = menuPanel.classList.contains('menu-open');
-      expect(typeof isOpen).toBe('boolean');
-    });
-
-    it('should maintain menu state during multiple interactions', () => {
-      // Open menu
-      hamburgerBtn.click();
-      expect(menuPanel.classList.contains('menu-open')).toBe(true);
-
-      // Click outside to close
-      const body = document.body;
-      const clickEvent = new window.MouseEvent('click', {
-        bubbles: true,
-        cancelable: true,
-        view: window
-      });
-      body.dispatchEvent(clickEvent);
-      expect(menuPanel.classList.contains('menu-open')).toBe(false);
-
-      // Open again
-      hamburgerBtn.click();
-      expect(menuPanel.classList.contains('menu-open')).toBe(true);
-    });
-  });
 });
 
+describe('menu links', () => {
+    it('links to the expected destinations in order', async () => {
+        const panel = await menu();
+        const links = [...panel.querySelectorAll('a')].map((a) => ({
+            text: a.querySelector('span').textContent.trim(),
+            href: a.getAttribute('href')
+        }));
+
+        expect(links).toEqual(EXPECTED_LINKS);
+    });
+
+    it('opens external links safely', async () => {
+        const panel = await menu();
+
+        for (const link of panel.querySelectorAll('a')) {
+            expect(link.getAttribute('target'), `${link.href} target`).toBe('_blank');
+            // rel=noopener stops the opened page reaching back via window.opener.
+            expect(link.getAttribute('rel'), `${link.href} rel`).toBe('noopener noreferrer');
+        }
+    });
+
+    it('applies the same treatment to every external link on the page', async () => {
+        const dom = await loadPage();
+
+        for (const link of dom.window.document.querySelectorAll('a[href^="http"]')) {
+            const href = link.getAttribute('href');
+            expect(link.getAttribute('target'), `${href} target`).toBe('_blank');
+            expect(link.getAttribute('rel'), `${href} rel`).toContain('noopener');
+        }
+    });
+});
+
+describe('menu interaction', () => {
+    it('survives rapid repeated clicks', async () => {
+        const dom = await loadPage();
+        const { document } = dom.window;
+        const button = document.getElementById('hamburger-btn');
+        const panel = document.getElementById('menu-panel');
+
+        for (let i = 0; i < 11; i++) {
+            button.click();
+        }
+
+        // Odd number of clicks leaves it open, with state still consistent.
+        expect(panel.classList.contains('menu-open')).toBe(true);
+        expect(button.getAttribute('aria-expanded')).toBe('true');
+        expect(panel.hasAttribute('inert')).toBe(false);
+    });
+
+    it('stays open when clicking inside the panel', async () => {
+        const dom = await loadPage();
+        const { document } = dom.window;
+        const button = document.getElementById('hamburger-btn');
+        const panel = document.getElementById('menu-panel');
+
+        button.click();
+        panel.querySelector('.menu-heading').click();
+
+        expect(panel.classList.contains('menu-open')).toBe(true);
+    });
+
+    it('does nothing when clicking outside an already closed menu', async () => {
+        const dom = await loadPage();
+        const { document } = dom.window;
+        const panel = document.getElementById('menu-panel');
+
+        document.querySelector('main').click();
+
+        expect(panel.classList.contains('menu-open')).toBe(false);
+        expect(document.getElementById('hamburger-btn').getAttribute('aria-expanded')).toBe('false');
+    });
+
+    it('does not interfere with the quote controls', async () => {
+        const dom = await loadPage();
+        const { document } = dom.window;
+
+        const before = document.getElementById('quote-text').textContent;
+        document.getElementById('hamburger-btn').click();
+        document.getElementById('next-quote-btn').click();
+
+        expect(document.getElementById('quote-text').textContent).not.toBe(before);
+    });
+});
