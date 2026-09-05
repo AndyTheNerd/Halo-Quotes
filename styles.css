@@ -1,0 +1,344 @@
+/*
+ * Halo Quotes
+ *
+ * Hand-written to replace the Tailwind Play CDN, which shipped ~100KB of
+ * JavaScript to generate this much CSS in the browser at runtime.
+ */
+
+:root {
+    --text: #374151;
+    --text-strong: #1f2937;
+    --text-muted: #6b7280;
+    --panel: #ffffff;
+    --quote-bg: rgba(243, 244, 246, 0.85);
+    --rule: #9ca3af;
+    --btn: #1f2937;
+    --btn-hover: #374151;
+    --btn-secondary: #4b5563;
+    --btn-secondary-hover: #6b7280;
+    --btn-success: #16a34a;
+    --btn-success-hover: #22c55e;
+    --focus-ring: #9ca3af;
+    --footer-text: #d1d5db;
+    --menu-bg: rgba(55, 65, 81, 0.95);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    color: var(--text);
+    background-color: #111827;
+}
+
+/* Background image and the overlay that keeps the card readable over it. */
+#background {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+    transform: scale(1.15);
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+}
+
+/* Layout */
+.page {
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5rem 1rem 1rem;
+}
+
+.card {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 36rem;
+    padding: 2rem;
+    border-radius: 0.75rem;
+    background-color: var(--panel);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -4px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card h1 {
+    margin: 0 0 1.5rem;
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+    font-weight: 700;
+    text-align: center;
+    color: var(--text-strong);
+}
+
+/* Quote */
+#quote-container {
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    border-left: 4px solid var(--rule);
+    background-color: var(--quote-bg);
+}
+
+#quote-text {
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 0 0.5rem;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    font-style: italic;
+    text-align: center;
+    color: var(--text);
+}
+
+#quote-source {
+    margin: 0;
+    font-size: 0.875rem;
+    text-align: center;
+    color: var(--text-muted);
+}
+
+/* Controls */
+.controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+    min-height: 48px;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1.5rem;
+    border: none;
+    border-radius: 9999px;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #ffffff;
+    background-color: var(--btn);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover:not(:disabled) {
+    background-color: var(--btn-hover);
+}
+
+.btn:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: default;
+}
+
+.btn--secondary {
+    background-color: var(--btn-secondary);
+}
+
+.btn--secondary:hover:not(:disabled) {
+    background-color: var(--btn-secondary-hover);
+}
+
+#copy-btn.is-copied,
+#copy-btn.is-copied:hover:not(:disabled) {
+    background-color: var(--btn-success);
+}
+
+#copy-btn.is-copied:hover:not(:disabled) {
+    background-color: var(--btn-success-hover);
+}
+
+.icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    flex-shrink: 0;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Footer */
+.site-footer {
+    position: relative;
+    z-index: 1;
+    padding: 1rem;
+    text-align: center;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--footer-text);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.site-footer a {
+    color: inherit;
+    text-decoration: underline;
+    transition: color 0.2s ease;
+}
+
+.site-footer a:hover,
+.site-footer a:focus-visible {
+    color: #ffffff;
+}
+
+.heart {
+    color: #ef4444;
+}
+
+/* Hamburger menu */
+#hamburger-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background-color: rgba(55, 65, 81, 0.9);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#hamburger-btn:hover {
+    background-color: rgba(75, 85, 99, 0.9);
+}
+
+#hamburger-btn:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 2px;
+}
+
+#hamburger-btn svg {
+    width: 24px;
+    height: 24px;
+    stroke: #ffffff;
+}
+
+#menu-panel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    max-width: 85vw;
+    height: 100vh;
+    height: 100dvh;
+    padding: 80px 20px 20px;
+    background-color: var(--menu-bg);
+    backdrop-filter: blur(10px);
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out, visibility 0.3s;
+    z-index: 99;
+    overflow-y: auto;
+}
+
+#menu-panel.menu-open {
+    transform: translateX(0);
+}
+
+#menu-panel .menu-section {
+    margin-bottom: 24px;
+}
+
+#menu-panel .menu-section:last-child {
+    margin-bottom: 0;
+}
+
+#menu-panel .menu-heading {
+    margin: 0 0 12px 16px;
+    padding: 0;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+#menu-panel ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#menu-panel li {
+    margin-bottom: 16px;
+}
+
+#menu-panel a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+#menu-panel a:hover,
+#menu-panel a:focus-visible {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    transform: translateX(4px);
+}
+
+#menu-panel .menu-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+@media (max-width: 640px) {
+    .page {
+        padding: 4.5rem 1rem 1rem;
+    }
+
+    .card {
+        padding: 1.5rem;
+    }
+
+    .controls .btn {
+        padding: 0.5rem 1rem;
+    }
+}
