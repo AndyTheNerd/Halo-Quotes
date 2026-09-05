@@ -31,14 +31,14 @@
     </picture>
 
     <!-- Hamburger Menu Button -->
-    <button id="hamburger-btn" aria-label="Toggle menu">
+    <button id="hamburger-btn" aria-label="Toggle menu" aria-expanded="false" aria-controls="menu-panel">
         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
         </svg>
     </button>
 
     <!-- Menu Panel -->
-    <div id="menu-panel">
+    <nav id="menu-panel" aria-label="Halo Quotes and Team Respawn links" inert>
         <div class="menu-section">
             <h3 class="menu-heading">Halo Quotes</h3>
             <ul>
@@ -81,15 +81,20 @@
                 </li>
             </ul>
         </div>
-    </div>
+    </nav>
 
     <main class="page">
         <div class="card">
             <h1>Halo Quotes</h1>
-            <div id="quote-container">
-                <p id="quote-text"></p>
-                <p id="quote-source"></p>
+            <div id="quote-container" role="region" aria-label="Quote" aria-live="polite" aria-atomic="true">
+                <p id="quote-text">"I need a weapon."</p>
+                <p id="quote-source">- Halo 2</p>
             </div>
+            <noscript>
+                <p class="noscript-note">JavaScript is switched off, so the buttons below will not load a new
+                quote. Every quote is still readable in the
+                <a href="https://github.com/AndyTheNerd/Halo-Quotes/tree/master/quotes">quote files on GitHub</a>.</p>
+            </noscript>
             <div class="controls">
                 <button id="copy-btn" class="btn btn--secondary" title="Copy quote to clipboard">
                     <svg id="copy-icon" class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -107,6 +112,7 @@
                     Next Quote
                 </button>
             </div>
+            <p id="copy-status" class="visually-hidden" role="status" aria-live="polite"></p>
         </div>
     </main>
 

@@ -267,13 +267,16 @@ body::before {
     backdrop-filter: blur(10px);
     box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
     transform: translateX(-100%);
-    transition: transform 0.3s ease-in-out, visibility 0.3s;
+    visibility: hidden;
+    transition: transform 0.3s ease-in-out, visibility 0s linear 0.3s;
     z-index: 99;
     overflow-y: auto;
 }
 
 #menu-panel.menu-open {
     transform: translateX(0);
+    visibility: visible;
+    transition: transform 0.3s ease-in-out, visibility 0s linear 0s;
 }
 
 #menu-panel .menu-section {
@@ -340,5 +343,60 @@ body::before {
 
     .controls .btn {
         padding: 0.5rem 1rem;
+    }
+}
+
+/* Screen-reader-only text, e.g. the copy confirmation live region. */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.noscript-note {
+    margin: 1rem 0 0;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    background-color: #fef3c7;
+    color: #92400e;
+    font-size: 0.875rem;
+    text-align: center;
+}
+
+.noscript-note a {
+    color: inherit;
+}
+
+/*
+ * Respect a reduced-motion preference: keep every state change, drop the
+ * movement. The card's hover zoom and the menu slide are the two offenders.
+ */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .card:hover {
+        transform: none;
+    }
+
+    #menu-panel a:hover,
+    #menu-panel a:focus-visible {
+        transform: none;
+    }
+
+    #menu-panel {
+        transition: transform 0.01ms, visibility 0s linear 0.01ms;
     }
 }

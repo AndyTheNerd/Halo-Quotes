@@ -29,6 +29,7 @@ const copyBtn = document.getElementById('copy-btn');
 const copyIcon = document.getElementById('copy-icon');
 const checkIcon = document.getElementById('check-icon');
 const copyText = document.getElementById('copy-text');
+const copyStatus = document.getElementById('copy-status');
 
 // Every quote from every game, flattened. Populated once by loadQuotes().
 let quotePool = [];
@@ -178,6 +179,7 @@ function flashCopySuccess() {
     checkIcon.classList.remove('hidden');
     copyText.textContent = 'Copied!';
     copyBtn.classList.add('is-copied');
+    copyStatus.textContent = 'Quote copied to clipboard.';
 
     clearTimeout(copyResetTimer);
     copyResetTimer = setTimeout(() => {
@@ -185,6 +187,7 @@ function flashCopySuccess() {
         checkIcon.classList.add('hidden');
         copyText.textContent = 'Copy';
         copyBtn.classList.remove('is-copied');
+        copyStatus.textContent = '';
     }, 2000);
 }
 
@@ -222,6 +225,7 @@ async function copyQuoteToClipboard() {
     } catch (fallbackError) {
         console.error('Fallback copy failed:', fallbackError);
         copyText.textContent = 'Failed';
+        copyStatus.textContent = 'Could not copy the quote.';
         clearTimeout(copyResetTimer);
         copyResetTimer = setTimeout(() => {
             copyText.textContent = 'Copy';
@@ -233,16 +237,47 @@ async function copyQuoteToClipboard() {
 const hamburgerBtn = document.getElementById('hamburger-btn');
 const menuPanel = document.getElementById('menu-panel');
 
+function isMenuOpen() {
+    return menuPanel.classList.contains('menu-open');
+}
+
+/**
+ * The closed panel is only translated off screen, so without `inert` its links
+ * stay in the tab order and keyboard users land in an invisible menu.
+ */
+function setMenuOpen(open, { restoreFocus = false } = {}) {
+    menuPanel.classList.toggle('menu-open', open);
+    // Set the attribute rather than the IDL property: it reflects everywhere,
+    // including engines that do not implement `inert` as a property.
+    menuPanel.toggleAttribute('inert', !open);
+    hamburgerBtn.setAttribute('aria-expanded', String(open));
+
+    if (open) {
+        const firstLink = menuPanel.querySelector('a');
+        if (firstLink) {
+            firstLink.focus();
+        }
+    } else if (restoreFocus) {
+        hamburgerBtn.focus();
+    }
+}
+
 function toggleMenu() {
-    menuPanel.classList.toggle('menu-open');
+    setMenuOpen(!isMenuOpen());
 }
 
 document.addEventListener('click', (event) => {
     const isClickInsideMenu = menuPanel.contains(event.target);
     const isClickOnButton = hamburgerBtn.contains(event.target);
 
-    if (!isClickInsideMenu && !isClickOnButton && menuPanel.classList.contains('menu-open')) {
-        menuPanel.classList.remove('menu-open');
+    if (!isClickInsideMenu && !isClickOnButton && isMenuOpen()) {
+        setMenuOpen(false);
+    }
+});
+
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && isMenuOpen()) {
+        setMenuOpen(false, { restoreFocus: true });
     }
 });
 
