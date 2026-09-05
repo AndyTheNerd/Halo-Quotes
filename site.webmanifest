@@ -1,0 +1,22 @@
+{
+  "name": "Halo Quotes by Team Respawn",
+  "short_name": "Halo Quotes",
+  "description": "Random quotes from the Halo video game series.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#111827",
+  "theme_color": "#1f2937",
+  "icons": [
+    {
+      "src": "/img/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/img/256x256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    }
+  ]
+}
