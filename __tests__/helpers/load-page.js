@@ -12,9 +12,10 @@ export function readRepoFile(relativePath) {
 
 /**
  * Serve the repository's real quote files to the page under test. Pass
- * `failing` to make specific paths reject or 404, for error-path coverage.
+ * `failing` to make specific paths reject or 404, for error-path coverage, or
+ * `overrides` to serve stand-in data for a path.
  */
-export function createFetchStub({ failing = [], networkError = false } = {}) {
+export function createFetchStub({ failing = [], overrides = {}, networkError = false } = {}) {
     return async function fetchStub(resource) {
         const path = String(resource).replace(/^\.?\//, '');
 
@@ -24,6 +25,11 @@ export function createFetchStub({ failing = [], networkError = false } = {}) {
 
         if (failing.includes(path)) {
             return { ok: false, status: 404, statusText: 'Not Found', json: async () => ({}) };
+        }
+
+        if (Object.prototype.hasOwnProperty.call(overrides, path)) {
+            const data = overrides[path];
+            return { ok: true, status: 200, statusText: 'OK', json: async () => data };
         }
 
         const body = readRepoFile(path);

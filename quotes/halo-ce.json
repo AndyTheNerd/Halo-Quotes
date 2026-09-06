@@ -1,73 +1,277 @@
 {
   "gameName": "Halo: Combat Evolved",
   "quotes": [
-    "I'm going to search what's left of the Covenant battlenet, and see if I can locate the Pillar of Autumn's crash site. If the ship's fusion reactors are still relatively intact, we can use them to destroy Halo.",
-    "Captain Keyes...",
-    "Looks like the Covenant wanted to catch you napping.",
-    "We can't let the Flood get off this ring! You know what he'd expect...",
-    "Sleepers! Take 'em out, nice and quiet!",
-    "Tell that to the Covenant.",
-    "Let's give our old friend a warm welcome.",
-    "Let's go Marines, the Corps ain't paying us by the hour!",
-    "This is pelican Echo 419, you got 2 enemy drop ships coming in fast!",
-    "This is Echo 419. Chief! Is that you?",
-    "Why? Looking for a little payback?",
-    "You have the MAC gun, Cortana. As soon as they come in range, open up.",
-    "This cave is not a natural formation. Someone built it, so it must lead somewhere.",
-    "Look on the bright side, Foe Hammer: The last thing the Covenant will expect is an aerial insertion...from underground.",
-    "Interesting... the weather patterns here seem natural, not artificial. I wonder if the ring's environment systems are malfunctioning... or if the designers wanted the installation to have inclement weather.",
-    "You did that on purpose, didn't you?",
-    "Greetings. I am the Monitor of installation 04. I am 343 Guilty Spark.",
-    "No human lifesigns detected. The Captain! He's one of them!",
-    "Wort wort wort!",
-    "I knew it. The Autumn is accelerating. Keyes is going in manually!",
-    "Puzzling. You brought such ineffective weapons to combat the Flood, despite the containment protocols.",
-    "A construct? In the Core? That is absolutely unacceptable!",
-    "Unacceptable! Unacceptable! Absolutely unacceptable!",
-    "This is it, baby! Hold me.",
-    "Mmmhmm. Damn right, I am. Now move it out! Double time! All you green horns who wanted to see Covenant up close, this is gonna be your lucky day!",
-    "Sure you wouldn't rather take a seat?",
-    "There's no time! Get out of here! Find Keyes, stop him! Before it's too late!",
-    "Yes, activate Halo's defenses and destroy the Flood, which is why we brought the Index to the control center.",
-    "You have no idea how this ring works, do you? Why the Forerunners built it? Halo doesn't kill Flood, it kills their food. Humans, Covenant, whatever! We are all equally edible. The only way to stop the Flood is to starve them to death, and that's exactly what Halo is designed to do, wipe the galaxy clean of all sentient life! You don't believe me? Ask him!",
-    "Chief...don't be a fool...leave me.",
-    "Scanning...just dust and echoes. We're all that's left...We did what we had to do - for Earth. An entire Covenant armada obliterated, and the Flood...We had no choice. Halo, it's finished.",
-    "Analyzing...",
-    "Cortana, all I need to know is did we lose them?",
-    "I think we both know the answer to that.",
-    "We made a blind jump. How did they -",
-    "Get here first? The Covenant ships have always been faster. As for tracking us all the way from Reach, at light speed my maneuvering options were limited.",
-    "No one could have missed the hole we tore in subspace.",
-    "Our fighters are mopping up the last of the recon picket now. Nothing serious.",
-    "But I've isolated approach signatures for multiple CCS-class battle groups: make it three capitol ships per group... and in about 90 seconds they'll be all over us.",
-    "Well. That's it then. Bring the ship back up to combat alert alpha.",
-    "I want everyone at their stations.",
-    "You heard the lady. Move like you got a purpose!",
-    "Men, keep your eyes downrange, fingers on your triggers, and we all go home in one piece.",
-    "Bringing low level systems online. Cracking the case in 30 seconds.",
-    "He's hot! Blowing the pins in 5.",
-    "His tubes show green. Cycle complete!",
-    "Sorry for the quick thaw, Master Chief. Things are a little hectic right now. Welcome back sir! We'll have you battle ready, stat.",
-    "Bridge to Cryo 2, this is Captain Keyes. Send the Master Chief to the bridge immediately.",
-    "The Skipper seems jumpy. We'd better get moving. We'll find your weapons later.",
-    "Oh God! They're trying to get through the door! Security! Intruders in Cryo 2!",
-    "Alert! All hands! Boarding parties on port decks 4, 7, and 12. Baker Team, move to engage!",
-    "Good to see you Master Chief! Things aren't going well. Cortana did her best, but we never really had a chance.",
-    "A dozen Covenant ships against a single Halcyon-class cruiser. With those odds, I'm content with three...make that four kills.",
-    "Sleep well?",
-    "No thanks to your driving, yes.",
-    "So you did miss me.",
-    "Alright then. I'm initiating Cole Protocol, Article 2. We're abandoning the Autumn. That means you too, Cortana.",
-    "The object we found, I'm going to try and land the Autumn on it.",
-    "With all due respect, sir, this war has enough dead heroes.",
-    "I appreciate your concern, Cortana, but it's not up to me. Protocol is clear: destruction or capture of a shipboard AI is absolutely unacceptable, and that means you're leaving the ship.",
-    "Lock in a selection of emergency landing zones, upload them to my neural-lace, and then sort yourself for a hard transfer.",
-    "Which is where you come in, Chief. Get Cortana off this ship. Keep her safe from the enemy. If they capture her, they'll learn everything: force deployment, weapons research... Earth.",
-    "The Autumn will continue evasive maneuvers until you initiate a landing sequence. Not that you'll listen, but I'd suggest letting my sub-routines handle the final approach.",
-    "Hmmm. Your architecture isn't much different from the Autumn's.",
-    "I don't keep it loaded, son, you'll have to find ammo as you go.",
-    "Hoorah Marines!",
-    "Everyone, sir?",
-    "But Cortana...these coordinates are underground."
+    {
+      "id": "b2bb5d80",
+      "text": "I'm going to search what's left of the Covenant battlenet, and see if I can locate the Pillar of Autumn's crash site. If the ship's fusion reactors are still relatively intact, we can use them to destroy Halo."
+    },
+    {
+      "id": "621e949e",
+      "text": "Captain Keyes..."
+    },
+    {
+      "id": "65ba6e49",
+      "text": "Looks like the Covenant wanted to catch you napping."
+    },
+    {
+      "id": "78b53414",
+      "text": "We can't let the Flood get off this ring! You know what he'd expect..."
+    },
+    {
+      "id": "9a01a35d",
+      "text": "Sleepers! Take 'em out, nice and quiet!"
+    },
+    {
+      "id": "d91509b3",
+      "text": "Tell that to the Covenant."
+    },
+    {
+      "id": "6728bbc6",
+      "text": "Let's give our old friend a warm welcome."
+    },
+    {
+      "id": "13c83dd4",
+      "text": "Let's go Marines, the Corps ain't paying us by the hour!"
+    },
+    {
+      "id": "50c7d485",
+      "text": "This is pelican Echo 419, you got 2 enemy drop ships coming in fast!"
+    },
+    {
+      "id": "240e847f",
+      "text": "This is Echo 419. Chief! Is that you?"
+    },
+    {
+      "id": "63efdfcc",
+      "text": "Why? Looking for a little payback?"
+    },
+    {
+      "id": "89cf8153",
+      "text": "You have the MAC gun, Cortana. As soon as they come in range, open up."
+    },
+    {
+      "id": "f26e4e3e",
+      "text": "This cave is not a natural formation. Someone built it, so it must lead somewhere."
+    },
+    {
+      "id": "8a3fc1a1",
+      "text": "Look on the bright side, Foe Hammer: The last thing the Covenant will expect is an aerial insertion...from underground."
+    },
+    {
+      "id": "da77e1b1",
+      "text": "Interesting... the weather patterns here seem natural, not artificial. I wonder if the ring's environment systems are malfunctioning... or if the designers wanted the installation to have inclement weather."
+    },
+    {
+      "id": "9fa6a826",
+      "text": "You did that on purpose, didn't you?"
+    },
+    {
+      "id": "b70c74c5",
+      "text": "Greetings. I am the Monitor of installation 04. I am 343 Guilty Spark."
+    },
+    {
+      "id": "0585355f",
+      "text": "No human lifesigns detected. The Captain! He's one of them!"
+    },
+    {
+      "id": "286b70f5",
+      "text": "Wort wort wort!"
+    },
+    {
+      "id": "f9c71cf2",
+      "text": "I knew it. The Autumn is accelerating. Keyes is going in manually!"
+    },
+    {
+      "id": "26935159",
+      "text": "Puzzling. You brought such ineffective weapons to combat the Flood, despite the containment protocols."
+    },
+    {
+      "id": "528ad41d",
+      "text": "A construct? In the Core? That is absolutely unacceptable!"
+    },
+    {
+      "id": "b93f6966",
+      "text": "Unacceptable! Unacceptable! Absolutely unacceptable!"
+    },
+    {
+      "id": "f640ba07",
+      "text": "This is it, baby! Hold me."
+    },
+    {
+      "id": "4375fdd5",
+      "text": "Mmmhmm. Damn right, I am. Now move it out! Double time! All you green horns who wanted to see Covenant up close, this is gonna be your lucky day!"
+    },
+    {
+      "id": "378670f8",
+      "text": "Sure you wouldn't rather take a seat?"
+    },
+    {
+      "id": "a75e2c94",
+      "text": "There's no time! Get out of here! Find Keyes, stop him! Before it's too late!"
+    },
+    {
+      "id": "a4c4b1a4",
+      "text": "Yes, activate Halo's defenses and destroy the Flood, which is why we brought the Index to the control center."
+    },
+    {
+      "id": "3824f1ed",
+      "text": "You have no idea how this ring works, do you? Why the Forerunners built it? Halo doesn't kill Flood, it kills their food. Humans, Covenant, whatever! We are all equally edible. The only way to stop the Flood is to starve them to death, and that's exactly what Halo is designed to do, wipe the galaxy clean of all sentient life! You don't believe me? Ask him!"
+    },
+    {
+      "id": "f8fb2e0a",
+      "text": "Chief...don't be a fool...leave me."
+    },
+    {
+      "id": "a8ef1ab2",
+      "text": "Scanning...just dust and echoes. We're all that's left...We did what we had to do - for Earth. An entire Covenant armada obliterated, and the Flood...We had no choice. Halo, it's finished."
+    },
+    {
+      "id": "7fb4834e",
+      "text": "Analyzing..."
+    },
+    {
+      "id": "facb61d5",
+      "text": "Cortana, all I need to know is did we lose them?"
+    },
+    {
+      "id": "add8bc5b",
+      "text": "I think we both know the answer to that."
+    },
+    {
+      "id": "aa852d52",
+      "text": "We made a blind jump. How did they -"
+    },
+    {
+      "id": "6397c73e",
+      "text": "Get here first? The Covenant ships have always been faster. As for tracking us all the way from Reach, at light speed my maneuvering options were limited."
+    },
+    {
+      "id": "5c080357",
+      "text": "No one could have missed the hole we tore in subspace."
+    },
+    {
+      "id": "57f3660a",
+      "text": "Our fighters are mopping up the last of the recon picket now. Nothing serious."
+    },
+    {
+      "id": "a2095ab7",
+      "text": "But I've isolated approach signatures for multiple CCS-class battle groups: make it three capitol ships per group... and in about 90 seconds they'll be all over us."
+    },
+    {
+      "id": "008b0489",
+      "text": "Well. That's it then. Bring the ship back up to combat alert alpha."
+    },
+    {
+      "id": "0d836dcf",
+      "text": "I want everyone at their stations."
+    },
+    {
+      "id": "6f9951f4",
+      "text": "You heard the lady. Move like you got a purpose!"
+    },
+    {
+      "id": "ca5ce98b",
+      "text": "Men, keep your eyes downrange, fingers on your triggers, and we all go home in one piece."
+    },
+    {
+      "id": "edacd2db",
+      "text": "Bringing low level systems online. Cracking the case in 30 seconds."
+    },
+    {
+      "id": "c3564655",
+      "text": "He's hot! Blowing the pins in 5."
+    },
+    {
+      "id": "dc767386",
+      "text": "His tubes show green. Cycle complete!"
+    },
+    {
+      "id": "a8277156",
+      "text": "Sorry for the quick thaw, Master Chief. Things are a little hectic right now. Welcome back sir! We'll have you battle ready, stat."
+    },
+    {
+      "id": "c1b5b249",
+      "text": "Bridge to Cryo 2, this is Captain Keyes. Send the Master Chief to the bridge immediately."
+    },
+    {
+      "id": "c609721f",
+      "text": "The Skipper seems jumpy. We'd better get moving. We'll find your weapons later."
+    },
+    {
+      "id": "62d0f8f3",
+      "text": "Oh God! They're trying to get through the door! Security! Intruders in Cryo 2!"
+    },
+    {
+      "id": "11df50cc",
+      "text": "Alert! All hands! Boarding parties on port decks 4, 7, and 12. Baker Team, move to engage!"
+    },
+    {
+      "id": "fd4f3389",
+      "text": "Good to see you Master Chief! Things aren't going well. Cortana did her best, but we never really had a chance."
+    },
+    {
+      "id": "8c55e5a0",
+      "text": "A dozen Covenant ships against a single Halcyon-class cruiser. With those odds, I'm content with three...make that four kills."
+    },
+    {
+      "id": "35743393",
+      "text": "Sleep well?"
+    },
+    {
+      "id": "419257bb",
+      "text": "No thanks to your driving, yes."
+    },
+    {
+      "id": "227b3a99",
+      "text": "So you did miss me."
+    },
+    {
+      "id": "427d5ac4",
+      "text": "Alright then. I'm initiating Cole Protocol, Article 2. We're abandoning the Autumn. That means you too, Cortana."
+    },
+    {
+      "id": "b8b0e89d",
+      "text": "The object we found, I'm going to try and land the Autumn on it."
+    },
+    {
+      "id": "9c728add",
+      "text": "With all due respect, sir, this war has enough dead heroes."
+    },
+    {
+      "id": "7bc649d0",
+      "text": "I appreciate your concern, Cortana, but it's not up to me. Protocol is clear: destruction or capture of a shipboard AI is absolutely unacceptable, and that means you're leaving the ship."
+    },
+    {
+      "id": "214ba4b1",
+      "text": "Lock in a selection of emergency landing zones, upload them to my neural-lace, and then sort yourself for a hard transfer."
+    },
+    {
+      "id": "32479fac",
+      "text": "Which is where you come in, Chief. Get Cortana off this ship. Keep her safe from the enemy. If they capture her, they'll learn everything: force deployment, weapons research... Earth."
+    },
+    {
+      "id": "274b5101",
+      "text": "The Autumn will continue evasive maneuvers until you initiate a landing sequence. Not that you'll listen, but I'd suggest letting my sub-routines handle the final approach."
+    },
+    {
+      "id": "34eb75a1",
+      "text": "Hmmm. Your architecture isn't much different from the Autumn's."
+    },
+    {
+      "id": "2c66b382",
+      "text": "I don't keep it loaded, son, you'll have to find ammo as you go."
+    },
+    {
+      "id": "3af3e9cc",
+      "text": "Hoorah Marines!"
+    },
+    {
+      "id": "aed7705e",
+      "text": "Everyone, sir?"
+    },
+    {
+      "id": "e18fc10f",
+      "text": "But Cortana...these coordinates are underground."
+    }
   ]
 }

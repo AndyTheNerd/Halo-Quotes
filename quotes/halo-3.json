@@ -1,88 +1,337 @@
 {
   "gameName": "Halo 3",
   "quotes": [
-    "You want breakfast? You gotta catch it!",
-    "I...am...Truth! The voice of the Covenant!",
-    "That stench...I've smelled it before.",
-    "And so, you must be silenced.",
-    "Were it so easy...",
-    "Tank beats everything!",
-    "Tank beats ghost!",
-    "Tank beats hunter!",
-    "Could you sacrifice me to complete your mission? Could you watch me die?",
-    "Shipmaster! They outnumber us three to one!",
-    "All cruisers, fire at will! Burn their mongrel hides!",
-    "I will have my revenge. On a Prophet, not a plague!",
-    "But you had something the others didn't...can you guess?",
-    "Banshees! Fast and low!",
-    "Take us home.",
-    "Then it is an even fight!",
-    "Wake me...when you need me.",
-    "But you did it. Truth and the Covenant, the Flood...",
-    "The Scarab is destroyed. Victory is ours today.",
-    "Master Chief? Good, this channel is secure. My fireteams are spread thin. We can't hold out forever. I need that hangar cleared for evac, ASAP.",
-    "Please, don't shake the lightbulb.",
-    "Do not shoot, but listen! We share a common goal. Let my body be your shield. I shall not fight you! Let me lead you safely to our foe. Only you can halt what he has set in motion.",
-    "What is it? More Brutes?",
-    "You know me. I did my research. Watched as you became the very soldier we needed you to be.",
-    "Kiss...my...asss.",
-    "Hey bastards! Knock knock!",
-    "Orders are orders.",
-    "Slipspace rupture detected.",
-    "There goes his shield!",
-    "Real pretty. Friend of yours?",
-    "First Squad, you're my scouts. Move out! Quiet as you can.",
-    "Of course, you came for her... We exist together now. Two corpses in one grave.",
-    "Do not be afraid. I am peace; I am salvation.",
-    "Child of my enemy, why have you come? I offer no forgiveness: a father's sins pass to his son.",
-    "Resignation is my virtue. Like water, I ebb and flow. Defeat is but the addition of time to a sentence I never deserved... but you imposed.",
-    "I have defied Gods and Demons. I am your shield; I am your sword. I know you: your past, your future. This is the way the world ends.",
-    "They let me pick. Did I ever tell you that? Choose whichever Spartan I wanted. You know me. I did my research. Watched as you became the soldier we needed you to be. Like the others, you were strong and swift and brave. A natural leader. But you had something they didn't. Something no one saw but me. Can you guess?",
-    "Damn. How far did he fall?",
-    "Stay sharp! Corpsman?",
-    "His armor's locked up. Gel layer could have taken most of the impact...I don't know, Sergeant Major...",
-    "Radio for VTOL. Heavy lift gear. We're not leaving him here.",
-    "Your armor's still in partial lockdown...",
-    "Chief, wait! The Arbiter's with us! Come on, now. We've got enough to worry about without you two trying to kill each other.",
-    "Cocky bastard...just loves to run his mouth.",
-    "You are, all of you, vermin. Cowering in the dirt, thinking... what, I wonder? That you might escape the coming fire? No. Your world will burn until its surface is but glass, and not even your Demon will live to creep, blackened from its hole, to mar the reflection of our passage. The culmination of our Journey, for your destruction, is the will of the gods! And I? I am their instrument!",
-    "Does he usually mention me?",
-    "On Halo, you tried to kill Cortana. You tried to kill me.",
-    "You cannot hope to kill them all.",
-    "Can you see, Arbiter? The moment of salvation is at hand.",
-    "You found me. But so much of me is wrong, out of place, you might be too late.",
-    "The Activation Index from the first Halo ring. A little souvenir I held onto, just in case. Got an escape plan?",
-    "Things look different now, without the Prophets' lies clouding my vision. I would like to see our world, to know that it is safe.",
-    "I'll drop a beacon, but it'll be a while before anyone finds us. Years even.",
-    "Give the order! We're closing shop!",
-    "Protocol dictated my response! She had the Activation Index. And you were going to destroy my Installation. You did destroy my Installation. Now I have only one function: to help you, Reclaimer, as I always should have done.",
-    "Did you not hear? Your world is doomed. A Flood army, a Gravemind, has you in its sights. You barely survived small contamination.",
-    "And you, Ship Master, just glassed half a continent! Maybe the Flood isn't all I should be worried about.",
-    "Cortana? Did you see her condition? How damaged she is? She could be corrupted, for all we know. Her solution could be a Flood trap.",
-    "Earth... is all we have left. Do you trust Cortana that much?",
-    "This is either the best decision you've ever made or the worst. Hell if it is, Chief... I doubt I'll live long enough to find out which.",
-    "I beg your pardon?! I am 343 Guilty Spark, Monitor of Installation 04!",
-    "Your forefathers wisely set aside their compassion, steeled themselves for what needed to be done. I see now why they left you behind. You were weak. And gods must be strong.",
-    "Now the gate has been unlatched, headstones pushed aside, corpses shift and offer room, a fate you must abide!",
-    "Don't - don't let her go. Don't...ever let her go. Send me out... with a bang.",
-    "We trade one villain for another.",
-    "And I don't do bits and pieces!",
-    "She stayed behind.",
-    "It's been an honor serving with you, John.",
-    "Crazy fool. Why do you always jump?! One of these days, you're gonna land on your own stubborn head.",
-    "You are the child of my makers. Inheritor of all they left behind. You are Forerunner! But this ring... is mine.",
-    "Unacceptable! Absolutely unacceptable!",
-    "For us, the storm has passed. The war is over. But let us never forget those who journeyed into the howling dark and did not return. For their decision required courage beyond measure, sacrifice, and unshakable conviction that their fight...our fight...was elsewhere. As we start to rebuild, this hillside will remain barren, a memorial to heroes fallen. They ennobled all of us...and they shall not be forgotten.",
-    "IFF confirm contact is pelican dropship kilo two three, over.",
-    "Tell the commander her ace is in the hole.",
-    "Where did you find him? Napping, out back.",
-    "The Prophet of Truth's ships breached the lunar perimeter. Smashed what was left of the home fleet. Terrestrial casualties from the subsequent bombardment were... extreme.",
-    "Truth could have landed anywhere but he committed all his forces here. East Africa. The ruins of New Mombasa. Then, they started digging.",
-    "What about Halo. We stopped it, only temporarily. Now, the Prophet of Truth is looking for something called the Ark where he will be able to fire all of the Halo rings. If he succeeds- humanity, the Covenant, every sentient being in the galaxy... The rings will kill us all.",
-    "What's your status, son? Green, sir.",
-    "Commander has come up with a good plan. But without you I wasn't sure we could pull it off.",
-    "I'll initiate a low level strike. Hit them right where it hurts.",
-    "It's only a handful of ships, Master Chief. It's a big risk but I'm confident -",
-    "Listen tinker bell, don't make me..."
+    {
+      "id": "3d913b6f",
+      "text": "You want breakfast? You gotta catch it!"
+    },
+    {
+      "id": "e976dbed",
+      "text": "I...am...Truth! The voice of the Covenant!"
+    },
+    {
+      "id": "08ec8cd5",
+      "text": "That stench...I've smelled it before."
+    },
+    {
+      "id": "d614e075",
+      "text": "And so, you must be silenced."
+    },
+    {
+      "id": "ff1238f2",
+      "text": "Were it so easy..."
+    },
+    {
+      "id": "9f9a760b",
+      "text": "Tank beats everything!"
+    },
+    {
+      "id": "1803a5aa",
+      "text": "Tank beats ghost!"
+    },
+    {
+      "id": "f8c49356",
+      "text": "Tank beats hunter!"
+    },
+    {
+      "id": "b1766323",
+      "text": "Could you sacrifice me to complete your mission? Could you watch me die?"
+    },
+    {
+      "id": "a9714463",
+      "text": "Shipmaster! They outnumber us three to one!"
+    },
+    {
+      "id": "63dc4bc5",
+      "text": "All cruisers, fire at will! Burn their mongrel hides!"
+    },
+    {
+      "id": "63c2ecef",
+      "text": "I will have my revenge. On a Prophet, not a plague!"
+    },
+    {
+      "id": "fc1eb835",
+      "text": "But you had something the others didn't...can you guess?"
+    },
+    {
+      "id": "5bceff69",
+      "text": "Banshees! Fast and low!"
+    },
+    {
+      "id": "e8fa7a0e",
+      "text": "Take us home."
+    },
+    {
+      "id": "8dc13395",
+      "text": "Then it is an even fight!"
+    },
+    {
+      "id": "e08e56b7",
+      "text": "Wake me...when you need me."
+    },
+    {
+      "id": "e316e61a",
+      "text": "But you did it. Truth and the Covenant, the Flood..."
+    },
+    {
+      "id": "3bf7ca8c",
+      "text": "The Scarab is destroyed. Victory is ours today."
+    },
+    {
+      "id": "effc809d",
+      "text": "Master Chief? Good, this channel is secure. My fireteams are spread thin. We can't hold out forever. I need that hangar cleared for evac, ASAP."
+    },
+    {
+      "id": "92398012",
+      "text": "Please, don't shake the lightbulb."
+    },
+    {
+      "id": "379911a6",
+      "text": "Do not shoot, but listen! We share a common goal. Let my body be your shield. I shall not fight you! Let me lead you safely to our foe. Only you can halt what he has set in motion."
+    },
+    {
+      "id": "534e9c1e",
+      "text": "What is it? More Brutes?"
+    },
+    {
+      "id": "1b6e8040",
+      "text": "You know me. I did my research. Watched as you became the very soldier we needed you to be."
+    },
+    {
+      "id": "7c8b9e89",
+      "text": "Kiss...my...asss."
+    },
+    {
+      "id": "de20ef50",
+      "text": "Hey bastards! Knock knock!"
+    },
+    {
+      "id": "481595b8",
+      "text": "Orders are orders."
+    },
+    {
+      "id": "de616411",
+      "text": "Slipspace rupture detected."
+    },
+    {
+      "id": "bf2787d5",
+      "text": "There goes his shield!"
+    },
+    {
+      "id": "c4242fc4",
+      "text": "Real pretty. Friend of yours?"
+    },
+    {
+      "id": "f9f1e22e",
+      "text": "First Squad, you're my scouts. Move out! Quiet as you can."
+    },
+    {
+      "id": "f3025083",
+      "text": "Of course, you came for her... We exist together now. Two corpses in one grave."
+    },
+    {
+      "id": "1b7fb180",
+      "text": "Do not be afraid. I am peace; I am salvation."
+    },
+    {
+      "id": "88011df7",
+      "text": "Child of my enemy, why have you come? I offer no forgiveness: a father's sins pass to his son."
+    },
+    {
+      "id": "123d4efc",
+      "text": "Resignation is my virtue. Like water, I ebb and flow. Defeat is but the addition of time to a sentence I never deserved... but you imposed."
+    },
+    {
+      "id": "23748ce8",
+      "text": "I have defied Gods and Demons. I am your shield; I am your sword. I know you: your past, your future. This is the way the world ends."
+    },
+    {
+      "id": "25f15d04",
+      "text": "They let me pick. Did I ever tell you that? Choose whichever Spartan I wanted. You know me. I did my research. Watched as you became the soldier we needed you to be. Like the others, you were strong and swift and brave. A natural leader. But you had something they didn't. Something no one saw but me. Can you guess?"
+    },
+    {
+      "id": "c06bdc8e",
+      "text": "Damn. How far did he fall?"
+    },
+    {
+      "id": "74b62502",
+      "text": "Stay sharp! Corpsman?"
+    },
+    {
+      "id": "af46af44",
+      "text": "His armor's locked up. Gel layer could have taken most of the impact...I don't know, Sergeant Major..."
+    },
+    {
+      "id": "c5d23304",
+      "text": "Radio for VTOL. Heavy lift gear. We're not leaving him here."
+    },
+    {
+      "id": "97b37de8",
+      "text": "Your armor's still in partial lockdown..."
+    },
+    {
+      "id": "83d200f3",
+      "text": "Chief, wait! The Arbiter's with us! Come on, now. We've got enough to worry about without you two trying to kill each other."
+    },
+    {
+      "id": "2fa99bff",
+      "text": "Cocky bastard...just loves to run his mouth."
+    },
+    {
+      "id": "6e64fd39",
+      "text": "You are, all of you, vermin. Cowering in the dirt, thinking... what, I wonder? That you might escape the coming fire? No. Your world will burn until its surface is but glass, and not even your Demon will live to creep, blackened from its hole, to mar the reflection of our passage. The culmination of our Journey, for your destruction, is the will of the gods! And I? I am their instrument!"
+    },
+    {
+      "id": "c0827b3f",
+      "text": "Does he usually mention me?"
+    },
+    {
+      "id": "37488cf6",
+      "text": "On Halo, you tried to kill Cortana. You tried to kill me."
+    },
+    {
+      "id": "883f15a9",
+      "text": "You cannot hope to kill them all."
+    },
+    {
+      "id": "f9329582",
+      "text": "Can you see, Arbiter? The moment of salvation is at hand."
+    },
+    {
+      "id": "401cb8dd",
+      "text": "You found me. But so much of me is wrong, out of place, you might be too late."
+    },
+    {
+      "id": "19ea1ea4",
+      "text": "The Activation Index from the first Halo ring. A little souvenir I held onto, just in case. Got an escape plan?"
+    },
+    {
+      "id": "fe57aae8",
+      "text": "Things look different now, without the Prophets' lies clouding my vision. I would like to see our world, to know that it is safe."
+    },
+    {
+      "id": "3e447e71",
+      "text": "I'll drop a beacon, but it'll be a while before anyone finds us. Years even."
+    },
+    {
+      "id": "5cdfb31e",
+      "text": "Give the order! We're closing shop!"
+    },
+    {
+      "id": "4ccf210d",
+      "text": "Protocol dictated my response! She had the Activation Index. And you were going to destroy my Installation. You did destroy my Installation. Now I have only one function: to help you, Reclaimer, as I always should have done."
+    },
+    {
+      "id": "f8f0fdd3",
+      "text": "Did you not hear? Your world is doomed. A Flood army, a Gravemind, has you in its sights. You barely survived small contamination."
+    },
+    {
+      "id": "89e58660",
+      "text": "And you, Ship Master, just glassed half a continent! Maybe the Flood isn't all I should be worried about."
+    },
+    {
+      "id": "580882d8",
+      "text": "Cortana? Did you see her condition? How damaged she is? She could be corrupted, for all we know. Her solution could be a Flood trap."
+    },
+    {
+      "id": "6ed55167",
+      "text": "Earth... is all we have left. Do you trust Cortana that much?"
+    },
+    {
+      "id": "c310dd32",
+      "text": "This is either the best decision you've ever made or the worst. Hell if it is, Chief... I doubt I'll live long enough to find out which."
+    },
+    {
+      "id": "58289806",
+      "text": "I beg your pardon?! I am 343 Guilty Spark, Monitor of Installation 04!"
+    },
+    {
+      "id": "1f4baad9",
+      "text": "Your forefathers wisely set aside their compassion, steeled themselves for what needed to be done. I see now why they left you behind. You were weak. And gods must be strong."
+    },
+    {
+      "id": "0f724685",
+      "text": "Now the gate has been unlatched, headstones pushed aside, corpses shift and offer room, a fate you must abide!"
+    },
+    {
+      "id": "23bd105c",
+      "text": "Don't - don't let her go. Don't...ever let her go. Send me out... with a bang."
+    },
+    {
+      "id": "2f8d50ba",
+      "text": "We trade one villain for another."
+    },
+    {
+      "id": "eba10def",
+      "text": "And I don't do bits and pieces!"
+    },
+    {
+      "id": "d800a382",
+      "text": "She stayed behind."
+    },
+    {
+      "id": "c927ddbc",
+      "text": "It's been an honor serving with you, John."
+    },
+    {
+      "id": "b82effb3",
+      "text": "Crazy fool. Why do you always jump?! One of these days, you're gonna land on your own stubborn head."
+    },
+    {
+      "id": "84059efd",
+      "text": "You are the child of my makers. Inheritor of all they left behind. You are Forerunner! But this ring... is mine."
+    },
+    {
+      "id": "6439042b",
+      "text": "Unacceptable! Absolutely unacceptable!"
+    },
+    {
+      "id": "b8fa06f8",
+      "text": "For us, the storm has passed. The war is over. But let us never forget those who journeyed into the howling dark and did not return. For their decision required courage beyond measure, sacrifice, and unshakable conviction that their fight...our fight...was elsewhere. As we start to rebuild, this hillside will remain barren, a memorial to heroes fallen. They ennobled all of us...and they shall not be forgotten."
+    },
+    {
+      "id": "2d162482",
+      "text": "IFF confirm contact is pelican dropship kilo two three, over."
+    },
+    {
+      "id": "eba14317",
+      "text": "Tell the commander her ace is in the hole."
+    },
+    {
+      "id": "1d9af8e0",
+      "text": "Where did you find him? Napping, out back."
+    },
+    {
+      "id": "d0b45c64",
+      "text": "The Prophet of Truth's ships breached the lunar perimeter. Smashed what was left of the home fleet. Terrestrial casualties from the subsequent bombardment were... extreme."
+    },
+    {
+      "id": "c0fa2c40",
+      "text": "Truth could have landed anywhere but he committed all his forces here. East Africa. The ruins of New Mombasa. Then, they started digging."
+    },
+    {
+      "id": "2450385d",
+      "text": "What about Halo. We stopped it, only temporarily. Now, the Prophet of Truth is looking for something called the Ark where he will be able to fire all of the Halo rings. If he succeeds- humanity, the Covenant, every sentient being in the galaxy... The rings will kill us all."
+    },
+    {
+      "id": "19f213fd",
+      "text": "What's your status, son? Green, sir."
+    },
+    {
+      "id": "cddad30b",
+      "text": "Commander has come up with a good plan. But without you I wasn't sure we could pull it off."
+    },
+    {
+      "id": "7826e152",
+      "text": "I'll initiate a low level strike. Hit them right where it hurts."
+    },
+    {
+      "id": "e01dd3cb",
+      "text": "It's only a handful of ships, Master Chief. It's a big risk but I'm confident -"
+    },
+    {
+      "id": "d7b69a96",
+      "text": "Listen tinker bell, don't make me..."
+    }
   ]
 }

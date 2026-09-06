@@ -10,7 +10,7 @@ function quoteFiles() {
 function allQuotes() {
     return quoteFiles().flatMap((file) => {
         const data = JSON.parse(readRepoFile(join('quotes', file)));
-        return data.quotes.map((text) => ({ text, game: data.gameName }));
+        return data.quotes.map(({ id, text }) => ({ id, text, game: data.gameName }));
     });
 }
 
@@ -18,8 +18,22 @@ describe('quote data', () => {
     it('has no duplicate quotes within a game', () => {
         for (const file of quoteFiles()) {
             const data = JSON.parse(readRepoFile(join('quotes', file)));
-            const unique = new Set(data.quotes);
+            const unique = new Set(data.quotes.map((quote) => quote.text));
             expect(unique.size, `${file} contains duplicate quotes`).toBe(data.quotes.length);
+        }
+    });
+
+    it('gives every quote an id that is unique within its game', () => {
+        for (const file of quoteFiles()) {
+            const data = JSON.parse(readRepoFile(join('quotes', file)));
+
+            for (const quote of data.quotes) {
+                // Permalinks are built from these, so they have to survive a URL.
+                expect(quote.id, `${file} has a quote without an id`).toMatch(/^[a-z0-9]+$/);
+            }
+
+            const unique = new Set(data.quotes.map((quote) => quote.id));
+            expect(unique.size, `${file} contains duplicate quote ids`).toBe(data.quotes.length);
         }
     });
 
@@ -30,15 +44,16 @@ describe('quote data', () => {
             expect(data.gameName.length).toBeGreaterThan(0);
             expect(Array.isArray(data.quotes)).toBe(true);
             expect(data.quotes.length).toBeGreaterThan(0);
+            expect(typeof data.quotes[0], `${file} quotes should be objects`).toBe('object');
         }
     });
 
     it('has no blank or untrimmed quotes', () => {
         for (const file of quoteFiles()) {
             const data = JSON.parse(readRepoFile(join('quotes', file)));
-            for (const quote of data.quotes) {
-                expect(typeof quote).toBe('string');
-                expect(quote.trim().length, `blank quote in ${file}`).toBeGreaterThan(0);
+            for (const { text } of data.quotes) {
+                expect(typeof text).toBe('string');
+                expect(text.trim().length, `blank quote in ${file}`).toBeGreaterThan(0);
             }
         }
     });

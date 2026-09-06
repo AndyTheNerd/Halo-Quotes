@@ -71,8 +71,13 @@ jobs:
               data = json.load(fh)
           assert isinstance(data.get('gameName'), str) and data['gameName'], f'{path}: missing gameName'
           assert isinstance(data.get('quotes'), list) and data['quotes'], f'{path}: missing quotes'
-          assert all(isinstance(q, str) and q.strip() for q in data['quotes']), f'{path}: blank quote'
-          assert len(set(data['quotes'])) == len(data['quotes']), f'{path}: duplicate quotes'
+          assert all(isinstance(q, dict) for q in data['quotes']), f'{path}: quote is not an object'
+          assert all(isinstance(q.get('text'), str) and q['text'].strip() for q in data['quotes']), f'{path}: blank quote'
+          ids = [q.get('id') for q in data['quotes']]
+          assert all(isinstance(i, str) and i.isalnum() for i in ids), f'{path}: missing or malformed id'
+          assert len(set(ids)) == len(ids), f'{path}: duplicate quote ids'
+          texts = [q['text'] for q in data['quotes']]
+          assert len(set(texts)) == len(texts), f'{path}: duplicate quotes'
           print(f'{path}: {len(data[\"quotes\"])} quotes')
           "
           done

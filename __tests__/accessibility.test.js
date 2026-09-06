@@ -105,7 +105,7 @@ describe('quote accessibility', () => {
 
         // Guard against the hardcoded quote drifting away from the data.
         const halo2 = JSON.parse(readRepoFile('quotes/halo-2.json'));
-        expect(halo2.quotes).toContain(match[1]);
+        expect(halo2.quotes.map((quote) => quote.text)).toContain(match[1]);
     });
 
     it('explains itself when JavaScript is unavailable', () => {

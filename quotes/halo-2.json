@@ -1,110 +1,425 @@
 {
   "gameName": "Halo 2",
   "quotes": [
-    "Why do you continue to fight us, Reclaimer? You cannot win! Give us the construct, and I will endeavor to make your death relatively painless and--",
-    "Let him be. The Great Journey waits for no one, brother.",
-    "Stay where you are! Nothing can be done until my sermon is complete!",
-    "We shall cut into the heart of this infestation, retrieve the Icon, and burn any Flood that stand in our way!",
-    "Oh, I know what the ladies like...",
-    "Get up, SO I CAN KILL YOU AGAIN!",
-    "I'm too pretty to die!",
-    "I need a weapon.",
-    "Just keep your head down. There's two of us in here, remember?",
-    "Thanks for the tank... he never gets me anything.",
-    "Sir, additional contacts! Boarding craft, and lots of 'em!",
-    "You told me there wouldn't be any cameras. And you told me you were gonna wear something nice!",
-    "Dear Humanity... We regret being alien bastards. We regret coming to Earth. And we most definitely regret that the Corps just blew up our raggedy ass fleet!",
-    "That, or you can hide behind me!",
-    "Sir, finishing this fight.",
-    "If they came to hear me beg, they will be disappointed.",
-    "Tartarus, the prophets have betrayed us...",
-    "Tartarus has locked himself inside the control room.",
-    "For a brick, he flew pretty good!",
-    "Thought I'd shoot my way out, mix things up a little.",
-    "Sir, permission to leave this station.",
-    "I know what you are thinking, and it's crazy. Unfortunately for us both...I like crazy.",
-    "Just one question: what if you miss?",
-    "Relax. I'd rather not piss this thing off.",
-    "Quiet! You two whimper like Grunts fresh off the teat. He's not meant for the jails. The Hierarchs have something special in mind.",
-    "Fate had us meet as foes, but this ring will make us brothers.",
-    "Optics, totally fried. And let's not even talk about the power supply. You know how expensive this gear is, son?",
-    "Huh! My ass! Well, you can forget about those adjustments to your A2 scope!",
-    "Why was it not destroyed, with the rest of their fleet?",
-    "Me. Inside your head. Now.",
-    "I'm not coming with you this time.",
-    "You are the Arbiter, the will of the Prophets. But these are my Elites. Their lives matter to me. Yours does not.",
-    "Kill me or release me, parasite, but do not waste my time with talk.",
-    "Catchy. Any idea what it means?",
-    "Greetings! I am 2401 Penitent Tangent. I am the monitor of installation 05.",
-    "So, this is what my father found... I thought Halo was some sort of superweapon.",
-    "I want all the information you've got on the first Halo. Schematics, topography, whatever. I don't care if I have the clearance or not.",
-    "This is not your grave, but you are welcome in it.",
-    "There is much talk, and I have listened, through rock and metal and time. Now I shall talk, and you shall listen.",
-    "When you first saw Halo, were you blinded by its majesty?",
-    "What mission? You dropped off the grid! My squad was scattered-",
-    "Yet the humans were able to evade your ships, land on the sacred ring, and desecrate it with their filthy footsteps.",
-    "You were right to focus your attention on the Flood. But this demon, this Master Chief...",
-    "Oracle? Great Journey? Why do you meddlers insist on using such inaccurate verbiage?",
-    "Why the Ark, of course.",
-    "Fail-safe protocol. In the event of unexpected shutdown, the entire system will move to standby status. All remaining platforms are now ready for remote activation.",
-    "Unfortunate. His edification was most enjoyable.",
-    "Earth, to finish what we started. And this time, none of you will be left behind.",
-    "The Elites are blind, Arbiter. But I will make them see!",
-    "I don't believe it! They're retreating! We won!",
-    "Listen. You don't like me, and I sure as hell don't like you.",
-    "There are those that said this day would never come...What are they to say now?",
-    "I heard that! Jackass!",
-    "Paralyzed? Dumbstruck?",
-    "Yes. They called it the Pillar of Autumn.",
-    "You are one of our most treasured instruments. Long have you led your fleet with honor and distinction. But your inability to safeguard Halo was a colossal failure.",
-    "And you told me you were going to wear something nice! Folks need heroes, Chief. To give 'em hope. So smile, wouldja? While we still got somethin' to smile about!",
-    "You've drawn quite a crowd.",
-    "We're going in! Get tactical, Marines!",
-    "Master Chief, get aboard that carrier, secure the Prophet of Regret. This is the only place on Earth the Covenant decided to land. That prophet is going to tell us why.",
-    "The Chief is gonna jump in this tank, roll across the bridge, and blow up any inhuman-son-of-a-bitch dumb enough to get between him and the Prophet of Regret! Pull yourself together, because you're going with him!",
-    "When I joined the Corps, we didn't have any fancy-shmancy tanks. We had sticks! Two sticks, and a rock for the whole platoon - and we had to share the rock! Buck up, boy, you're one very lucky Marine!",
-    "Usually the good Lord works in mysterious ways, but not today. This here is 66 tons of straight-up, HE-spewing, dee-vine intervention. If God is love, then you can call me Cupid!",
-    "We've all run the simulations. They're tough but they ain’t invincible. Stick with the Master Chief, he’ll know what to do.",
-    "Halo's destruction was your error, and you rightly bear the blame. But the Council was... overzealous. We know you are no heretic. This is the true face of heresy.",
-    "No enemy has ever withstood our might. The Flood too shall fail.",
-    "Our Prophets are false! Open your eyes, my brothers! They would use the faith of our forefathers to bring ruin to us all!",
-    "Ask the Oracle about Halo. How they would sacrifice us all for nothing.",
-    "Yeah, I crapped myself. So what?",
-    "It fled as we set fire to their planet, but I followed with all the ships at my command.",
-    "Marine, did I give you permission to bitch?",
-    "Do you know where we are? Yes, the Mausoleum of the Arbiter.",
-    "The Taming of the Hunters, the Grunt Rebellion - were it not for the Arbiters, the Covenant would have broken long ago!",
-    "The tasks you must undertake as the Arbiter are perilous, suicidal. You will die, as each Arbiter has before you. The Council will have their corpse.",
-    "Woah...it's like a postcard!... Dear Sarge: Kicking ass in outer space. Wish you were here!",
-    "I shall light this holy ring, release its cleansing flame, and burn a path into the divine beyond!",
-    "Recommissioning the guard was a radical step, but recent events have made it abundantly clear that the Elites can no longer guarantee our safety.",
-    "Politics. How tiresome. Do you know, Arbiter, the Elites have threatened to resign, to quit the High Council, because of this... exchange of hats?",
-    "Even as the humans' annihilation filled us with satisfaction, the loss of one of the sacred rings wracked our hearts with grief!",
-    "Putting aside our sorrow, we renewed our faith in the prophecy that other rings would be found... And see how our faith has been rewarded.",
-    "Halo! Its divine wind will rush through the stars, propelling all who are worthy along the path to salvation!",
-    "But how to start this process? For ages, we searched for one who might unlock the secrets of the rings - an Oracle. And with your help, we found it.",
-    "With appropriate humility, we plied the Oracle with questions, and it, with clarity and grace, has shown us the key!",
-    "You will journey to the surface of the ring and retrieve this Sacred Icon. With it, we will fulfill our promise...",
-    "Once the shield is down, we will head straight to the Library. I do not wish to keep the Hierarchs waiting.",
-    "The human that killed the Prophet of Regret, who was it?",
-    "Retrieving the Icon is my only concern.",
-    "You know, your father never asked me for help, either.",
-    "A bloody fate awaits you and the rest of your incompetent race. And I, Tartarus, Chieftain of the Brutes will send you to it!",
-    "When the Prophets learn of this, they will take your head!",
-    "And I am the Prophet of Regret. Counselor most High…Hierarch of the Covenant!",
-    "A Reclaimer? Here? At last! We have much to do! This facility must be activated if we are to control this outbreak!",
-    "Not true. This installation has a successful utilization record of 1.2 trillion simulated and one actual. It is ready to fire on demand.",
-    "Of all the objects our Lords left behind, none are so worthless as these Oracles! They know nothing of the Great Journey!",
-    "And you know nothing about containment! You have demonstrated complete disregard for even the most basic protocols!",
-    "This one's containment... and this one's Great Journey...are the same. Your Prophets have promised you freedom from a doomed existence, but you will find no salvation on this ring. Those who built this place knew what they wrought. Do not mistake their intent, or all will perish, as they did before.",
-    "We are, all of us, gravely concerned. The release of the parasite was unexpected, unfortunate. But there is no need to panic. In truth, this is a time to rejoice, a moment that all the Covenant should savor. For the Sacred Icon has been found. With it, our path is clear, our entry into the Divine Beyond guaranteed. The Great Journey is nigh, and nothing, not even the Flood, can stop it.",
-    "Chief, when you get to Earth, good luck.",
-    "Don't make a girl a promise if you know you can't keep it.",
-    "Weapons of last resort, built by the Forerunners to eliminate potential Flood hosts, thereby rendering the parasite harmless.",
-    "After exhausting every other strategic option, my creators activated the rings. They and all additional sentient life within three radii of the galactic center, died, as planned.",
-    "No, Arbiter! The Great Journey has begun. And the Brutes, not the Elites, shall be the Prophets' escort!",
-    "Then where? Where would someone go to activate the other rings?",
-    "Master Chief, you mind telling me what you're doing on that ship?",
-    "Silence fills the empty grave... now that I have gone. But my mind is not at rest... for questions linger on. I will ask...and you will answer."
+    {
+      "id": "951f7076",
+      "text": "Why do you continue to fight us, Reclaimer? You cannot win! Give us the construct, and I will endeavor to make your death relatively painless and--"
+    },
+    {
+      "id": "e5a75294",
+      "text": "Let him be. The Great Journey waits for no one, brother."
+    },
+    {
+      "id": "94a995fa",
+      "text": "Stay where you are! Nothing can be done until my sermon is complete!"
+    },
+    {
+      "id": "05b13a8b",
+      "text": "We shall cut into the heart of this infestation, retrieve the Icon, and burn any Flood that stand in our way!"
+    },
+    {
+      "id": "722e6de9",
+      "text": "Oh, I know what the ladies like..."
+    },
+    {
+      "id": "10656cc6",
+      "text": "Get up, SO I CAN KILL YOU AGAIN!"
+    },
+    {
+      "id": "610e2b13",
+      "text": "I'm too pretty to die!"
+    },
+    {
+      "id": "6d0d9f1a",
+      "text": "I need a weapon."
+    },
+    {
+      "id": "a4962a71",
+      "text": "Just keep your head down. There's two of us in here, remember?"
+    },
+    {
+      "id": "90d30945",
+      "text": "Thanks for the tank... he never gets me anything."
+    },
+    {
+      "id": "59d8d159",
+      "text": "Sir, additional contacts! Boarding craft, and lots of 'em!"
+    },
+    {
+      "id": "a7a3d7f2",
+      "text": "You told me there wouldn't be any cameras. And you told me you were gonna wear something nice!"
+    },
+    {
+      "id": "c5421d3c",
+      "text": "Dear Humanity... We regret being alien bastards. We regret coming to Earth. And we most definitely regret that the Corps just blew up our raggedy ass fleet!"
+    },
+    {
+      "id": "7c13459d",
+      "text": "That, or you can hide behind me!"
+    },
+    {
+      "id": "c8e0d800",
+      "text": "Sir, finishing this fight."
+    },
+    {
+      "id": "0b56560a",
+      "text": "If they came to hear me beg, they will be disappointed."
+    },
+    {
+      "id": "9f726f21",
+      "text": "Tartarus, the prophets have betrayed us..."
+    },
+    {
+      "id": "ce903c97",
+      "text": "Tartarus has locked himself inside the control room."
+    },
+    {
+      "id": "65110563",
+      "text": "For a brick, he flew pretty good!"
+    },
+    {
+      "id": "e38b5918",
+      "text": "Thought I'd shoot my way out, mix things up a little."
+    },
+    {
+      "id": "d29b4cd7",
+      "text": "Sir, permission to leave this station."
+    },
+    {
+      "id": "dae0486d",
+      "text": "I know what you are thinking, and it's crazy. Unfortunately for us both...I like crazy."
+    },
+    {
+      "id": "7c773f08",
+      "text": "Just one question: what if you miss?"
+    },
+    {
+      "id": "35943f6e",
+      "text": "Relax. I'd rather not piss this thing off."
+    },
+    {
+      "id": "215e36c5",
+      "text": "Quiet! You two whimper like Grunts fresh off the teat. He's not meant for the jails. The Hierarchs have something special in mind."
+    },
+    {
+      "id": "8c57fcde",
+      "text": "Fate had us meet as foes, but this ring will make us brothers."
+    },
+    {
+      "id": "5e39ac46",
+      "text": "Optics, totally fried. And let's not even talk about the power supply. You know how expensive this gear is, son?"
+    },
+    {
+      "id": "103190f7",
+      "text": "Huh! My ass! Well, you can forget about those adjustments to your A2 scope!"
+    },
+    {
+      "id": "5c3624ec",
+      "text": "Why was it not destroyed, with the rest of their fleet?"
+    },
+    {
+      "id": "24fda222",
+      "text": "Me. Inside your head. Now."
+    },
+    {
+      "id": "196f1211",
+      "text": "I'm not coming with you this time."
+    },
+    {
+      "id": "1f2c3895",
+      "text": "You are the Arbiter, the will of the Prophets. But these are my Elites. Their lives matter to me. Yours does not."
+    },
+    {
+      "id": "3d0736d7",
+      "text": "Kill me or release me, parasite, but do not waste my time with talk."
+    },
+    {
+      "id": "be95f257",
+      "text": "Catchy. Any idea what it means?"
+    },
+    {
+      "id": "6e8e8a87",
+      "text": "Greetings! I am 2401 Penitent Tangent. I am the monitor of installation 05."
+    },
+    {
+      "id": "310bf613",
+      "text": "So, this is what my father found... I thought Halo was some sort of superweapon."
+    },
+    {
+      "id": "9c690554",
+      "text": "I want all the information you've got on the first Halo. Schematics, topography, whatever. I don't care if I have the clearance or not."
+    },
+    {
+      "id": "eafe8c4b",
+      "text": "This is not your grave, but you are welcome in it."
+    },
+    {
+      "id": "090db58c",
+      "text": "There is much talk, and I have listened, through rock and metal and time. Now I shall talk, and you shall listen."
+    },
+    {
+      "id": "881f6499",
+      "text": "When you first saw Halo, were you blinded by its majesty?"
+    },
+    {
+      "id": "2cf4a8e5",
+      "text": "What mission? You dropped off the grid! My squad was scattered-"
+    },
+    {
+      "id": "c43c9506",
+      "text": "Yet the humans were able to evade your ships, land on the sacred ring, and desecrate it with their filthy footsteps."
+    },
+    {
+      "id": "c0276090",
+      "text": "You were right to focus your attention on the Flood. But this demon, this Master Chief..."
+    },
+    {
+      "id": "3d8e295f",
+      "text": "Oracle? Great Journey? Why do you meddlers insist on using such inaccurate verbiage?"
+    },
+    {
+      "id": "dc95e209",
+      "text": "Why the Ark, of course."
+    },
+    {
+      "id": "54ed276f",
+      "text": "Fail-safe protocol. In the event of unexpected shutdown, the entire system will move to standby status. All remaining platforms are now ready for remote activation."
+    },
+    {
+      "id": "5a86d19f",
+      "text": "Unfortunate. His edification was most enjoyable."
+    },
+    {
+      "id": "c3e3826b",
+      "text": "Earth, to finish what we started. And this time, none of you will be left behind."
+    },
+    {
+      "id": "9dd4cf6d",
+      "text": "The Elites are blind, Arbiter. But I will make them see!"
+    },
+    {
+      "id": "be591279",
+      "text": "I don't believe it! They're retreating! We won!"
+    },
+    {
+      "id": "5385b703",
+      "text": "Listen. You don't like me, and I sure as hell don't like you."
+    },
+    {
+      "id": "7cd503fc",
+      "text": "There are those that said this day would never come...What are they to say now?"
+    },
+    {
+      "id": "9541eea1",
+      "text": "I heard that! Jackass!"
+    },
+    {
+      "id": "1bf8b0c3",
+      "text": "Paralyzed? Dumbstruck?"
+    },
+    {
+      "id": "6bdb71c9",
+      "text": "Yes. They called it the Pillar of Autumn."
+    },
+    {
+      "id": "7c3aefd5",
+      "text": "You are one of our most treasured instruments. Long have you led your fleet with honor and distinction. But your inability to safeguard Halo was a colossal failure."
+    },
+    {
+      "id": "cfea65ca",
+      "text": "And you told me you were going to wear something nice! Folks need heroes, Chief. To give 'em hope. So smile, wouldja? While we still got somethin' to smile about!"
+    },
+    {
+      "id": "fb827b36",
+      "text": "You've drawn quite a crowd."
+    },
+    {
+      "id": "ae573aa6",
+      "text": "We're going in! Get tactical, Marines!"
+    },
+    {
+      "id": "b6647dd9",
+      "text": "Master Chief, get aboard that carrier, secure the Prophet of Regret. This is the only place on Earth the Covenant decided to land. That prophet is going to tell us why."
+    },
+    {
+      "id": "889d985e",
+      "text": "The Chief is gonna jump in this tank, roll across the bridge, and blow up any inhuman-son-of-a-bitch dumb enough to get between him and the Prophet of Regret! Pull yourself together, because you're going with him!"
+    },
+    {
+      "id": "dc7e5ae5",
+      "text": "When I joined the Corps, we didn't have any fancy-shmancy tanks. We had sticks! Two sticks, and a rock for the whole platoon - and we had to share the rock! Buck up, boy, you're one very lucky Marine!"
+    },
+    {
+      "id": "615c3f93",
+      "text": "Usually the good Lord works in mysterious ways, but not today. This here is 66 tons of straight-up, HE-spewing, dee-vine intervention. If God is love, then you can call me Cupid!"
+    },
+    {
+      "id": "b0803807",
+      "text": "We've all run the simulations. They're tough but they ain’t invincible. Stick with the Master Chief, he’ll know what to do."
+    },
+    {
+      "id": "6af29a09",
+      "text": "Halo's destruction was your error, and you rightly bear the blame. But the Council was... overzealous. We know you are no heretic. This is the true face of heresy."
+    },
+    {
+      "id": "f64dbfd2",
+      "text": "No enemy has ever withstood our might. The Flood too shall fail."
+    },
+    {
+      "id": "bc65b672",
+      "text": "Our Prophets are false! Open your eyes, my brothers! They would use the faith of our forefathers to bring ruin to us all!"
+    },
+    {
+      "id": "bda7931d",
+      "text": "Ask the Oracle about Halo. How they would sacrifice us all for nothing."
+    },
+    {
+      "id": "2b2401cb",
+      "text": "Yeah, I crapped myself. So what?"
+    },
+    {
+      "id": "0f57bdb5",
+      "text": "It fled as we set fire to their planet, but I followed with all the ships at my command."
+    },
+    {
+      "id": "ea4e1a2d",
+      "text": "Marine, did I give you permission to bitch?"
+    },
+    {
+      "id": "4974b086",
+      "text": "Do you know where we are? Yes, the Mausoleum of the Arbiter."
+    },
+    {
+      "id": "dfe41557",
+      "text": "The Taming of the Hunters, the Grunt Rebellion - were it not for the Arbiters, the Covenant would have broken long ago!"
+    },
+    {
+      "id": "a8982401",
+      "text": "The tasks you must undertake as the Arbiter are perilous, suicidal. You will die, as each Arbiter has before you. The Council will have their corpse."
+    },
+    {
+      "id": "dc0775e5",
+      "text": "Woah...it's like a postcard!... Dear Sarge: Kicking ass in outer space. Wish you were here!"
+    },
+    {
+      "id": "b67f8266",
+      "text": "I shall light this holy ring, release its cleansing flame, and burn a path into the divine beyond!"
+    },
+    {
+      "id": "d95a38dc",
+      "text": "Recommissioning the guard was a radical step, but recent events have made it abundantly clear that the Elites can no longer guarantee our safety."
+    },
+    {
+      "id": "afd63dbb",
+      "text": "Politics. How tiresome. Do you know, Arbiter, the Elites have threatened to resign, to quit the High Council, because of this... exchange of hats?"
+    },
+    {
+      "id": "a59a414b",
+      "text": "Even as the humans' annihilation filled us with satisfaction, the loss of one of the sacred rings wracked our hearts with grief!"
+    },
+    {
+      "id": "f0cfd9c2",
+      "text": "Putting aside our sorrow, we renewed our faith in the prophecy that other rings would be found... And see how our faith has been rewarded."
+    },
+    {
+      "id": "2ef57bc6",
+      "text": "Halo! Its divine wind will rush through the stars, propelling all who are worthy along the path to salvation!"
+    },
+    {
+      "id": "c52fe0a7",
+      "text": "But how to start this process? For ages, we searched for one who might unlock the secrets of the rings - an Oracle. And with your help, we found it."
+    },
+    {
+      "id": "36c8f976",
+      "text": "With appropriate humility, we plied the Oracle with questions, and it, with clarity and grace, has shown us the key!"
+    },
+    {
+      "id": "85fb8e5a",
+      "text": "You will journey to the surface of the ring and retrieve this Sacred Icon. With it, we will fulfill our promise..."
+    },
+    {
+      "id": "82f7487f",
+      "text": "Once the shield is down, we will head straight to the Library. I do not wish to keep the Hierarchs waiting."
+    },
+    {
+      "id": "4ae67f53",
+      "text": "The human that killed the Prophet of Regret, who was it?"
+    },
+    {
+      "id": "91c764c1",
+      "text": "Retrieving the Icon is my only concern."
+    },
+    {
+      "id": "c2a60fbb",
+      "text": "You know, your father never asked me for help, either."
+    },
+    {
+      "id": "759fb7d8",
+      "text": "A bloody fate awaits you and the rest of your incompetent race. And I, Tartarus, Chieftain of the Brutes will send you to it!"
+    },
+    {
+      "id": "6c034249",
+      "text": "When the Prophets learn of this, they will take your head!"
+    },
+    {
+      "id": "31eccce0",
+      "text": "And I am the Prophet of Regret. Counselor most High…Hierarch of the Covenant!"
+    },
+    {
+      "id": "85264567",
+      "text": "A Reclaimer? Here? At last! We have much to do! This facility must be activated if we are to control this outbreak!"
+    },
+    {
+      "id": "5af86f62",
+      "text": "Not true. This installation has a successful utilization record of 1.2 trillion simulated and one actual. It is ready to fire on demand."
+    },
+    {
+      "id": "8e0cbb16",
+      "text": "Of all the objects our Lords left behind, none are so worthless as these Oracles! They know nothing of the Great Journey!"
+    },
+    {
+      "id": "bd4be271",
+      "text": "And you know nothing about containment! You have demonstrated complete disregard for even the most basic protocols!"
+    },
+    {
+      "id": "65af630b",
+      "text": "This one's containment... and this one's Great Journey...are the same. Your Prophets have promised you freedom from a doomed existence, but you will find no salvation on this ring. Those who built this place knew what they wrought. Do not mistake their intent, or all will perish, as they did before."
+    },
+    {
+      "id": "72bfcd1d",
+      "text": "We are, all of us, gravely concerned. The release of the parasite was unexpected, unfortunate. But there is no need to panic. In truth, this is a time to rejoice, a moment that all the Covenant should savor. For the Sacred Icon has been found. With it, our path is clear, our entry into the Divine Beyond guaranteed. The Great Journey is nigh, and nothing, not even the Flood, can stop it."
+    },
+    {
+      "id": "dddf36b8",
+      "text": "Chief, when you get to Earth, good luck."
+    },
+    {
+      "id": "b11a7ccb",
+      "text": "Don't make a girl a promise if you know you can't keep it."
+    },
+    {
+      "id": "7e6457aa",
+      "text": "Weapons of last resort, built by the Forerunners to eliminate potential Flood hosts, thereby rendering the parasite harmless."
+    },
+    {
+      "id": "1f7c5329",
+      "text": "After exhausting every other strategic option, my creators activated the rings. They and all additional sentient life within three radii of the galactic center, died, as planned."
+    },
+    {
+      "id": "cb5bc60b",
+      "text": "No, Arbiter! The Great Journey has begun. And the Brutes, not the Elites, shall be the Prophets' escort!"
+    },
+    {
+      "id": "c5d42449",
+      "text": "Then where? Where would someone go to activate the other rings?"
+    },
+    {
+      "id": "321b2286",
+      "text": "Master Chief, you mind telling me what you're doing on that ship?"
+    },
+    {
+      "id": "93e99905",
+      "text": "Silence fills the empty grave... now that I have gone. But my mind is not at rest... for questions linger on. I will ask...and you will answer."
+    }
   ]
 }

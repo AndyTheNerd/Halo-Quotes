@@ -602,5 +602,61 @@ describe('Halo Quotes API', () => {
       expect(response.headers.get('Content-Type')).toBe('application/json');
     });
   });
-});
+  describe('Quote Entry Shapes', () => {
+    const identifiedQuotes = {
+      gameName: 'Halo 2',
+      quotes: [
+        { id: 'ab12cd34', text: 'I need a weapon.' },
+        { id: 'ef56ab78', text: 'Were it so easy...' }
+      ]
+    };
 
+    it('should serve the text and the id of an { id, text } quote', async () => {
+      global.fetch.mockImplementation(() => Promise.resolve({
+        ok: true,
+        json: async () => identifiedQuotes,
+      }));
+
+      const request = new Request('https://api.example.com/quote?game=halo-2');
+      const response = await worker.fetch(request);
+      const data = await response.json();
+
+      expect(response.status).toBe(200);
+      // `quote` stays a plain string, so existing clients keep working.
+      expect(typeof data.quote).toBe('string');
+
+      const match = identifiedQuotes.quotes.find((quote) => quote.text === data.quote);
+      expect(match).toBeDefined();
+      expect(data.id).toBe(match.id);
+    });
+
+    it('should omit the id for a file that still holds bare strings', async () => {
+      global.fetch.mockImplementation(() => Promise.resolve({
+        ok: true,
+        json: async () => mockHalo2Data,
+      }));
+
+      const request = new Request('https://api.example.com/quote?game=halo-2');
+      const response = await worker.fetch(request);
+      const data = await response.json();
+
+      expect(response.status).toBe(200);
+      expect(mockHalo2Data.quotes).toContain(data.quote);
+      expect(data).not.toHaveProperty('id');
+    });
+
+    it('should count { id, text } quotes in /stats', async () => {
+      global.fetch.mockImplementation(() => Promise.resolve({
+        ok: true,
+        json: async () => identifiedQuotes,
+      }));
+
+      const request = new Request('https://api.example.com/stats');
+      const response = await worker.fetch(request);
+      const data = await response.json();
+
+      expect(response.status).toBe(200);
+      expect(data.quotesPerGame['halo-2'].count).toBe(2);
+    });
+  });
+});

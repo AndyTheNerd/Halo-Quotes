@@ -18,8 +18,10 @@ This repository provides three main functions:
 - **Filter by game.** Pick a single game from the dropdown, or leave it on
   "All games". The choice is remembered between visits.
 - **Permalinks.** Every quote has an address like
-  `haloquotes.teamrespawntv.com/#/halo-2/42`, so a shared link reopens the same
-  quote rather than a new random one.
+  `haloquotes.teamrespawntv.com/#/halo-2/6d0d9f1a`, built from the quote's own
+  id, so a shared link reopens the same quote rather than a new random one -
+  and keeps working when quotes are added, removed or reordered. Older links
+  that carry a position instead (`#/halo-2/42`) still resolve, by position.
 - **Share and copy.** Copy the quote to the clipboard, or open it prefilled in
   the Bluesky or X composer.
 - **History.** Previous and Next walk back and forth through the quotes you
@@ -95,6 +97,38 @@ Halo-Quotes/
 ├── LICENSE                    # License file
 └── README.md                  # This file
 ```
+
+## Quote Data
+
+Each file in `quotes/` holds one game:
+
+```json
+{
+  "gameName": "Halo 2",
+  "quotes": [
+    { "id": "6d0d9f1a", "text": "I need a weapon." }
+  ]
+}
+```
+
+`id` is that quote's permanent handle. The website builds permalinks from it,
+and the API returns it alongside the quote, so **an id must never change once
+it is published** - not when the quote's text is corrected, and not when quotes
+around it are added or removed. Changing one silently breaks every link anyone
+has shared to that quote.
+
+To add a quote, append an entry with a fresh id. The existing ids are the first
+8 hex characters of the SHA-1 of the quote's text, which is a convenient way to
+mint a new one:
+
+```bash
+python3 -c "import hashlib; print(hashlib.sha1('Your quote here'.encode()).hexdigest()[:8])"
+```
+
+Any unique lowercase alphanumeric string works, though - the value carries no
+meaning beyond being unique within its file. CI checks that every quote has an
+id, that ids are unique within a game, and that no quote text is repeated
+within a game.
 
 ## Running Locally
 
@@ -222,10 +256,15 @@ Returns a random quote from any Halo game.
 ```json
 {
   "quote": "I need a weapon.",
+  "id": "6d0d9f1a",
   "game": "Halo 2",
   "gameId": "halo-2"
 }
 ```
+
+`id` identifies the quote within its game and is stable across releases, so it
+can be stored or turned into a permalink
+(`https://haloquotes.teamrespawntv.com/#/<gameId>/<id>`).
 
 #### Get Random Quote (Specific Game)
 
@@ -257,6 +296,7 @@ GET /quote?game=halo-3
 ```json
 {
   "quote": "What is it? More Brutes?",
+  "id": "534e9c1e",
   "game": "Halo 3",
   "gameId": "halo-3"
 }

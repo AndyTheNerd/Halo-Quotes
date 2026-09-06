@@ -1,59 +1,221 @@
 {
   "gameName": "Halo Wars 2",
   "quotes": [
-    "The Brute. Their leader. His name is Atriox.",
-    "As I suspected, nothing, but a man.",
-    "Yes, run little demons. Hunt them down. Find out where they came from, and bring me back anything useful.",
-    "You think you can stand against me? I, who defied the Covenant itself!",
-    "Hahahaha! Luck! Treachery! These are the only reasons you still live, Cutter! Very well, I admire your spirit, captain, but you've just sentenced your little ship to oblivion.",
-    "Twenty eight years Professor, let's see what kind of galaxy we woke up to.",
-    "If we don't stop Atriox now, we leave the galaxy at the mercy of a monster. So no, Isabel. We won't be running anywhere today.",
-    "Got some trickshots I'm dying to try out!",
-    "Hostile's taking a well deserved dirt nap!",
-    "This place makes a shield world look normal.",
-    "Don't know about you Omega Team, but I'm looking forward to a straight fight.",
-    "Sometimes I miss the Covenant, these new guys are nasty.",
-    "Long live Atriox!",
-    "Who's a big bad grunt?",
-    "Gonna make them cry like babies, boo hoo!",
-    "Spartans never die.",
-    "The Master Chief is dead.",
-    "Supply pad constructed.",
-    "Barracks constructed.",
-    "Air Pad constructed.",
-    "Armory constructed.",
-    "Garage constructed.",
-    "Raid Camp constructed.",
-    "Power Extractor constructed.",
-    "It's finished.",
-    "When I asked for reinforcements, I didn't think they'd send a Spartan.",
-    "The Spirit of Fire is in a situation... I ... could not anticipate.",
-    "We've been adrift for just over 28 years. I made quite a few repairs while you were sleeping, so ship systems are at 100 percent.",
-    "As for me, well, regulations are clear about final dispensation at the end of an AI's 7 year life span.",
-    "I took care of my own arrangements, rather than wake you. I didn't want to, well, I hope you can forgive this final breach of protocol. It was a pleasure and an honor to serve with you, sir. Goodbye, Captain. Serina out.",
-    "Destroy those Locusts wherever you find them, they're building killers.",
-    "Voridus! The Orbital Designator shows they're coming from a nearby launching bay.",
-    "Banished don't pay me to listen to Brutes ... huh, they don't pay me at ALL!",
-    "OH NO! I DIDN'T MEAN TO TURN THESE ON AAAAAH!",
-    "Captain, wake up. Something has happened.",
-    "We are just one ship… and an old one at that. But here we are. Thirty years past what anyone could ask of us. Our war is gone. The lives we had are gone... And where you see one old ship… I see home. And that is always worth fighting for!",
-    "Portals. Why is it always portals?",
-    "The Covenant could not stop us. You have no chance!",
-    "Make the most of your victory, humans… It will be… your… last…",
-    "This shield tower is almost big enough to cover the posterior of your MOM!",
-    "What is this, a base for ants?",
-    "Forty to break the front lines... forty to die... Until he did... Atriox was born",
-    "Our astronavigation system can't pinpoint a location. We're not on the map anymore.",
-    "We didn't drift out of the galaxy in 28 years, professor.",
-    "Our slipspace drive is gone. However we got here, it wasn't us who initiated the trip.",
-    "Captain Cutter, sir! We've received a signal from the surface. It's UNSC!",
-    "This is good. When we left, the war wasn't going well. This signal means the UNSC is still fighting. Or maybe we even won.",
-    "Cutter to Jerome. Prep Spartan Red Team and a small recon squad. Professor Anders will send you coordinates.",
-    "Jerome, these aren't military defenses.",
-    "Don't ask me how I got here. It's... complicated.",
-    "Spartans? Thank God, we have to get out of here.",
-    "Sir, requesting danger close. On our location, trailing north. Commence five seconds.",
-    "Alice is MIA. She'll stay quiet down there until she has a good shot at getting back to us.",
-    "You can never have enough overkill."
+    {
+      "id": "52ab47fc",
+      "text": "The Brute. Their leader. His name is Atriox."
+    },
+    {
+      "id": "cd120ee5",
+      "text": "As I suspected, nothing, but a man."
+    },
+    {
+      "id": "e29e2e51",
+      "text": "Yes, run little demons. Hunt them down. Find out where they came from, and bring me back anything useful."
+    },
+    {
+      "id": "3581166b",
+      "text": "You think you can stand against me? I, who defied the Covenant itself!"
+    },
+    {
+      "id": "bec2737a",
+      "text": "Hahahaha! Luck! Treachery! These are the only reasons you still live, Cutter! Very well, I admire your spirit, captain, but you've just sentenced your little ship to oblivion."
+    },
+    {
+      "id": "ec03570f",
+      "text": "Twenty eight years Professor, let's see what kind of galaxy we woke up to."
+    },
+    {
+      "id": "28a69998",
+      "text": "If we don't stop Atriox now, we leave the galaxy at the mercy of a monster. So no, Isabel. We won't be running anywhere today."
+    },
+    {
+      "id": "69bfecac",
+      "text": "Got some trickshots I'm dying to try out!"
+    },
+    {
+      "id": "c482857b",
+      "text": "Hostile's taking a well deserved dirt nap!"
+    },
+    {
+      "id": "b69b23fc",
+      "text": "This place makes a shield world look normal."
+    },
+    {
+      "id": "f726b00e",
+      "text": "Don't know about you Omega Team, but I'm looking forward to a straight fight."
+    },
+    {
+      "id": "0f3970d7",
+      "text": "Sometimes I miss the Covenant, these new guys are nasty."
+    },
+    {
+      "id": "23404412",
+      "text": "Long live Atriox!"
+    },
+    {
+      "id": "a077c38d",
+      "text": "Who's a big bad grunt?"
+    },
+    {
+      "id": "9b9d9c62",
+      "text": "Gonna make them cry like babies, boo hoo!"
+    },
+    {
+      "id": "833f5cb5",
+      "text": "Spartans never die."
+    },
+    {
+      "id": "b12c72b3",
+      "text": "The Master Chief is dead."
+    },
+    {
+      "id": "aa9cda67",
+      "text": "Supply pad constructed."
+    },
+    {
+      "id": "ed3cb8c2",
+      "text": "Barracks constructed."
+    },
+    {
+      "id": "20024aa2",
+      "text": "Air Pad constructed."
+    },
+    {
+      "id": "7e6003f5",
+      "text": "Armory constructed."
+    },
+    {
+      "id": "f7a5d54a",
+      "text": "Garage constructed."
+    },
+    {
+      "id": "b663c862",
+      "text": "Raid Camp constructed."
+    },
+    {
+      "id": "b269b6ee",
+      "text": "Power Extractor constructed."
+    },
+    {
+      "id": "3463e6bf",
+      "text": "It's finished."
+    },
+    {
+      "id": "cb8bb6b7",
+      "text": "When I asked for reinforcements, I didn't think they'd send a Spartan."
+    },
+    {
+      "id": "b9d5f882",
+      "text": "The Spirit of Fire is in a situation... I ... could not anticipate."
+    },
+    {
+      "id": "aa93c7e8",
+      "text": "We've been adrift for just over 28 years. I made quite a few repairs while you were sleeping, so ship systems are at 100 percent."
+    },
+    {
+      "id": "9396e1e1",
+      "text": "As for me, well, regulations are clear about final dispensation at the end of an AI's 7 year life span."
+    },
+    {
+      "id": "338c8234",
+      "text": "I took care of my own arrangements, rather than wake you. I didn't want to, well, I hope you can forgive this final breach of protocol. It was a pleasure and an honor to serve with you, sir. Goodbye, Captain. Serina out."
+    },
+    {
+      "id": "92d50770",
+      "text": "Destroy those Locusts wherever you find them, they're building killers."
+    },
+    {
+      "id": "ed00e263",
+      "text": "Voridus! The Orbital Designator shows they're coming from a nearby launching bay."
+    },
+    {
+      "id": "a2529359",
+      "text": "Banished don't pay me to listen to Brutes ... huh, they don't pay me at ALL!"
+    },
+    {
+      "id": "c42e7ccb",
+      "text": "OH NO! I DIDN'T MEAN TO TURN THESE ON AAAAAH!"
+    },
+    {
+      "id": "2c5e581f",
+      "text": "Captain, wake up. Something has happened."
+    },
+    {
+      "id": "43487d74",
+      "text": "We are just one ship… and an old one at that. But here we are. Thirty years past what anyone could ask of us. Our war is gone. The lives we had are gone... And where you see one old ship… I see home. And that is always worth fighting for!"
+    },
+    {
+      "id": "15325941",
+      "text": "Portals. Why is it always portals?"
+    },
+    {
+      "id": "61f3f2aa",
+      "text": "The Covenant could not stop us. You have no chance!"
+    },
+    {
+      "id": "581d1066",
+      "text": "Make the most of your victory, humans… It will be… your… last…"
+    },
+    {
+      "id": "ea2e3416",
+      "text": "This shield tower is almost big enough to cover the posterior of your MOM!"
+    },
+    {
+      "id": "9d0627c7",
+      "text": "What is this, a base for ants?"
+    },
+    {
+      "id": "073b129c",
+      "text": "Forty to break the front lines... forty to die... Until he did... Atriox was born"
+    },
+    {
+      "id": "562dcb57",
+      "text": "Our astronavigation system can't pinpoint a location. We're not on the map anymore."
+    },
+    {
+      "id": "bd7d0e48",
+      "text": "We didn't drift out of the galaxy in 28 years, professor."
+    },
+    {
+      "id": "cc729ce7",
+      "text": "Our slipspace drive is gone. However we got here, it wasn't us who initiated the trip."
+    },
+    {
+      "id": "ccda1ac2",
+      "text": "Captain Cutter, sir! We've received a signal from the surface. It's UNSC!"
+    },
+    {
+      "id": "602ca2ca",
+      "text": "This is good. When we left, the war wasn't going well. This signal means the UNSC is still fighting. Or maybe we even won."
+    },
+    {
+      "id": "7858b7e7",
+      "text": "Cutter to Jerome. Prep Spartan Red Team and a small recon squad. Professor Anders will send you coordinates."
+    },
+    {
+      "id": "8710592f",
+      "text": "Jerome, these aren't military defenses."
+    },
+    {
+      "id": "4c3b26d3",
+      "text": "Don't ask me how I got here. It's... complicated."
+    },
+    {
+      "id": "68ed433a",
+      "text": "Spartans? Thank God, we have to get out of here."
+    },
+    {
+      "id": "83eebf79",
+      "text": "Sir, requesting danger close. On our location, trailing north. Commence five seconds."
+    },
+    {
+      "id": "10491b53",
+      "text": "Alice is MIA. She'll stay quiet down there until she has a good shot at getting back to us."
+    },
+    {
+      "id": "c4147820",
+      "text": "You can never have enough overkill."
+    }
   ]
 }

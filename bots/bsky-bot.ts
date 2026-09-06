@@ -27,9 +27,10 @@ function loadAllQuotes() {
       const data = JSON.parse(readFileSync(filePath, 'utf-8'));
       
       if (data.gameName && Array.isArray(data.quotes)) {
-        data.quotes.forEach((quote: string) => {
+        data.quotes.forEach((entry: string | { id: string; text: string }) => {
+          // Entries are { id, text }; older files held bare strings.
           quotes.push({
-            quote: quote,
+            quote: typeof entry === 'string' ? entry : entry.text,
             gameName: data.gameName
           });
         });

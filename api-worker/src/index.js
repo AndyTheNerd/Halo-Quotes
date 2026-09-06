@@ -35,6 +35,21 @@ function getRandomElement(array) {
 }
 
 /**
+ * Normalise one entry from a quote file.
+ *
+ * Entries are { id, text }, where the id is permanent and travels with the
+ * quote. Older files held bare strings, so both shapes are accepted and the
+ * API keeps serving quotes whatever shape the deployed files are in.
+ */
+function normalizeQuote(entry) {
+  if (typeof entry === 'string') {
+    return { id: null, text: entry };
+  }
+
+  return { id: entry.id || null, text: entry.text };
+}
+
+/**
  * Fetch and parse a quote file
  */
 async function fetchQuoteFile(filename) {
@@ -64,10 +79,11 @@ async function getRandomQuoteFromGame(gameId) {
     throw new Error(`No quotes found in ${gameId}`);
   }
   
-  const randomQuote = getRandomElement(data.quotes);
+  const randomQuote = normalizeQuote(getRandomElement(data.quotes));
   
   return {
-    quote: randomQuote,
+    quote: randomQuote.text,
+    ...(randomQuote.id ? { id: randomQuote.id } : {}),
     game: data.gameName,
     gameId: gameId
   };
@@ -85,13 +101,14 @@ async function getRandomQuoteFromAllGames() {
     throw new Error(`No quotes found in ${randomFile}`);
   }
   
-  const randomQuote = getRandomElement(data.quotes);
+  const randomQuote = normalizeQuote(getRandomElement(data.quotes));
   
   // Extract game ID from filename (remove .json extension)
   const gameId = randomFile.replace('.json', '');
   
   return {
-    quote: randomQuote,
+    quote: randomQuote.text,
+    ...(randomQuote.id ? { id: randomQuote.id } : {}),
     game: data.gameName,
     gameId: gameId
   };

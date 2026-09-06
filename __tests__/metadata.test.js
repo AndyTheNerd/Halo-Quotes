@@ -111,7 +111,7 @@ describe('structured data', () => {
 
         const game = quotation.isPartOf.name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
         const file = JSON.parse(readRepoFile(`quotes/${game}.json`));
-        expect(file.quotes).toContain(quotation.text);
+        expect(file.quotes.map((quote) => quote.text)).toContain(quotation.text);
     });
 });
 
@@ -133,7 +133,7 @@ describe('404 page', () => {
 
         const file = JSON.parse(readRepoFile('quotes/halo-infinite.json'));
         expect(file.gameName).toBe(source);
-        expect(file.quotes).toContain(text);
+        expect(file.quotes.map((quote) => quote.text)).toContain(text);
     });
 });
 

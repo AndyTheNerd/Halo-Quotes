@@ -66,8 +66,11 @@ async function loadGame(game) {
         throw new Error(`${game.file}: invalid quote file format`);
     }
 
-    return data.quotes.map((text, index) => ({
-        text,
+    return data.quotes.map((entry, index) => ({
+        // Quote files used to hold bare strings; tolerate that shape so a
+        // cached or half-deployed file cannot blank the page.
+        text: typeof entry === 'string' ? entry : entry.text,
+        id: typeof entry === 'string' ? null : entry.id,
         game: data.gameName,
         gameId: game.id,
         index
@@ -129,22 +132,37 @@ function pickRandomQuote() {
 }
 
 /**
- * Permalinks look like #/halo-2/42: a game id and the quote's position in
- * that game's file, so a shared link reopens the same quote.
+ * Permalinks look like #/halo-2/1a2b3c4d: a game id and the quote's own id.
+ * The id travels with the quote, so adding, removing or reordering quotes
+ * leaves every shared link pointing at the same words.
+ *
+ * Links made before quotes had ids carry a position instead (#/halo-2/42).
+ * Those are still resolved, by position, so they land on a quote rather than
+ * dead-ending - but the quote they reach may have moved since.
  */
 function quoteFromHash(hash) {
-    const match = /^#\/([a-z0-9-]+)\/(\d+)$/.exec(hash || '');
+    const match = /^#\/([a-z0-9-]+)\/([a-z0-9]+)$/.exec(hash || '');
 
     if (!match) {
         return null;
     }
 
-    const [, gameId, index] = match;
-    return quotePool.find((quote) => quote.gameId === gameId && quote.index === Number(index)) || null;
+    const [, gameId, ref] = match;
+    const byId = quotePool.find((quote) => quote.gameId === gameId && quote.id === ref);
+
+    if (byId) {
+        return byId;
+    }
+
+    if (!/^\d+$/.test(ref)) {
+        return null;
+    }
+
+    return quotePool.find((quote) => quote.gameId === gameId && quote.index === Number(ref)) || null;
 }
 
 function permalinkFor(quote) {
-    return `#/${quote.gameId}/${quote.index}`;
+    return `#/${quote.gameId}/${quote.id ?? quote.index}`;
 }
 
 /**

@@ -1,62 +1,233 @@
 {
   "gameName": "Halo Wars",
   "quotes": [
-    "Captain's Report - February 4th, 2531. Five years. Five long years. That's how long it took us to get Harvest back.",
-    "At first, it was going well... then setback after setback... loss after loss... made what was going to be a quick and decisive win into five years of hell.",
-    "Of course that's all Harvest is today... it's hell down there. But it's ours again.",
-    "Serina, status?",
-    "Serina, report. What's going on here?",
-    "And for the record, I would've kicked your ass the first time if it weren't for the lady!",
-    "Mission top secret, destination unknown....",
-    "Sgt. Forge, all ground forces are evacuating to the Spirit of Fire.",
-    "Copy that! Get our people out of here... I'm blowing the core.",
-    "Ground teams! Find a way to open that portal or we're all dead.",
-    "For Samuel!",
-    "The leader controls the beam!",
-    "Join the rest of your friends!",
-    "Sergeant Forge, report.",
-    "Spirit of Fire, getting a little hairy here, sir. Where's that backup?",
-    "Definitely plenty of bad guys down here, Captain. And they found something in the ice.",
-    "We're to bring Alpha Base up to operational status and take control of that site.",
-    "I can be quite insistent too, Captain. I can take care of myself.",
-    "The information you have gathered here is most appetizing.",
-    "Destroy this holy relic? Surely you jest!",
-    "The journey requires sacrifice!",
-    "Our patience is not infinite!",
-    "Hold your position, Red Team. Reinforcements will come to you.",
-    "Lady there's no way you're coming down here on the first bird.",
-    "What made you choose my observation deck as your lab, professor?",
-    "Where the hell are we, Serina?",
-    "I like the view. It adds...perspective to my work.",
-    "Your primary objective? Commander, are you a puppet or a Spartan?",
-    "It might be the key to this whole war, Serina. It's worth the risk.",
-    "The Hierarchs grow impatient! We can delay no longer!",
-    "What if the infection defiles the relic?",
-    "I care not for your little life! Open the relic.",
-    "Recalling surface squads so we can all die together. Aye, sir!",
-    "We can not lose our foothold on Arcadia, gentlemen. Secure a defensible position, and hold it until we can reinforce you!",
-    "Professor, there's been no sign of the Covenant for almost two weeks. There's nothing to do.",
-    "Forge, get those things off my ship!",
-    "All units!",
-    "Local units!",
-    "Forge is down!",
-    "Hitching a ride!",
-    "By the Prophets... You will pay for your insolence!",
-    "Alpha Base, this is Bravo-29, heavy inbound. I've got the Professor aboard.",
-    "My face will be the last thing your pathetic eyes ever see.",
-    "Aye sir, crazy mystery trip to Arcadia plotted in.",
-    "That's what were here to find out. We are to bring Alpha Base up to operational status and take control of that site.",
-    "Helljumpers...standing down!",
-    "MAC Blast incoming!",
-    "MAC... away!",
-    "Rolling out the carpet.",
-    "Disruption bomb out!",
-    "Cobra, ready to fire!",
-    "Hornet here!",
-    "Thrusters, tilted!",
-    "Hawk up.",
-    "Helljumpers are in the tubes!",
-    "ODST heading downtown!",
-    "Captain, wake up. Something has happened."
+    {
+      "id": "0f839615",
+      "text": "Captain's Report - February 4th, 2531. Five years. Five long years. That's how long it took us to get Harvest back."
+    },
+    {
+      "id": "1dad8115",
+      "text": "At first, it was going well... then setback after setback... loss after loss... made what was going to be a quick and decisive win into five years of hell."
+    },
+    {
+      "id": "0d0d9932",
+      "text": "Of course that's all Harvest is today... it's hell down there. But it's ours again."
+    },
+    {
+      "id": "5bfaefe3",
+      "text": "Serina, status?"
+    },
+    {
+      "id": "517b4f1f",
+      "text": "Serina, report. What's going on here?"
+    },
+    {
+      "id": "c90fb99a",
+      "text": "And for the record, I would've kicked your ass the first time if it weren't for the lady!"
+    },
+    {
+      "id": "789e7e05",
+      "text": "Mission top secret, destination unknown...."
+    },
+    {
+      "id": "4cc4abdc",
+      "text": "Sgt. Forge, all ground forces are evacuating to the Spirit of Fire."
+    },
+    {
+      "id": "07adf434",
+      "text": "Copy that! Get our people out of here... I'm blowing the core."
+    },
+    {
+      "id": "f27ea14c",
+      "text": "Ground teams! Find a way to open that portal or we're all dead."
+    },
+    {
+      "id": "10f3d0fd",
+      "text": "For Samuel!"
+    },
+    {
+      "id": "6f1fe025",
+      "text": "The leader controls the beam!"
+    },
+    {
+      "id": "22c7897a",
+      "text": "Join the rest of your friends!"
+    },
+    {
+      "id": "09710c76",
+      "text": "Sergeant Forge, report."
+    },
+    {
+      "id": "4f5ce53d",
+      "text": "Spirit of Fire, getting a little hairy here, sir. Where's that backup?"
+    },
+    {
+      "id": "86a49914",
+      "text": "Definitely plenty of bad guys down here, Captain. And they found something in the ice."
+    },
+    {
+      "id": "6c8e0ebb",
+      "text": "We're to bring Alpha Base up to operational status and take control of that site."
+    },
+    {
+      "id": "cda576ca",
+      "text": "I can be quite insistent too, Captain. I can take care of myself."
+    },
+    {
+      "id": "a7c84e67",
+      "text": "The information you have gathered here is most appetizing."
+    },
+    {
+      "id": "df08e749",
+      "text": "Destroy this holy relic? Surely you jest!"
+    },
+    {
+      "id": "feaa439b",
+      "text": "The journey requires sacrifice!"
+    },
+    {
+      "id": "3db6989a",
+      "text": "Our patience is not infinite!"
+    },
+    {
+      "id": "c11f603e",
+      "text": "Hold your position, Red Team. Reinforcements will come to you."
+    },
+    {
+      "id": "19b8b53b",
+      "text": "Lady there's no way you're coming down here on the first bird."
+    },
+    {
+      "id": "3886cac9",
+      "text": "What made you choose my observation deck as your lab, professor?"
+    },
+    {
+      "id": "3b7084bd",
+      "text": "Where the hell are we, Serina?"
+    },
+    {
+      "id": "fa5bc108",
+      "text": "I like the view. It adds...perspective to my work."
+    },
+    {
+      "id": "3e732b71",
+      "text": "Your primary objective? Commander, are you a puppet or a Spartan?"
+    },
+    {
+      "id": "66706fd2",
+      "text": "It might be the key to this whole war, Serina. It's worth the risk."
+    },
+    {
+      "id": "2646c261",
+      "text": "The Hierarchs grow impatient! We can delay no longer!"
+    },
+    {
+      "id": "3748e5f2",
+      "text": "What if the infection defiles the relic?"
+    },
+    {
+      "id": "3b9c7836",
+      "text": "I care not for your little life! Open the relic."
+    },
+    {
+      "id": "65b0d41e",
+      "text": "Recalling surface squads so we can all die together. Aye, sir!"
+    },
+    {
+      "id": "eaf22720",
+      "text": "We can not lose our foothold on Arcadia, gentlemen. Secure a defensible position, and hold it until we can reinforce you!"
+    },
+    {
+      "id": "69948524",
+      "text": "Professor, there's been no sign of the Covenant for almost two weeks. There's nothing to do."
+    },
+    {
+      "id": "1eb0660d",
+      "text": "Forge, get those things off my ship!"
+    },
+    {
+      "id": "9e58506c",
+      "text": "All units!"
+    },
+    {
+      "id": "5c8677f2",
+      "text": "Local units!"
+    },
+    {
+      "id": "0dfccac3",
+      "text": "Forge is down!"
+    },
+    {
+      "id": "b80e8912",
+      "text": "Hitching a ride!"
+    },
+    {
+      "id": "2f761379",
+      "text": "By the Prophets... You will pay for your insolence!"
+    },
+    {
+      "id": "ab77521e",
+      "text": "Alpha Base, this is Bravo-29, heavy inbound. I've got the Professor aboard."
+    },
+    {
+      "id": "9534fc26",
+      "text": "My face will be the last thing your pathetic eyes ever see."
+    },
+    {
+      "id": "7eb79669",
+      "text": "Aye sir, crazy mystery trip to Arcadia plotted in."
+    },
+    {
+      "id": "33b4bef1",
+      "text": "That's what were here to find out. We are to bring Alpha Base up to operational status and take control of that site."
+    },
+    {
+      "id": "ca2d119f",
+      "text": "Helljumpers...standing down!"
+    },
+    {
+      "id": "6b3bf48c",
+      "text": "MAC Blast incoming!"
+    },
+    {
+      "id": "78aeca69",
+      "text": "MAC... away!"
+    },
+    {
+      "id": "8e624269",
+      "text": "Rolling out the carpet."
+    },
+    {
+      "id": "edafc12d",
+      "text": "Disruption bomb out!"
+    },
+    {
+      "id": "1ba54a2d",
+      "text": "Cobra, ready to fire!"
+    },
+    {
+      "id": "1c6b278a",
+      "text": "Hornet here!"
+    },
+    {
+      "id": "a0c080a9",
+      "text": "Thrusters, tilted!"
+    },
+    {
+      "id": "15ced42a",
+      "text": "Hawk up."
+    },
+    {
+      "id": "b6fe20ad",
+      "text": "Helljumpers are in the tubes!"
+    },
+    {
+      "id": "1eb2c715",
+      "text": "ODST heading downtown!"
+    },
+    {
+      "id": "2c5e581f",
+      "text": "Captain, wake up. Something has happened."
+    }
   ]
 }

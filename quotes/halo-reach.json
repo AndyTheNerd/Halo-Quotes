@@ -1,34 +1,121 @@
 {
   "gameName": "Halo: Reach",
   "quotes": [
-    "Good work, Noble Six. UNSC air support: skies are clear.",
-    "Sir, why would rebels want to cut off Reach from the rest of the colonies?",
-    "First glassing? Me too. Don't worry, I'm on it. Our best option is a fallout bunker in Sublevel 2. Ninety-six metres northeast. We get orders from Holland, sir?",
-    "Noble Leader, seek immediate medical attention.",
-    "Noble Leader, please respond.",
-    "They're not rebels, they're farmers. Look at them.",
-    "Our foe is more devious than we imagined. That spire was indeed a teleporter linked to a cloaked, Covenant supercarrier... A grave threat.",
-    "It didn't take long for Reach to fall. Our enemy was ruthless. Efficient. But they weren't nearly fast enough. For you had already passed the torch. And because of you, we found Halo, unlocked its secrets, shattered our enemy's resolve.",
-    "Our victory - your victory - was so close...I wish you could have lived to see it. But you belong to Reach. Your body, your armor - all burned and turned to glass. Everything...except your courage. That, you gave to us. And with it, we can rebuild.",
-    "Colonel, this is Noble One. There are no rebels. The Covenant are on Reach. Acknowledge?",
-    "Come again Noble One?! Did you say Covenant?",
-    "That's right you mothers! Run!!",
-    "This is the Pillar of Autumn. We're away...and the package is with us.",
-    "So that's our new number six.",
-    "Six. That AI chose you. She made the right choice.",
-    "Mankind is outmatched. When Reach falls - and it will fall - our annihilation is all but certain.",
-    "Affirmative. It's the Winter Contingency!",
-    "You know the music, time to dance.",
-    "You're on your own Noble, Carter Out.",
-    "Can't be. Not on Reach.",
-    "Alright Noble Team, spread out. Watch the approach.",
-    "We all make it sooner or later.",
-    "I know we're losing... I want to know if we've lost.",
-    "I'm ready... how bout' you?",
-    "Better get going, Six, they're gonna need you down there. Listen, Reach has been good to me.",
-    "Good luck to you, Spartan.",
-    "Noble Six, move into the house. Go in quiet.",
-    "Objective? Destroy Covenant Carrier in geosynchronous orbit above us.",
-    "Negative. I have the gun. Good luck, sir."
+    {
+      "id": "1f751adf",
+      "text": "Good work, Noble Six. UNSC air support: skies are clear."
+    },
+    {
+      "id": "3ac5118c",
+      "text": "Sir, why would rebels want to cut off Reach from the rest of the colonies?"
+    },
+    {
+      "id": "3822cdec",
+      "text": "First glassing? Me too. Don't worry, I'm on it. Our best option is a fallout bunker in Sublevel 2. Ninety-six metres northeast. We get orders from Holland, sir?"
+    },
+    {
+      "id": "66c051e4",
+      "text": "Noble Leader, seek immediate medical attention."
+    },
+    {
+      "id": "3d8ee8ef",
+      "text": "Noble Leader, please respond."
+    },
+    {
+      "id": "16ba8ddb",
+      "text": "They're not rebels, they're farmers. Look at them."
+    },
+    {
+      "id": "98b59658",
+      "text": "Our foe is more devious than we imagined. That spire was indeed a teleporter linked to a cloaked, Covenant supercarrier... A grave threat."
+    },
+    {
+      "id": "e4a368b4",
+      "text": "It didn't take long for Reach to fall. Our enemy was ruthless. Efficient. But they weren't nearly fast enough. For you had already passed the torch. And because of you, we found Halo, unlocked its secrets, shattered our enemy's resolve."
+    },
+    {
+      "id": "5c399cc1",
+      "text": "Our victory - your victory - was so close...I wish you could have lived to see it. But you belong to Reach. Your body, your armor - all burned and turned to glass. Everything...except your courage. That, you gave to us. And with it, we can rebuild."
+    },
+    {
+      "id": "c41edb2a",
+      "text": "Colonel, this is Noble One. There are no rebels. The Covenant are on Reach. Acknowledge?"
+    },
+    {
+      "id": "3af39562",
+      "text": "Come again Noble One?! Did you say Covenant?"
+    },
+    {
+      "id": "da35d0f2",
+      "text": "That's right you mothers! Run!!"
+    },
+    {
+      "id": "7864c907",
+      "text": "This is the Pillar of Autumn. We're away...and the package is with us."
+    },
+    {
+      "id": "96269c8a",
+      "text": "So that's our new number six."
+    },
+    {
+      "id": "168251fa",
+      "text": "Six. That AI chose you. She made the right choice."
+    },
+    {
+      "id": "2f08fc6d",
+      "text": "Mankind is outmatched. When Reach falls - and it will fall - our annihilation is all but certain."
+    },
+    {
+      "id": "14dc795b",
+      "text": "Affirmative. It's the Winter Contingency!"
+    },
+    {
+      "id": "e8c71099",
+      "text": "You know the music, time to dance."
+    },
+    {
+      "id": "5e429253",
+      "text": "You're on your own Noble, Carter Out."
+    },
+    {
+      "id": "86e3ae38",
+      "text": "Can't be. Not on Reach."
+    },
+    {
+      "id": "07989eda",
+      "text": "Alright Noble Team, spread out. Watch the approach."
+    },
+    {
+      "id": "21ff86b3",
+      "text": "We all make it sooner or later."
+    },
+    {
+      "id": "df802b45",
+      "text": "I know we're losing... I want to know if we've lost."
+    },
+    {
+      "id": "af058cda",
+      "text": "I'm ready... how bout' you?"
+    },
+    {
+      "id": "71001c5a",
+      "text": "Better get going, Six, they're gonna need you down there. Listen, Reach has been good to me."
+    },
+    {
+      "id": "3e833a50",
+      "text": "Good luck to you, Spartan."
+    },
+    {
+      "id": "6709a02f",
+      "text": "Noble Six, move into the house. Go in quiet."
+    },
+    {
+      "id": "3cb7375c",
+      "text": "Objective? Destroy Covenant Carrier in geosynchronous orbit above us."
+    },
+    {
+      "id": "4a894a8c",
+      "text": "Negative. I have the gun. Good luck, sir."
+    }
   ]
 }

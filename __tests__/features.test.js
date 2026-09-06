@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { loadPage, readRepoFile } from './helpers/load-page.js';
+import { loadPage, createFetchStub, readRepoFile } from './helpers/load-page.js';
 
 const SITE = 'https://haloquotes.teamrespawntv.com/';
 
@@ -81,18 +81,47 @@ describe('permalinks', () => {
         const dom = await loadPage();
         const { window } = dom;
 
-        expect(window.location.hash).toMatch(/^#\/[a-z0-9-]+\/\d+$/);
+        expect(window.location.hash).toMatch(/^#\/[a-z0-9-]+\/[a-z0-9]+$/);
     });
 
     it('reopens the exact quote a permalink names', async () => {
         const halo2 = JSON.parse(readRepoFile('quotes/halo-2.json'));
-        const index = 7;
+        const quote = halo2.quotes[7];
 
-        const dom = await loadPage({ url: `${SITE}#/halo-2/${index}` });
+        const dom = await loadPage({ url: `${SITE}#/halo-2/${quote.id}` });
         const { document } = dom.window;
 
-        expect(document.getElementById('quote-text').textContent).toBe(`"${halo2.quotes[index]}"`);
+        expect(document.getElementById('quote-text').textContent).toBe(`"${quote.text}"`);
         expect(document.getElementById('quote-source').textContent).toBe('- Halo 2');
+    });
+
+    it('still resolves a pre-id permalink by position', async () => {
+        const halo2 = JSON.parse(readRepoFile('quotes/halo-2.json'));
+
+        const dom = await loadPage({ url: `${SITE}#/halo-2/7` });
+        const { document } = dom.window;
+
+        expect(document.getElementById('quote-text').textContent).toBe(`"${halo2.quotes[7].text}"`);
+        // The address bar is rewritten to the quote's own id.
+        expect(dom.window.location.hash).toBe(`#/halo-2/${halo2.quotes[7].id}`);
+    });
+
+    it('rewrites a permalink to follow its quote after the file changes', async () => {
+        const halo2 = JSON.parse(readRepoFile('quotes/halo-2.json'));
+        const quote = halo2.quotes[3];
+
+        // Same quote, moved to the front of the file: the id still finds it.
+        const moved = {
+            gameName: halo2.gameName,
+            quotes: [quote, ...halo2.quotes.filter((q) => q.id !== quote.id)]
+        };
+
+        const dom = await loadPage({
+            url: `${SITE}#/halo-2/${quote.id}`,
+            fetchStub: createFetchStub({ overrides: { 'quotes/halo-2.json': moved } })
+        });
+
+        expect(dom.window.document.getElementById('quote-text').textContent).toBe(`"${quote.text}"`);
     });
 
     it('falls back to a random quote for a permalink that does not resolve', async () => {
@@ -128,10 +157,11 @@ describe('permalinks', () => {
 
 describe('share links', () => {
     it('builds Bluesky and X links carrying the quote and its permalink', async () => {
-        const dom = await loadPage({ url: `${SITE}#/halo-2/0` });
-        const { document } = dom.window;
-
         const halo2 = JSON.parse(readRepoFile('quotes/halo-2.json'));
+        const permalink = `#/halo-2/${halo2.quotes[0].id}`;
+
+        const dom = await loadPage({ url: `${SITE}${permalink}` });
+        const { document } = dom.window;
         const bluesky = document.getElementById('share-bluesky').href;
         const x = document.getElementById('share-x').href;
 
@@ -140,14 +170,14 @@ describe('share links', () => {
 
         const blueskyText = decodeURIComponent(new URL(bluesky).searchParams.get('text'));
         expect(blueskyText).toContain('Halo 2');
-        expect(blueskyText).toContain('#/halo-2/0');
+        expect(blueskyText).toContain(permalink);
 
         const xUrl = new URL(x).searchParams.get('url');
-        expect(xUrl).toContain('#/halo-2/0');
+        expect(xUrl).toContain(permalink);
 
         // A short quote should survive intact.
-        if (halo2.quotes[0].length < 150) {
-            expect(blueskyText).toContain(halo2.quotes[0]);
+        if (halo2.quotes[0].text.length < 150) {
+            expect(blueskyText).toContain(halo2.quotes[0].text);
         }
     });
 

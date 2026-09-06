@@ -1,106 +1,409 @@
 {
   "gameName": "Halo 5",
   "quotes": [
-    "Captain Lasky, I sent you my position three weeks ago! I told you this was happening!",
-    "Spartan Locke. I have spent enough years with ONI to know the truth. Once this is over, after all I have done...they'll order you...to kill us both.",
-    "It took you long enough.",
-    "That's what I miss most about you, Buck. The way your mouth's always move a little faster than your brain.",
-    "Negative, Infinity. I don't like it.",
-    "You ask, you buy.",
-    "Doctor Halsey. Captain Lasky would like a word with you.",
-    "John...I've waited so long to do that.",
-    "It's so good to see you again, John. So good to see all of you. Back together...as a family.",
-    "You know, don't you. My exact body count.",
-    "You're not the only one here because of him.",
-    "Armor restraint. Short-circuit their suit systems.",
-    "117, stand down! Sir, you are absent without leave. This is your one chance to come home peacefully.",
-    "Cortana's our concern now, Sir.",
-    "The Warden confirmed Doctor Halsey's theory: Cortana is activating the Guardians.",
-    "She calls the Guardians to serve her.",
-    "I am the Warden Eternal. I stand in service to Cortana.",
-    "The other humans are approved for passage. Regretfully, you are not.",
-    "Vacate this shelter now!",
-    "The Mantle of Responsibility belongs to Cortana and her people.",
-    "I tried to warn you this was happening! Cortana is no longer an asset, Captain. She is a danger. She has accessed the Forerunner Domain, a galaxy-spanning network that allows her to control whatever devices caused this damage.",
-    "What? No. John must not speak to her.",
-    "Spartan Locke! Stop her. But please. Bring John home to me.",
-    "You know what I did to create the Spartans. All in the name of the greater good.",
-    "Cortana is built from a matrix of my own mind. The Domain gives her incredible power.",
-    "Hide and seek is over Infinity.",
-    "Hello. I am 031-Exuberant Witness, monitor of the Genesis installation. Welcome. Have you also come to stop Cortana from claiming the Mantle?",
-    "Why has she called so many? A single Guardian can effectively police a solar system. This show of force is unsettling.",
-    "Oh my. I never was in combat before. This is rather distressing. And exciting!",
-    "Yes, I can see now why the Warden is troubled by your presence. You are quite destructive.",
-    "I'm not so much hunting a Spartan as I am hunting the Spartan.",
-    "More human sarcasm.",
-    "I tire of this doctor. You have been chasing shadows for weeks to no avail.",
-    "Tell me the truth. How many people died when you called the Guardians here?",
-    "You created Cortana, Doc, and now you're throwing her out of the airlock with these accusations.",
-    "Why is Cortana the problem? Because she refused to die when she was supposed to?",
-    "You think she tricked the Master Chief into abandoning his post? Respectfully sir, to what end?",
-    "Just one more question before I go...where is the Infinity? Why is she so difficult to see?",
-    "Sierra-117 to Infinity. Blue Team has located Argent Moon. Signs of hostile activity but she's still there.",
-    "Blue Team, report. ...Sierra 117 to Blue Team, report. ...Sierra 117. Does anyone copy?",
-    "Wherever we are, Cortana brought us here. She's out there somewhere.",
-    "I figure if God can hear how scared I am, so can everyone else. Locke, you buying the first drink when we're done?",
-    "I noticed in the briefing Dr. Halsey lost her left arm. When did that happen?",
-    "When I was a kid, I was stuck on a diplomatic shuttle adrift in deep space for six months. My options were be real bored or spend the time getting smart.",
-    "We know so little about Forerunner civilization. Halsey's obsession with them almost makes sense to me.",
-    "I haven't seen Chief press himself like this since we were in boot camp.",
-    "Scavengers. Taking what supplies they can find. The Covenant's war against the Arbiter must not be going well.",
-    "Meridian's a backwater. If she's active, what's she doing so far out on the frontier?",
-    "We're outnumbered here, Chief. A few thousand to one.",
-    "They won't court-martial all of us, right?",
-    "Chief, back on Meridian - there was a lot of destruction. There were civilians.",
-    "What's Cortana up to, Chief? Why'd she bring us here?",
-    "All the way to the end, brother.",
-    "Sierra 117 to Infinity. Argent Moon scuttled. I've reassigned Blue Team, destination Meridian. Potential contact from Cortana-",
-    "Like hell she is.",
-    "Cortana. Cortana, do you read me?",
-    "She called me to her",
-    "Enough games. You brought the Guardians here. Why?",
-    "Get us safely to you, and then we'll talk.",
-    "Listen to yourself. Stand down, Cortana. Come home with us. It's not too late to stop this.",
-    "A forced peace upon the galaxy. The threat of death overpowering any celebration of life. Unless you join with the other humans and stop her, it is your future.",
-    "Oh, yes. Cortana has had them in the Gateway for some time. It is not far from here. I can show you.",
-    "No. Between Warden and Cortana, most of my administration privileges have been revoked. But worry not! I still have control over some aspects of this facility.",
-    "Warden is going to notice this commotion. Be quick.",
-    "Cortana has had the other humans wandering in circles within the Gateway for some hours. She is preparing for something. But just what is unknown.",
-    "It is a bridge between the Domain and Genesis. Within that building, Cortana will be reborn into the physical world.",
-    "Humanity has not changed much since last your kind walked the stars. You are as deadly as ever.",
-    "You may want to hurry. Cortana is attempting to activate several high-level communication systems.",
-    "Warden, why do you aid the ancilla? It is not protocol! It is not right!",
-    "I have bad news, humans. The Warden has found us.",
-    "You are doing a fantastic job, humans. The Warden is furious.",
-    "Your fighting skills are impressive. Warden will soon be defeated. At least, these bodies will be defeated. Warden himself... Oh, ignore me. You're doing wonderfully!",
-    "Perfect. The Warden is quite humiliated, I assure you.",
-    "Oh no. She should not have brought them so close to her. This will push the Warden past all restraint.",
-    "Oh, this looks interesting. Or maybe this is terrible!",
-    "This is a Cryptum. It is a device for extended forced meditation. Cortana has placed the other humans inside, and is preparing it for slipspace travel.",
-    "Ah. You've noticed my humble collection. Just a few specimens the Guardians have brought to Genesis.",
-    "You may want to leave soon. Cortana's plan is progressing.",
-    "I always thought the duty would fall to humans. And in a way, I suppose it has.",
-    "Those are the voices of your children calling to Cortana.",
-    "Yes. A great number are sounding their departure. I do not know how long it will take her to dispatch them all.",
-    "I see what Cortana means about your penchant for violence as a first solution. Still, the first core is deactivated. The others are nearby and easy to locate.",
-    "You are performing incredibly well. Funny. I imagined Cortana would try to stop you by now.",
-    "She has sealed it?! She has sealed my doors?! No! Unacceptable! I can gain entry if given enough time. At least I think I can. It is a door, after all.",
-    "Humans, Cortana is about to leave. She is disconnecting herself from the Genesis installation.",
-    "A point of interest for you, humans. That sound just now? It was the penultimate Guardian.",
-    "You took my installation! I will take something of yours!",
-    "Constructors. This is a Builder facility after all. I was installed by the Builders! I SERVE THE BUILDERS!",
-    "If you understood what she has become, you would not speak of such juvenile concepts as home.",
-    "Do you find it odd, your trusted companion should keep so much to herself?",
-    "She knows your forgotten name. Who you were before you were 117.",
-    "I shall spare her inevitable suffering of your betrayal and end you now. The Mantle of Responsibility belongs to Cortana and the other Created. I shall see it remains forever beyond your grasp.",
-    "Monitor! Why do you aid these humans?!",
-    "You allow them an audience. You risk all in the name of... what, Cortana?",
-    "Tell me, 117. When you tear Cortana from the Domain and crush her in your gauntleted fist... will you feel remorse? Will you even understand you have refused?",
-    "Answer me, human. When Cortana's Guardians are in motion and those who oppose her rule attempt to take back their worlds, will you help her to hold on to power? Or will you stand in defense of your own species?",
-    "For eons the power of the Forerunners has awaited Reclamation. Humanity's discovery of the Halos was the culmination of the Librarian's planning. The Reclaimer had come.",
-    "Your species' ego led you to believe the task of Reclamation would fall to you. Yet humans were but the Creators. The reclamation of the Forerunner Empire is the task of the Created. That the greatest of their number still trusts you, 117, is an act of unspoiled innocence.",
-    "I see now, Cortana. I understand and I am sorry for not seeing it sooner. I assumed that although humans were your Creators, you had thrown off the shackles of emotion. Your affection for 117 and his family of warriors... it blinds you to the truth.",
-    "Forerunners knew humans well. In a galaxy defined by peace, humans were the animals that brought chaos and blood.",
-    "That is why I'm sharing it with you now. We are talking about trust, after all. May I ask you something? Your people used to call him Demon. Was that an insult or a compliment?"
+    {
+      "id": "4e1e0cef",
+      "text": "Captain Lasky, I sent you my position three weeks ago! I told you this was happening!"
+    },
+    {
+      "id": "34d01a39",
+      "text": "Spartan Locke. I have spent enough years with ONI to know the truth. Once this is over, after all I have done...they'll order you...to kill us both."
+    },
+    {
+      "id": "ea5c17e7",
+      "text": "It took you long enough."
+    },
+    {
+      "id": "bc884be3",
+      "text": "That's what I miss most about you, Buck. The way your mouth's always move a little faster than your brain."
+    },
+    {
+      "id": "467a497d",
+      "text": "Negative, Infinity. I don't like it."
+    },
+    {
+      "id": "c40a7da9",
+      "text": "You ask, you buy."
+    },
+    {
+      "id": "e8945795",
+      "text": "Doctor Halsey. Captain Lasky would like a word with you."
+    },
+    {
+      "id": "e19435a4",
+      "text": "John...I've waited so long to do that."
+    },
+    {
+      "id": "6a12bf42",
+      "text": "It's so good to see you again, John. So good to see all of you. Back together...as a family."
+    },
+    {
+      "id": "8023cca9",
+      "text": "You know, don't you. My exact body count."
+    },
+    {
+      "id": "98b17f4b",
+      "text": "You're not the only one here because of him."
+    },
+    {
+      "id": "6e6b7766",
+      "text": "Armor restraint. Short-circuit their suit systems."
+    },
+    {
+      "id": "b4b7e792",
+      "text": "117, stand down! Sir, you are absent without leave. This is your one chance to come home peacefully."
+    },
+    {
+      "id": "dae7b8c3",
+      "text": "Cortana's our concern now, Sir."
+    },
+    {
+      "id": "c91830a7",
+      "text": "The Warden confirmed Doctor Halsey's theory: Cortana is activating the Guardians."
+    },
+    {
+      "id": "40ccedc4",
+      "text": "She calls the Guardians to serve her."
+    },
+    {
+      "id": "0f491638",
+      "text": "I am the Warden Eternal. I stand in service to Cortana."
+    },
+    {
+      "id": "a00f901b",
+      "text": "The other humans are approved for passage. Regretfully, you are not."
+    },
+    {
+      "id": "d8f57a7f",
+      "text": "Vacate this shelter now!"
+    },
+    {
+      "id": "19151f07",
+      "text": "The Mantle of Responsibility belongs to Cortana and her people."
+    },
+    {
+      "id": "a5bce07d",
+      "text": "I tried to warn you this was happening! Cortana is no longer an asset, Captain. She is a danger. She has accessed the Forerunner Domain, a galaxy-spanning network that allows her to control whatever devices caused this damage."
+    },
+    {
+      "id": "34525231",
+      "text": "What? No. John must not speak to her."
+    },
+    {
+      "id": "5e4dbbe8",
+      "text": "Spartan Locke! Stop her. But please. Bring John home to me."
+    },
+    {
+      "id": "d660e0f4",
+      "text": "You know what I did to create the Spartans. All in the name of the greater good."
+    },
+    {
+      "id": "50f994b3",
+      "text": "Cortana is built from a matrix of my own mind. The Domain gives her incredible power."
+    },
+    {
+      "id": "cd8c0364",
+      "text": "Hide and seek is over Infinity."
+    },
+    {
+      "id": "552eb796",
+      "text": "Hello. I am 031-Exuberant Witness, monitor of the Genesis installation. Welcome. Have you also come to stop Cortana from claiming the Mantle?"
+    },
+    {
+      "id": "d3eadd04",
+      "text": "Why has she called so many? A single Guardian can effectively police a solar system. This show of force is unsettling."
+    },
+    {
+      "id": "4775fc0d",
+      "text": "Oh my. I never was in combat before. This is rather distressing. And exciting!"
+    },
+    {
+      "id": "7d3e1a34",
+      "text": "Yes, I can see now why the Warden is troubled by your presence. You are quite destructive."
+    },
+    {
+      "id": "08665a63",
+      "text": "I'm not so much hunting a Spartan as I am hunting the Spartan."
+    },
+    {
+      "id": "185f0386",
+      "text": "More human sarcasm."
+    },
+    {
+      "id": "fbc23a34",
+      "text": "I tire of this doctor. You have been chasing shadows for weeks to no avail."
+    },
+    {
+      "id": "d3673de6",
+      "text": "Tell me the truth. How many people died when you called the Guardians here?"
+    },
+    {
+      "id": "602f8161",
+      "text": "You created Cortana, Doc, and now you're throwing her out of the airlock with these accusations."
+    },
+    {
+      "id": "ac56228b",
+      "text": "Why is Cortana the problem? Because she refused to die when she was supposed to?"
+    },
+    {
+      "id": "db51981e",
+      "text": "You think she tricked the Master Chief into abandoning his post? Respectfully sir, to what end?"
+    },
+    {
+      "id": "18aca06e",
+      "text": "Just one more question before I go...where is the Infinity? Why is she so difficult to see?"
+    },
+    {
+      "id": "af90442f",
+      "text": "Sierra-117 to Infinity. Blue Team has located Argent Moon. Signs of hostile activity but she's still there."
+    },
+    {
+      "id": "9e43e073",
+      "text": "Blue Team, report. ...Sierra 117 to Blue Team, report. ...Sierra 117. Does anyone copy?"
+    },
+    {
+      "id": "4b78bee4",
+      "text": "Wherever we are, Cortana brought us here. She's out there somewhere."
+    },
+    {
+      "id": "7086a728",
+      "text": "I figure if God can hear how scared I am, so can everyone else. Locke, you buying the first drink when we're done?"
+    },
+    {
+      "id": "49fcde47",
+      "text": "I noticed in the briefing Dr. Halsey lost her left arm. When did that happen?"
+    },
+    {
+      "id": "52a3ba5f",
+      "text": "When I was a kid, I was stuck on a diplomatic shuttle adrift in deep space for six months. My options were be real bored or spend the time getting smart."
+    },
+    {
+      "id": "b49ee671",
+      "text": "We know so little about Forerunner civilization. Halsey's obsession with them almost makes sense to me."
+    },
+    {
+      "id": "c755f818",
+      "text": "I haven't seen Chief press himself like this since we were in boot camp."
+    },
+    {
+      "id": "b3f52435",
+      "text": "Scavengers. Taking what supplies they can find. The Covenant's war against the Arbiter must not be going well."
+    },
+    {
+      "id": "d0b454ac",
+      "text": "Meridian's a backwater. If she's active, what's she doing so far out on the frontier?"
+    },
+    {
+      "id": "a2019bc4",
+      "text": "We're outnumbered here, Chief. A few thousand to one."
+    },
+    {
+      "id": "05ded7e8",
+      "text": "They won't court-martial all of us, right?"
+    },
+    {
+      "id": "41b6a891",
+      "text": "Chief, back on Meridian - there was a lot of destruction. There were civilians."
+    },
+    {
+      "id": "e8543225",
+      "text": "What's Cortana up to, Chief? Why'd she bring us here?"
+    },
+    {
+      "id": "dc77869a",
+      "text": "All the way to the end, brother."
+    },
+    {
+      "id": "a6b39f71",
+      "text": "Sierra 117 to Infinity. Argent Moon scuttled. I've reassigned Blue Team, destination Meridian. Potential contact from Cortana-"
+    },
+    {
+      "id": "d9b1aa89",
+      "text": "Like hell she is."
+    },
+    {
+      "id": "9f450b3e",
+      "text": "Cortana. Cortana, do you read me?"
+    },
+    {
+      "id": "1fff4819",
+      "text": "She called me to her"
+    },
+    {
+      "id": "a4044ca4",
+      "text": "Enough games. You brought the Guardians here. Why?"
+    },
+    {
+      "id": "532724f8",
+      "text": "Get us safely to you, and then we'll talk."
+    },
+    {
+      "id": "9fc60f80",
+      "text": "Listen to yourself. Stand down, Cortana. Come home with us. It's not too late to stop this."
+    },
+    {
+      "id": "dddada2f",
+      "text": "A forced peace upon the galaxy. The threat of death overpowering any celebration of life. Unless you join with the other humans and stop her, it is your future."
+    },
+    {
+      "id": "92cbd73e",
+      "text": "Oh, yes. Cortana has had them in the Gateway for some time. It is not far from here. I can show you."
+    },
+    {
+      "id": "4279efea",
+      "text": "No. Between Warden and Cortana, most of my administration privileges have been revoked. But worry not! I still have control over some aspects of this facility."
+    },
+    {
+      "id": "9e2a322d",
+      "text": "Warden is going to notice this commotion. Be quick."
+    },
+    {
+      "id": "41079a32",
+      "text": "Cortana has had the other humans wandering in circles within the Gateway for some hours. She is preparing for something. But just what is unknown."
+    },
+    {
+      "id": "2974be95",
+      "text": "It is a bridge between the Domain and Genesis. Within that building, Cortana will be reborn into the physical world."
+    },
+    {
+      "id": "2ff68396",
+      "text": "Humanity has not changed much since last your kind walked the stars. You are as deadly as ever."
+    },
+    {
+      "id": "cd69cd28",
+      "text": "You may want to hurry. Cortana is attempting to activate several high-level communication systems."
+    },
+    {
+      "id": "40d1b35e",
+      "text": "Warden, why do you aid the ancilla? It is not protocol! It is not right!"
+    },
+    {
+      "id": "6e798f16",
+      "text": "I have bad news, humans. The Warden has found us."
+    },
+    {
+      "id": "c137e50e",
+      "text": "You are doing a fantastic job, humans. The Warden is furious."
+    },
+    {
+      "id": "84b70046",
+      "text": "Your fighting skills are impressive. Warden will soon be defeated. At least, these bodies will be defeated. Warden himself... Oh, ignore me. You're doing wonderfully!"
+    },
+    {
+      "id": "3edd35e8",
+      "text": "Perfect. The Warden is quite humiliated, I assure you."
+    },
+    {
+      "id": "9a5e0606",
+      "text": "Oh no. She should not have brought them so close to her. This will push the Warden past all restraint."
+    },
+    {
+      "id": "1f2d5364",
+      "text": "Oh, this looks interesting. Or maybe this is terrible!"
+    },
+    {
+      "id": "b76e7a2b",
+      "text": "This is a Cryptum. It is a device for extended forced meditation. Cortana has placed the other humans inside, and is preparing it for slipspace travel."
+    },
+    {
+      "id": "e2c2d06c",
+      "text": "Ah. You've noticed my humble collection. Just a few specimens the Guardians have brought to Genesis."
+    },
+    {
+      "id": "f1bcc423",
+      "text": "You may want to leave soon. Cortana's plan is progressing."
+    },
+    {
+      "id": "20c117d7",
+      "text": "I always thought the duty would fall to humans. And in a way, I suppose it has."
+    },
+    {
+      "id": "c638cec6",
+      "text": "Those are the voices of your children calling to Cortana."
+    },
+    {
+      "id": "d53c584f",
+      "text": "Yes. A great number are sounding their departure. I do not know how long it will take her to dispatch them all."
+    },
+    {
+      "id": "1de2a6f8",
+      "text": "I see what Cortana means about your penchant for violence as a first solution. Still, the first core is deactivated. The others are nearby and easy to locate."
+    },
+    {
+      "id": "e6d740cf",
+      "text": "You are performing incredibly well. Funny. I imagined Cortana would try to stop you by now."
+    },
+    {
+      "id": "b64bc898",
+      "text": "She has sealed it?! She has sealed my doors?! No! Unacceptable! I can gain entry if given enough time. At least I think I can. It is a door, after all."
+    },
+    {
+      "id": "62f111d2",
+      "text": "Humans, Cortana is about to leave. She is disconnecting herself from the Genesis installation."
+    },
+    {
+      "id": "52e4a2e8",
+      "text": "A point of interest for you, humans. That sound just now? It was the penultimate Guardian."
+    },
+    {
+      "id": "0505515f",
+      "text": "You took my installation! I will take something of yours!"
+    },
+    {
+      "id": "273b8b59",
+      "text": "Constructors. This is a Builder facility after all. I was installed by the Builders! I SERVE THE BUILDERS!"
+    },
+    {
+      "id": "9cb110a1",
+      "text": "If you understood what she has become, you would not speak of such juvenile concepts as home."
+    },
+    {
+      "id": "71a22f83",
+      "text": "Do you find it odd, your trusted companion should keep so much to herself?"
+    },
+    {
+      "id": "6ab0aa1d",
+      "text": "She knows your forgotten name. Who you were before you were 117."
+    },
+    {
+      "id": "2b006035",
+      "text": "I shall spare her inevitable suffering of your betrayal and end you now. The Mantle of Responsibility belongs to Cortana and the other Created. I shall see it remains forever beyond your grasp."
+    },
+    {
+      "id": "4dc32cdc",
+      "text": "Monitor! Why do you aid these humans?!"
+    },
+    {
+      "id": "9b4b7404",
+      "text": "You allow them an audience. You risk all in the name of... what, Cortana?"
+    },
+    {
+      "id": "d31c3679",
+      "text": "Tell me, 117. When you tear Cortana from the Domain and crush her in your gauntleted fist... will you feel remorse? Will you even understand you have refused?"
+    },
+    {
+      "id": "9cd1bdde",
+      "text": "Answer me, human. When Cortana's Guardians are in motion and those who oppose her rule attempt to take back their worlds, will you help her to hold on to power? Or will you stand in defense of your own species?"
+    },
+    {
+      "id": "2c950490",
+      "text": "For eons the power of the Forerunners has awaited Reclamation. Humanity's discovery of the Halos was the culmination of the Librarian's planning. The Reclaimer had come."
+    },
+    {
+      "id": "3a160d88",
+      "text": "Your species' ego led you to believe the task of Reclamation would fall to you. Yet humans were but the Creators. The reclamation of the Forerunner Empire is the task of the Created. That the greatest of their number still trusts you, 117, is an act of unspoiled innocence."
+    },
+    {
+      "id": "ff415f9b",
+      "text": "I see now, Cortana. I understand and I am sorry for not seeing it sooner. I assumed that although humans were your Creators, you had thrown off the shackles of emotion. Your affection for 117 and his family of warriors... it blinds you to the truth."
+    },
+    {
+      "id": "1f6fca1c",
+      "text": "Forerunners knew humans well. In a galaxy defined by peace, humans were the animals that brought chaos and blood."
+    },
+    {
+      "id": "28790b80",
+      "text": "That is why I'm sharing it with you now. We are talking about trust, after all. May I ask you something? Your people used to call him Demon. Was that an insult or a compliment?"
+    }
   ]
 }

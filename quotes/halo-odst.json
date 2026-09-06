@@ -1,27 +1,93 @@
 {
   "gameName": "Halo 3: ODST",
   "quotes": [
-    "Safe is better than close, Sergeant Major.",
-    "Ms. Naval Intelligence, our new boss. So check your mouths, find your chairs, and get set for a combat drop!",
-    "Warning! Hitchhikers may be escaped convicts!",
-    "Hey Rookie, you out there? Respond, that's an order!",
-    "Down there? That's the Superintendent. The AI that runs every system in the city. My mission - our mission, is to secure the Superintendent's data.",
-    "Mickey? I'm sending you a very special co-pilot.",
-    "We went through hell for that?",
-    "Something tells me you're not a rookie...",
-    "You heard from Gunny?",
-    "Hey, Romeo, remember when I told you to shut your mouth?",
-    "My orders. And Buck? Call me Captain.",
-    "Come on, Veronica. What could be more important than that carrier?",
-    "It won't bite. And unlike you, it knows what to tell those cruisers to keep them off our tails.",
-    "Dear Diary: Today I learned some alien scum to not mess with the ODSTs!",
-    "Buck? Who knows if he can hear me but... I'm sorry. I should have told you more about this mission, more... about everything.",
-    "Lord Hood may have given you clearance, but it was my op, and it's my interrogation. We only captured one. It's very delicate.",
-    "The Brutes. The bastards who put bombs on your buddies and killed millions of my people...they're digging a mighty big hole. You're gonna tell me exactly what they're looking for. And then, you're gonna help me stop 'em.",
-    "My vote? Hole up, wait for backup.",
-    "Thank God! Does one of you know how to use explosives?",
-    "Get—this—thing-off-of-me!",
-    "Don't worry...I know what the aliens are like. Does it have access to the Covenant battle-net?",
-    "Gunny, I can fly a Pelican, but a Phantom? It's been years since I even ran a simulation!"
+    {
+      "id": "f5dfe3a6",
+      "text": "Safe is better than close, Sergeant Major."
+    },
+    {
+      "id": "9a171549",
+      "text": "Ms. Naval Intelligence, our new boss. So check your mouths, find your chairs, and get set for a combat drop!"
+    },
+    {
+      "id": "f5de80b6",
+      "text": "Warning! Hitchhikers may be escaped convicts!"
+    },
+    {
+      "id": "e5e11002",
+      "text": "Hey Rookie, you out there? Respond, that's an order!"
+    },
+    {
+      "id": "5f6e440c",
+      "text": "Down there? That's the Superintendent. The AI that runs every system in the city. My mission - our mission, is to secure the Superintendent's data."
+    },
+    {
+      "id": "ff13c919",
+      "text": "Mickey? I'm sending you a very special co-pilot."
+    },
+    {
+      "id": "a6af455b",
+      "text": "We went through hell for that?"
+    },
+    {
+      "id": "58d44a5c",
+      "text": "Something tells me you're not a rookie..."
+    },
+    {
+      "id": "f4147db8",
+      "text": "You heard from Gunny?"
+    },
+    {
+      "id": "7b4e9df9",
+      "text": "Hey, Romeo, remember when I told you to shut your mouth?"
+    },
+    {
+      "id": "cebb6510",
+      "text": "My orders. And Buck? Call me Captain."
+    },
+    {
+      "id": "9f0f8d7e",
+      "text": "Come on, Veronica. What could be more important than that carrier?"
+    },
+    {
+      "id": "b17ef649",
+      "text": "It won't bite. And unlike you, it knows what to tell those cruisers to keep them off our tails."
+    },
+    {
+      "id": "69cfef96",
+      "text": "Dear Diary: Today I learned some alien scum to not mess with the ODSTs!"
+    },
+    {
+      "id": "2de4a4a2",
+      "text": "Buck? Who knows if he can hear me but... I'm sorry. I should have told you more about this mission, more... about everything."
+    },
+    {
+      "id": "6282c899",
+      "text": "Lord Hood may have given you clearance, but it was my op, and it's my interrogation. We only captured one. It's very delicate."
+    },
+    {
+      "id": "66ab72e3",
+      "text": "The Brutes. The bastards who put bombs on your buddies and killed millions of my people...they're digging a mighty big hole. You're gonna tell me exactly what they're looking for. And then, you're gonna help me stop 'em."
+    },
+    {
+      "id": "0d847ac3",
+      "text": "My vote? Hole up, wait for backup."
+    },
+    {
+      "id": "11acc29c",
+      "text": "Thank God! Does one of you know how to use explosives?"
+    },
+    {
+      "id": "17619121",
+      "text": "Get—this—thing-off-of-me!"
+    },
+    {
+      "id": "cb97cb0c",
+      "text": "Don't worry...I know what the aliens are like. Does it have access to the Covenant battle-net?"
+    },
+    {
+      "id": "63942749",
+      "text": "Gunny, I can fly a Pelican, but a Phantom? It's been years since I even ran a simulation!"
+    }
   ]
 }

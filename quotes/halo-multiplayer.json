@@ -1,11 +1,29 @@
 {
   "gameName": "Halo Multiplayer",
   "quotes": [
-    "Slayer!",
-    "Flag dropped.",
-    "I would've been your daddy!",
-    "Oddball! Play ball!",
-    "New zombie!",
-    "Double kill!"
+    {
+      "id": "af194f16",
+      "text": "Slayer!"
+    },
+    {
+      "id": "f421456f",
+      "text": "Flag dropped."
+    },
+    {
+      "id": "ba756297",
+      "text": "I would've been your daddy!"
+    },
+    {
+      "id": "bdc7895a",
+      "text": "Oddball! Play ball!"
+    },
+    {
+      "id": "63d66290",
+      "text": "New zombie!"
+    },
+    {
+      "id": "20b8155a",
+      "text": "Double kill!"
+    }
   ]
 }
