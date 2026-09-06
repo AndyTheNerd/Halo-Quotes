@@ -13,9 +13,18 @@ jobs:
   website:
     name: Website
     runs-on: ubuntu-latest
+    permissions:
+      # To push a corrected app.js stamp back to the branch under test.
+      contents: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          # Check the branch out by name, rather than the pull request's merge
+          # ref, so the stamp step below has somewhere to push. A pull request
+          # from a fork cannot be pushed to at all, so it falls back to the
+          # default checkout and is caught by the last step instead.
+          ref: ${{ github.event.pull_request.head.repo.full_name == github.repository && github.head_ref || '' }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -24,11 +33,42 @@ jobs:
           cache: 'npm'
           cache-dependency-path: package-lock.json
 
+      # The site has no build step, so index.html carries a hash of app.js as a
+      # cache buster. Stamping here means nobody has to remember to run
+      # `npm run stamp`, and it runs before the tests so the suite always sees
+      # a correctly stamped page.
+      - name: Stamp app.js
+        run: npm run stamp
+
+      - name: Push the stamp if it changed
+        if: ${{ github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository }}
+        run: |
+          if git diff --quiet -- index.html; then
+            echo 'Stamp already current.'
+            exit 0
+          fi
+
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Re-stamp the app.js cache buster' -- index.html
+          git push
+          echo 'Pushed a re-stamped index.html.'
+
       - name: Install dependencies
         run: npm ci
 
       - name: Run tests
         run: npm test
+
+      # Nothing could be pushed to a fork's branch, so say what is wrong rather
+      # than letting a stale stamp merge unnoticed.
+      - name: Check the stamp came in with the pull request
+        if: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name != github.repository }}
+        run: |
+          git diff --quiet -- index.html || {
+            echo '::error file=index.html::index.html loads a stale app.js stamp. Run `npm run stamp` and commit the result.'
+            exit 1
+          }
 
   api:
     name: API worker

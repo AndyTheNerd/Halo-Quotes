@@ -149,14 +149,19 @@ Then open `http://localhost:8000` in your browser.
 `index.html` loads the script with a cache-busting stamp - `app.js?v=...`,
 where the stamp is a short hash of `app.js`. The site has no build step, so a
 browser can otherwise hold a cached `app.js` while fetching freshly deployed
-quote files. Re-stamp after every change to `app.js`:
+quote files.
+
+You do not have to remember this: the Website CI job re-stamps `index.html`
+and pushes the result back to the branch. To do it yourself, or to keep the
+local test suite green:
 
 ```bash
 npm run stamp
 ```
 
-`npm test` fails while the stamp is stale, so forgetting is caught before it
-ships.
+`npm test` fails while the stamp is stale, which is also what catches a pull
+request from a fork - CI cannot push to those, so it asks the contributor to
+run the command instead.
 
 ### Tests
 
