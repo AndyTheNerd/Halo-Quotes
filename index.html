@@ -4,215 +4,111 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Random quotes from the Halo video game series. Discover memorable lines from Master Chief, Cortana, and more.">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https://wallpapers.com; frame-src https://xephorium.github.io; connect-src 'self';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self'; frame-src https://xephorium.github.io; connect-src 'self'; manifest-src 'self'; base-uri 'self'; form-action 'none';">
     <meta property="og:title" content="Halo Quotes by Team Respawn">
     <meta property="og:description" content="Random quotes from the Halo video game series. Discover memorable lines from Master Chief, Cortana, and more.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://haloquotes.teamrespawntv.com">
+    <meta property="og:url" content="https://haloquotes.teamrespawntv.com/">
     <meta property="og:image" content="https://haloquotes.teamrespawntv.com/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Halo Quotes - 689 quotes from every Halo game">
+    <meta property="og:site_name" content="Halo Quotes by Team Respawn">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Halo Quotes by Team Respawn">
     <meta name="twitter:description" content="Random quotes from the Halo video game series. Discover memorable lines from Master Chief, Cortana, and more.">
+    <meta name="twitter:image" content="https://haloquotes.teamrespawntv.com/og-image.jpg">
+    <meta name="theme-color" content="#1f2937">
+    <link rel="canonical" href="https://haloquotes.teamrespawntv.com/">
     <title>Halo Quotes by Team Respawn</title>
     <link rel="icon" type="image/png" href="/img/256x256.png">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
-        body {
-            font-family: 'Inter', sans-serif;
-            position: relative;
+    <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="image" href="/img/bg-1920.webp" media="(min-width: 641px)">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap">
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://haloquotes.teamrespawntv.com/#website",
+          "url": "https://haloquotes.teamrespawntv.com/",
+          "name": "Halo Quotes by Team Respawn",
+          "description": "Random quotes from the Halo video game series. Discover memorable lines from Master Chief, Cortana, and more.",
+          "inLanguage": "en",
+          "publisher": {
+            "@id": "https://haloquotes.teamrespawntv.com/#publisher"
+          }
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://haloquotes.teamrespawntv.com/#publisher",
+          "name": "Team Respawn",
+          "url": "https://teamrespawntv.com",
+          "sameAs": [
+            "https://www.youtube.com/@TeamRespawn",
+            "https://bsky.app/profile/LocalUnits.bsky.social",
+            "https://github.com/AndyTheNerd/Halo-Quotes"
+          ]
+        },
+        {
+          "@type": "WebApplication",
+          "name": "Halo Quotes",
+          "url": "https://haloquotes.teamrespawntv.com/",
+          "applicationCategory": "EntertainmentApplication",
+          "operatingSystem": "Any",
+          "browserRequirements": "Requires JavaScript",
+          "isAccessibleForFree": true,
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          }
+        },
+        {
+          "@type": "Quotation",
+          "text": "I need a weapon.",
+          "spokenByCharacter": {
+            "@type": "Person",
+            "name": "Master Chief"
+          },
+          "isPartOf": {
+            "@type": "VideoGame",
+            "name": "Halo 2"
+          }
         }
-
-        #background-iframe {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-            z-index: -2; /* Sits behind everything else */
-        }
-
-        body::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
-            z-index: -1; /* Sits between the content and the background */
-        }
-
-        /* Ensure content is on top of the overlay */
-        .min-h-screen {
-            position: relative;
-            z-index: 1;
-        }
-        
-        /* New style for the transparent modal background */
-        .transparent-modal-bg {
-            background-color: rgba(255, 255, 255, 1); /* Last value reflects opacity */
-        }
-
-        /* Fixed size for quote container */
-        #quote-container {
-            min-height: 200px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        /* Ensure quote text takes available space */
-        #quote-text {
-            min-height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* Mobile-specific styles for the background */
-        @media (max-width: 768px) {
-            body {
-                background-image: url('https://wallpapers.com/images/hd/master-chief-phone-32ja876t0j9rii9c.jpg');
-                background-size: cover;
-                background-position: center;
-                background-repeat: no-repeat;
-                background-attachment: fixed;
-            }
-            #background-iframe {
-                display: none;
-            }
-        }
-
-        /* Hamburger menu styles - Desktop only */
-        @media (min-width: 769px) {
-            #hamburger-btn {
-                position: fixed;
-                top: 20px;
-                left: 20px;
-                z-index: 100;
-                background-color: rgba(55, 65, 81, 0.9);
-                border: none;
-                padding: 12px;
-                border-radius: 8px;
-                cursor: pointer;
-                transition: background-color 0.3s;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-
-            #hamburger-btn:hover {
-                background-color: rgba(75, 85, 99, 0.9);
-            }
-
-            #hamburger-btn svg {
-                width: 24px;
-                height: 24px;
-                stroke: white;
-            }
-
-            #menu-panel {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 280px;
-                height: 100vh;
-                background-color: rgba(55, 65, 81, 0.95);
-                backdrop-filter: blur(10px);
-                transform: translateX(-100%);
-                transition: transform 0.3s ease-in-out;
-                z-index: 99;
-                padding: 80px 20px 20px 20px;
-                box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
-            }
-
-            #menu-panel.menu-open {
-                transform: translateX(0);
-            }
-
-            #menu-panel .menu-section {
-                margin-bottom: 24px;
-            }
-
-            #menu-panel .menu-section:last-child {
-                margin-bottom: 0;
-            }
-
-            #menu-panel .menu-heading {
-                color: rgba(255, 255, 255, 0.7);
-                font-size: 12px;
-                font-weight: 700;
-                text-transform: uppercase;
-                letter-spacing: 0.5px;
-                margin: 0 0 12px 16px;
-                padding: 0;
-            }
-
-            #menu-panel ul {
-                list-style: none;
-                padding: 0;
-                margin: 0;
-            }
-
-            #menu-panel li {
-                margin-bottom: 16px;
-            }
-
-            #menu-panel a {
-                display: flex;
-                align-items: center;
-                gap: 12px;
-                color: rgba(255, 255, 255, 0.9);
-                text-decoration: none;
-                padding: 12px 16px;
-                border-radius: 8px;
-                transition: all 0.2s;
-                font-size: 16px;
-            }
-
-            #menu-panel a:hover {
-                background-color: rgba(255, 255, 255, 0.1);
-                color: white;
-                transform: translateX(4px);
-            }
-
-            #menu-panel .menu-icon {
-                width: 20px;
-                height: 20px;
-                flex-shrink: 0;
-            }
-        }
-
-        /* Hide hamburger menu on mobile */
-        @media (max-width: 768px) {
-            #hamburger-btn,
-            #menu-panel {
-                display: none;
-            }
-        }
-    </style>
+      ]
+    }
+    </script>
 </head>
-<body class="min-h-screen flex flex-col justify-between">
-    <!-- <iframe id="background-iframe" src="https://xephorium.github.io/Halo3LoadingScreen/?2k&nologo"></iframe> -->
-    <img src="img/HCE-Environment-1920x1080-02-Watermarked.png" alt="Halo Background" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; transform: scale(1.15);">
+<body>
+    <picture>
+        <source media="(max-width: 640px)" srcset="img/bg-960.webp" type="image/webp">
+        <source media="(max-width: 1366px)" srcset="img/bg-1280.webp" type="image/webp">
+        <source srcset="img/bg-1920.webp" type="image/webp">
+        <img id="background" src="img/bg-1280.jpg" alt="" width="1920" height="1080" fetchpriority="high" decoding="async">
+    </picture>
 
     <!-- Hamburger Menu Button -->
-    <button id="hamburger-btn" aria-label="Toggle menu">
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <button id="hamburger-btn" aria-label="Toggle menu" aria-expanded="false" aria-controls="menu-panel">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
         </svg>
     </button>
 
     <!-- Menu Panel -->
-    <div id="menu-panel">
+    <nav id="menu-panel" aria-label="Halo Quotes and Team Respawn links" inert>
         <div class="menu-section">
             <h3 class="menu-heading">Halo Quotes</h3>
             <ul>
                 <li>
                     <a href="https://api.haloquotes.teamrespawntv.com/" target="_blank" rel="noopener noreferrer">
-                        <svg class="menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
                         </svg>
                         <span>API</span>
@@ -220,7 +116,7 @@
                 </li>
                 <li>
                     <a href="https://github.com/AndyTheNerd/Halo-Quotes" target="_blank" rel="noopener noreferrer">
-                        <svg class="menu-icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="menu-icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                             <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                         </svg>
                         <span>Source Code</span>
@@ -233,7 +129,7 @@
             <ul>
                 <li>
                     <a href="https://teamrespawntv.com" target="_blank" rel="noopener noreferrer">
-                        <svg class="menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path>
                         </svg>
                         <span>Team Respawn Website</span>
@@ -241,7 +137,7 @@
                 </li>
                 <li>
                     <a href="https://www.youtube.com/@TeamRespawn" target="_blank" rel="noopener noreferrer">
-                        <svg class="menu-icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="menu-icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                             <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
                         </svg>
                         <span>Team Respawn YouTube</span>
@@ -249,258 +145,67 @@
                 </li>
             </ul>
         </div>
-    </div>
+    </nav>
 
-    <div class="flex-grow flex items-center justify-center">
-        <div class="max-w-xl w-full mx-4 p-8 rounded-xl shadow-lg transform transition-all duration-300 hover:scale-105 transparent-modal-bg">
-            <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">Halo Quotes</h1>
-            <div id="quote-container" class="relative p-6 rounded-lg border-l-4 border-gray-400" style="background-color: rgba(243, 244, 246, 0.85);">
-                <p id="quote-text" class="text-lg text-gray-700 italic text-center mb-2">
-                    </p>
-                <p id="quote-source" class="text-sm text-gray-500 text-center">
-                    </p>
+    <main class="page">
+        <div class="card">
+            <h1>Halo Quotes</h1>
+            <div class="filter">
+                <label for="game-filter">Game</label>
+                <select id="game-filter">
+                    <option value="all">All games</option>
+                </select>
             </div>
-            <div class="flex justify-center gap-3 mt-6" style="min-height: 48px;">
-                <button id="copy-btn" class="bg-gray-600 text-white font-semibold py-2 px-6 rounded-full shadow-md hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 transition-colors duration-300 flex items-center gap-2" title="Copy quote to clipboard">
-                    <svg id="copy-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <div id="quote-container" role="region" aria-label="Quote" aria-live="polite" aria-atomic="true">
+                <p id="quote-text">"I need a weapon."</p>
+                <p id="quote-source">- Halo 2</p>
+            </div>
+            <noscript>
+                <p class="noscript-note">JavaScript is switched off, so the buttons below will not load a new
+                quote. Every quote is still readable in the
+                <a href="https://github.com/AndyTheNerd/Halo-Quotes/tree/master/quotes">quote files on GitHub</a>.</p>
+            </noscript>
+            <div class="controls">
+                <button id="previous-quote-btn" class="btn" disabled>
+                    Previous Quote
+                </button>
+                <button id="next-quote-btn" class="btn">
+                    Next Quote
+                </button>
+            </div>
+            <div class="controls controls--secondary">
+                <button id="copy-btn" class="btn btn--small btn--secondary" title="Copy quote to clipboard">
+                    <svg id="copy-icon" class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
                     </svg>
-                    <svg id="check-icon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <svg id="check-icon" class="icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                     </svg>
                     <span id="copy-text">Copy</span>
                 </button>
-                <button id="previous-quote-btn" class="bg-gray-800 text-white font-semibold py-2 px-6 rounded-full shadow-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors duration-300 disabled:opacity-50" disabled>
-                    Previous Quote
-                </button>
-                <button id="next-quote-btn" class="bg-gray-800 text-white font-semibold py-2 px-6 rounded-full shadow-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors duration-300">
-                    Next Quote
-                </button>
+                <span class="share-label" aria-hidden="true">Share</span>
+                <a id="share-bluesky" class="btn btn--small btn--secondary btn--icon" href="https://bsky.app/" target="_blank" rel="noopener noreferrer" title="Share this quote on Bluesky" aria-label="Share this quote on Bluesky">
+                    <svg class="icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path d="M5.77 3.39C8.32 5.3 11.06 9.18 12 11.26c.94-2.08 3.68-5.96 6.23-7.87C20.07 2.01 23 .93 23 4.27c0 .67-.38 5.6-.61 6.4-.77 2.79-3.61 3.5-6.14 3.07 4.42.75 5.55 3.24 3.12 5.73-4.61 4.73-6.63-1.19-7.14-2.7-.1-.28-.15-.41-.15-.3 0-.11-.05.02-.15.3-.51 1.51-2.53 7.43-7.14 2.7-2.43-2.49-1.3-4.98 3.12-5.73-2.53.43-5.37-.28-6.14-3.07C1.38 9.87 1 4.94 1 4.27 1 .93 3.93 2.01 5.77 3.39z"/>
+                    </svg>
+                </a>
+                <a id="share-x" class="btn btn--small btn--secondary btn--icon" href="https://x.com/" target="_blank" rel="noopener noreferrer" title="Share this quote on X" aria-label="Share this quote on X">
+                    <svg class="icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path d="M18.9 1.153h3.682l-8.042 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/>
+                    </svg>
+                </a>
             </div>
+            <p id="copy-status" class="visually-hidden" role="status" aria-live="polite"></p>
+            <p class="shortcuts">Shortcuts: <kbd>&larr;</kbd> <kbd>&rarr;</kbd> to browse, <kbd>C</kbd> to copy</p>
         </div>
-    </div>
+    </main>
 
-    <div class="fixed bottom-4 left-0 w-full text-center text-gray-400 text-sm">
-        Found an incorrect quote? Report it <a href="https://forms.gle/QRq66zXDMhUBrDYB8" target="_blank" rel="noopener noreferrer" class="underline hover:text-white transition-colors duration-200">here</a>.
+    <footer class="site-footer">
+        Found an incorrect quote? Report it <a href="https://forms.gle/QRq66zXDMhUBrDYB8" target="_blank" rel="noopener noreferrer">here</a>.
         <br>
-        Made with <span class="text-red-500">❤</span> by <a href="https://www.youtube.com/@TeamRespawn" target="_blank" rel="noopener noreferrer" class="underline hover:text-white transition-colors duration-200">Team Respawn</a>
+        Made with <span class="heart">&#10084;</span> by <a href="https://www.youtube.com/@TeamRespawn" target="_blank" rel="noopener noreferrer">Team Respawn</a>
         <br>
-        View the code <a href="https://github.com/AndyTheNerd/Halo-Quotes" target="_blank" rel="noopener noreferrer" class="underline hover:text-white transition-colors duration-200">here.</a>  This unofficial website is open source and free to use.
-    </div>
-
-    <script>
-        const quoteTextElement = document.getElementById('quote-text');
-        const quoteSourceElement = document.getElementById('quote-source');
-        const nextQuoteBtn = document.getElementById('next-quote-btn');
-        const previousQuoteBtn = document.getElementById('previous-quote-btn');
-        const copyBtn = document.getElementById('copy-btn');
-        const copyIcon = document.getElementById('copy-icon');
-        const checkIcon = document.getElementById('check-icon');
-        const copyText = document.getElementById('copy-text');
-        
-        // Store current quote data for copying
-        let currentQuote = '';
-        let currentGame = '';
-
-        // History for quotes
-        let quoteHistory = [];
-        let currentQuoteIndex = -1;
-        
-        // List of available quote files
-        const quoteFiles = [
-            'quotes/halo-ce.json',
-            'quotes/halo-2.json',
-            'quotes/halo-3.json',
-            'quotes/halo-odst.json',
-            'quotes/halo-reach.json',
-            'quotes/halo-4.json',
-            'quotes/halo-5.json',
-            'quotes/halo-infinite.json',
-            'quotes/halo-wars.json',
-            'quotes/halo-wars-2.json',
-            'quotes/halo-multiplayer.json'
-        ];
-
-        // Function to display a loading state
-        function showLoading() {
-            quoteTextElement.textContent = 'Loading...';
-            quoteSourceElement.textContent = '';
-            // Disable buttons during loading
-            copyBtn.disabled = true;
-            nextQuoteBtn.disabled = true;
-            previousQuoteBtn.disabled = true;
-        }
-
-        // Function to display an error message
-        function showError(message) {
-            quoteTextElement.textContent = `Error: ${message}`;
-            quoteSourceElement.textContent = 'Please try again.';
-            // Disable copy button on error
-            copyBtn.disabled = true;
-        }
-
-        // Function to update the displayed quote and button states
-        function showQuote() {
-            const quoteData = quoteHistory[currentQuoteIndex];
-            currentQuote = quoteData.quote;
-            currentGame = quoteData.game;
-
-            quoteTextElement.textContent = `"${currentQuote}"`;
-            quoteSourceElement.textContent = `- ${currentGame}`;
-
-            // Update button states
-            previousQuoteBtn.disabled = currentQuoteIndex <= 0;
-            copyBtn.disabled = false;
-            nextQuoteBtn.disabled = false;
-        }
-
-        // Function to copy quote to clipboard
-        async function copyQuoteToClipboard() {
-            if (!currentQuote || !currentGame) {
-                return;
-            }
-
-            try {
-                // Format the quote for copying: "Quote" - Game Name
-                const textToCopy = `"${currentQuote}"\n\n- ${currentGame}`;
-                
-                // Use the Clipboard API
-                await navigator.clipboard.writeText(textToCopy);
-                
-                // Show success feedback
-                copyIcon.classList.add('hidden');
-                checkIcon.classList.remove('hidden');
-                copyText.textContent = 'Copied!';
-                copyBtn.classList.remove('bg-gray-600', 'hover:bg-gray-500');
-                copyBtn.classList.add('bg-green-600', 'hover:bg-green-500');
-                
-                // Reset after 2 seconds
-                setTimeout(() => {
-                    copyIcon.classList.remove('hidden');
-                    checkIcon.classList.add('hidden');
-                    copyText.textContent = 'Copy';
-                    copyBtn.classList.remove('bg-green-600', 'hover:bg-green-500');
-                    copyBtn.classList.add('bg-gray-600', 'hover:bg-gray-500');
-                }, 2000);
-            } catch (error) {
-                console.error('Failed to copy:', error);
-                // Fallback for older browsers
-                try {
-                    const textArea = document.createElement('textarea');
-                    textArea.value = `"${currentQuote}"\n\n- ${currentGame}`;
-                    textArea.style.position = 'fixed';
-                    textArea.style.opacity = '0';
-                    document.body.appendChild(textArea);
-                    textArea.select();
-                    document.execCommand('copy');
-                    document.body.removeChild(textArea);
-                    
-                    // Show success feedback even with fallback
-                    copyIcon.classList.add('hidden');
-                    checkIcon.classList.remove('hidden');
-                    copyText.textContent = 'Copied!';
-                    copyBtn.classList.remove('bg-gray-600', 'hover:bg-gray-500');
-                    copyBtn.classList.add('bg-green-600', 'hover:bg-green-500');
-                    
-                    setTimeout(() => {
-                        copyIcon.classList.remove('hidden');
-                        checkIcon.classList.add('hidden');
-                        copyText.textContent = 'Copy';
-                        copyBtn.classList.remove('bg-green-600', 'hover:bg-green-500');
-                        copyBtn.classList.add('bg-gray-600', 'hover:bg-gray-500');
-                    }, 2000);
-                } catch (fallbackError) {
-                    console.error('Fallback copy failed:', fallbackError);
-                    copyText.textContent = 'Failed';
-                    setTimeout(() => {
-                        copyText.textContent = 'Copy';
-                    }, 2000);
-                }
-            }
-        }
-
-        // Async function to fetch and display a new quote
-        async function fetchAndShowQuote() {
-            currentQuoteIndex++;
-
-            if (currentQuoteIndex < quoteHistory.length) {
-                showQuote();
-                return;
-            }
-
-            try {
-                showLoading();
-                nextQuoteBtn.textContent = 'Loading...';
-
-                const randomFile = quoteFiles[Math.floor(Math.random() * quoteFiles.length)];
-                const response = await fetch(randomFile);
-                
-                if (!response.ok) {
-                    throw new Error(`Failed to load quotes: ${response.status} ${response.statusText}`);
-                }
-
-                const data = await response.json();
-
-                if (!data.gameName || !Array.isArray(data.quotes) || data.quotes.length === 0) {
-                    throw new Error('Invalid quote file format');
-                }
-
-                const randomQuote = data.quotes[Math.floor(Math.random() * data.quotes.length)];
-                
-                quoteHistory.push({ quote: randomQuote, game: data.gameName });
-                showQuote();
-
-            } catch (error) {
-                console.error('Error loading quote:', error);
-                let errorMessage = 'Unable to load quote. ';
-                if (error.message.includes('Failed to fetch') || error.message.includes('CORS')) {
-                    errorMessage += 'This site needs to be served from a web server (not opened directly as a file). ';
-                } else {
-                    errorMessage += error.message || 'Please check your connection and try again.';
-                }
-                showError(errorMessage);
-                currentQuoteIndex--; // Decrement index on failure
-            } finally {
-                nextQuoteBtn.textContent = 'Next Quote';
-                nextQuoteBtn.disabled = false;
-            }
-        }
-        
-        function showPreviousQuote() {
-            if (currentQuoteIndex > 0) {
-                currentQuoteIndex--;
-                showQuote();
-            }
-        }
-
-        // Hamburger menu functionality
-        const hamburgerBtn = document.getElementById('hamburger-btn');
-        const menuPanel = document.getElementById('menu-panel');
-
-        function toggleMenu() {
-            menuPanel.classList.toggle('menu-open');
-        }
-
-        // Close menu when clicking outside
-        document.addEventListener('click', function(event) {
-            const isClickInsideMenu = menuPanel.contains(event.target);
-            const isClickOnButton = hamburgerBtn.contains(event.target);
-            
-            if (!isClickInsideMenu && !isClickOnButton && menuPanel.classList.contains('menu-open')) {
-                menuPanel.classList.remove('menu-open');
-            }
-        });
-
-        // Event listeners
-        nextQuoteBtn.addEventListener('click', fetchAndShowQuote);
-        previousQuoteBtn.addEventListener('click', showPreviousQuote);
-        copyBtn.addEventListener('click', copyQuoteToClipboard);
-        hamburgerBtn.addEventListener('click', toggleMenu);
-
-        // Display an initial quote when the page loads
-        fetchAndShowQuote();
-    </script>
+        View the code <a href="https://github.com/AndyTheNerd/Halo-Quotes" target="_blank" rel="noopener noreferrer">here.</a> This unofficial website is open source and free to use.
+    </footer>
 </body>
 </html>
-
-

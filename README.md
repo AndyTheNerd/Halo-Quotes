@@ -10,48 +10,82 @@ This repository provides three main functions:
 2. **Bots**: https://bsky.app/profile/LocalUnits.bsky.social Automated bots that post quotes on a scheduled run to both Bluesky and Twitter
 3. **API**: https://api.haloquotes.teamrespawntv.com/ A RESTful API that allows you to query quotes for your own projects
 
+## Website Features
+
+- **Uniform random quotes.** All quote files are loaded once at startup and
+  flattened into a single pool, so every quote is equally likely regardless of
+  how many quotes its game has.
+- **Filter by game.** Pick a single game from the dropdown, or leave it on
+  "All games". The choice is remembered between visits.
+- **Permalinks.** Every quote has an address like
+  `haloquotes.teamrespawntv.com/#/halo-2/42`, so a shared link reopens the same
+  quote rather than a new random one.
+- **Share and copy.** Copy the quote to the clipboard, or open it prefilled in
+  the Bluesky or X composer.
+- **History.** Previous and Next walk back and forth through the quotes you
+  have already seen.
+- **Keyboard shortcuts.** Left and right arrows browse, `C` copies.
+- **Works without JavaScript.** The page ships with a quote in the markup and
+  explains what is unavailable.
+
 ## Repository Structure
 
 ```
 Halo-Quotes/
 ├── .github/                   # GitHub configuration
 │   └── workflows/             # GitHub Actions workflows
-│       ├── bsky-bot.yml      # Bluesky bot automation
-│       └── twitter-bot.yml   # Twitter bot automation
-├── __tests__/                 # Root-level tests
-│   └── hamburger-menu.test.js # Hamburger menu tests
+│       ├── bsky-bot.yml       # Bluesky bot automation (every 3 hours)
+│       └── tests.yml          # Test suite on every push and pull request
+├── __tests__/                 # Website tests (run against index.html/app.js)
+│   ├── helpers/
+│   │   └── load-page.js       # Loads the real page into JSDOM
+│   ├── accessibility.test.js  # Menu focus, ARIA, reduced motion
+│   ├── features.test.js       # Filter, permalinks, sharing, shortcuts
+│   ├── hamburger-menu.test.js # Menu structure and links
+│   ├── metadata.test.js       # Social cards, icons, structured data
+│   └── quotes.test.js         # Quote pool, history, quote data
 ├── api-worker/                # Cloudflare Worker API
 │   ├── src/
 │   │   ├── __tests__/
-│   │   │   └── index.test.js # API tests
-│   │   └── index.js          # API worker implementation
-│   ├── package.json          # API dependencies
-│   ├── package-lock.json     # Locked dependency versions
-│   ├── vitest.config.js      # Vitest test configuration
-│   ├── wrangler.toml         # Cloudflare Worker configuration
-│   └── README.md             # API-specific documentation
+│   │   │   └── index.test.js  # API tests
+│   │   └── index.js           # API worker implementation
+│   ├── package.json           # API dependencies
+│   ├── package-lock.json      # Locked dependency versions
+│   ├── vitest.config.js       # Vitest test configuration
+│   ├── wrangler.toml          # Cloudflare Worker configuration
+│   └── README.md              # API-specific documentation
 ├── bots/                      # Social media bots
-│   ├── bsky-bot.ts           # Bluesky bot implementation
-│   ├── twitter-bot.js        # Twitter bot implementation
-│   ├── package.json          # Bot dependencies
-│   └── package-lock.json     # Locked dependency versions
+│   ├── bsky-bot.ts            # Bluesky bot implementation
+│   ├── twitter-bot.js         # Twitter bot implementation (not scheduled)
+│   ├── package.json           # Bot dependencies
+│   └── package-lock.json      # Locked dependency versions
 ├── quotes/                    # Quote data files
-│   ├── halo-ce.json          # Halo: Combat Evolved quotes
-│   ├── halo-2.json           # Halo 2 quotes
-│   ├── halo-3.json           # Halo 3 quotes
-│   ├── halo-odst.json        # Halo 3: ODST quotes
-│   ├── halo-reach.json       # Halo: Reach quotes
-│   ├── halo-4.json           # Halo 4 quotes
-│   ├── halo-5.json           # Halo 5: Guardians quotes
-│   ├── halo-infinite.json    # Halo Infinite quotes
-│   ├── halo-wars.json       # Halo Wars quotes
-│   ├── halo-wars-2.json      # Halo Wars 2 quotes
-│   └── halo-multiplayer.json # Halo Multiplayer quotes
+│   ├── halo-ce.json           # Halo: Combat Evolved quotes
+│   ├── halo-2.json            # Halo 2 quotes
+│   ├── halo-3.json            # Halo 3 quotes
+│   ├── halo-odst.json         # Halo 3: ODST quotes
+│   ├── halo-reach.json        # Halo: Reach quotes
+│   ├── halo-4.json            # Halo 4 quotes
+│   ├── halo-5.json            # Halo 5: Guardians quotes
+│   ├── halo-infinite.json     # Halo Infinite quotes
+│   ├── halo-wars.json         # Halo Wars quotes
+│   ├── halo-wars-2.json       # Halo Wars 2 quotes
+│   └── halo-multiplayer.json  # Halo Multiplayer quotes
 ├── img/                       # Image assets
-│   ├── 256x256.png           # Favicon/icon image
-│   ├── HCE-Environment-1920x1080-02-Watermarked.png # Background image
-│   └── Team-Respawn-Full.png # Team Respawn logo
+│   ├── 256x256.png            # Favicon
+│   ├── apple-touch-icon.png   # iOS home screen icon
+│   ├── icon-192.png           # Web manifest icon
+│   ├── bg-1920.webp           # Background, desktop
+│   ├── bg-1280.webp           # Background, laptop
+│   ├── bg-960.webp            # Background, mobile
+│   ├── bg-1280.jpg            # Background fallback for browsers without WebP
+│   └── Team-Respawn-Full.png  # Team Respawn logo
 ├── index.html                 # Main website HTML file
+├── 404.html                   # Not found page
+├── app.js                     # Website behaviour
+├── styles.css                 # Website styles
+├── og-image.jpg               # Social sharing card (1200x630)
+├── site.webmanifest           # Web app manifest
 ├── package.json               # Root package.json
 ├── package-lock.json          # Root locked dependency versions
 ├── vitest.config.js           # Root Vitest test configuration
@@ -75,6 +109,29 @@ python -m http.server 8000
 ```
 
 Then open `http://localhost:8000` in your browser.
+
+### Tests
+
+The website tests run against the real `index.html` and `app.js`, so they fail
+if the shipped page breaks.
+
+```bash
+npm install
+npm test          # website tests
+npm run test:watch
+```
+
+The API worker has its own suite:
+
+```bash
+cd api-worker
+npm install
+npm test
+```
+
+Both run automatically on every push and pull request via
+`.github/workflows/tests.yml`, along with a check that validates every file in
+`quotes/`.
 
 ### API (Cloudflare Worker)
 
@@ -230,10 +287,11 @@ The API supports CORS and can be accessed from any origin. All responses include
 Automated bots that post random Halo quotes to social media platforms on a scheduled basis.
 
 The bots support:
-- **Bluesky**: Posts random quotes to Bluesky on a scheduled basis
-- **Twitter/X**: Posts random quotes to Twitter/X on a scheduled basis
-
-Both bots run automatically every 3 hours via GitHub Actions workflows.
+- **Bluesky**: Posts random quotes to Bluesky every 3 hours via
+  `.github/workflows/bsky-bot.yml`
+- **Twitter/X**: `bots/twitter-bot.js` is implemented but has no workflow, so
+  it does not currently run on a schedule. Run it manually with
+  `npm start` from `bots/`, or add a workflow modelled on `bsky-bot.yml`.
 
 ## Contributing
 
