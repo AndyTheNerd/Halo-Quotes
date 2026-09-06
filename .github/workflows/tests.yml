@@ -18,7 +18,7 @@ jobs:
       contents: write
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           # Check the branch out by name, rather than the pull request's merge
           # ref, so the stamp step below has somewhere to push. A pull request
@@ -27,7 +27,7 @@ jobs:
           ref: ${{ github.event.pull_request.head.repo.full_name == github.repository && github.head_ref || '' }}
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: '20'
           cache: 'npm'
@@ -75,10 +75,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: '20'
           cache: 'npm'
@@ -97,7 +97,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       # The site, the API and both bots all read these files. A malformed one
       # breaks everything at once, so check them before anything else runs.
