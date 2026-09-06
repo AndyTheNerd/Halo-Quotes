@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { readRepoFile, repoRoot } from './helpers/load-page.js';
+import { currentVersion, stampedVersion } from '../scripts/stamp-assets.mjs';
 
 const SITE = 'https://haloquotes.teamrespawntv.com';
 
@@ -14,12 +15,13 @@ function localAssetRefs(source) {
     const refs = new Set();
     const patterns = [
         /(?:href|src)="(\/?(?:img|quotes)\/[^"]+)"/g,
-        /(?:href|src)="(\/?(?:styles\.css|app\.js|site\.webmanifest|og-image\.jpg))"/g,
+        /(?:href|src)="(\/?(?:styles\.css|app\.js|site\.webmanifest|og-image\.jpg)(?:\?[^"]*)?)"/g,
         /srcset="(\/?img\/[^"]+)"/g
     ];
     for (const pattern of patterns) {
         for (const match of source.matchAll(pattern)) {
-            refs.add(match[1].replace(/^\//, ''));
+            // Drop the cache-busting query string before checking the path.
+            refs.add(match[1].replace(/^\//, '').replace(/\?.*$/, ''));
         }
     }
     return [...refs];
@@ -138,6 +140,15 @@ describe('404 page', () => {
 });
 
 describe('asset references', () => {
+    it('loads app.js with a stamp matching the file on disk', () => {
+        // Without this the browser can pair a cached app.js with freshly
+        // deployed quote files. Run `npm run stamp` after editing app.js.
+        expect(
+            stampedVersion(html()),
+            'index.html stamp is stale - run `npm run stamp`'
+        ).toBe(currentVersion());
+    });
+
     it('resolves every local asset referenced by index.html', () => {
         for (const ref of localAssetRefs(html())) {
             expect(existsSync(join(repoRoot, ref)), `index.html references missing ${ref}`).toBe(true);

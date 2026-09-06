@@ -144,6 +144,20 @@ python -m http.server 8000
 
 Then open `http://localhost:8000` in your browser.
 
+### After editing app.js
+
+`index.html` loads the script with a cache-busting stamp - `app.js?v=...`,
+where the stamp is a short hash of `app.js`. The site has no build step, so a
+browser can otherwise hold a cached `app.js` while fetching freshly deployed
+quote files. Re-stamp after every change to `app.js`:
+
+```bash
+npm run stamp
+```
+
+`npm test` fails while the stamp is stale, so forgetting is caught before it
+ships.
+
 ### Tests
 
 The website tests run against the real `index.html` and `app.js`, so they fail
